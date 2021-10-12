@@ -5,6 +5,8 @@ import android.content.Context
 import cleancode.ui.activity.*
 import cleancode.ui.base.BaseActivity
 import cleancode.ui.fragment.MessageCategoryFragment
+import cleancode.ui.fragment.MessageDetailsFragment
+import cleancode.ui.fragment.UserDetailsFragment
 import cleancode.ui.fragment.UserListFragment
 import com.nygar.feature.R
 
@@ -27,7 +29,7 @@ object Navigator {
      * @param context A Context needed to open the destiny activity.
      */
     fun navigateToUserList(context: BaseActivity) {
-        context.replaceFragment(R.id.content_frame, UserListFragment())
+        context.replaceFragmentBack(R.id.content_frame, UserListFragment())
     }
 
     /**
@@ -35,9 +37,9 @@ object Navigator {
      *
      * @param context A Context needed to open the destiny activity.
      */
-    fun navigateToUserDetails(context: Context, userId: Int) {
-        val intentToLaunch = UserDetailsActivity.getCallingIntent(context, userId)
-        context.startActivity(intentToLaunch)
+    fun navigateToUserDetails(context: BaseActivity, userId: Int) {
+        val fragment = UserDetailsFragment.newInstance(userId)
+        context.replaceFragmentBack(R.id.content_frame, fragment)
     }
 
     /**
@@ -64,9 +66,9 @@ object Navigator {
      *
      * @param context A Context needed to open the destiny activity.
      */
-    fun navigateToMessageDetails(context: Context, messageId: Int) {
-        val intentToLaunch = MessageDetailsActivity.getCallingIntent(context, messageId)
-        context.startActivity(intentToLaunch)
+    fun navigateToMessageDetails(context: BaseActivity, messageId: Int) {
+        val fragment = MessageDetailsFragment.newInstance(messageId)
+        context.replaceFragmentBack(R.id.content_frame, fragment)
     }
 
     /**

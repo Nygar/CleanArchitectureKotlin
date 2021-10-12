@@ -43,4 +43,17 @@ abstract class BaseActivity : AppCompatActivity(){
         fragmentTransaction.commit()
     }
 
+    /**
+     * Replace a [Fragment] to this activity's layout.
+     *
+     * @param containerViewId The container view to where add the fragment.
+     * @param fragment The fragment to be added.
+     */
+    fun replaceFragmentBack(containerViewId: Int, fragment: Fragment) {
+        val fragmentTransaction = this.supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(containerViewId, fragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+    }
+
 }

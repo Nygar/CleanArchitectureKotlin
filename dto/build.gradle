@@ -1,0 +1,10 @@
+
+dependencies {
+
+    //Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+}

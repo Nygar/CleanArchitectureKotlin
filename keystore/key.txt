@@ -1,0 +1,4 @@
+Debub.jks
+*************************************
+Alias: Cleancode
+Pass:aa123456

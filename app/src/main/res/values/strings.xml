@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Android Clean Architecture</string>
+
+    <string name="title_feature">Feature</string>
+    <string name="title_repository">Repository</string>
+    <string name="title_local">Local</string>
+    <string name="title_remote">Remote</string>
+    <string name="title_domain">Domain</string>
+    <string name="title_dto">Dto</string>
+</resources>

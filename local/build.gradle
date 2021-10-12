@@ -1,0 +1,16 @@
+
+dependencies {
+
+    api project(':dto')
+
+    //Rx
+    api "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+    api "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+
+    //Room
+    api "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    //DI
+    api "com.google.dagger:hilt-android:$hiltVersion"
+}

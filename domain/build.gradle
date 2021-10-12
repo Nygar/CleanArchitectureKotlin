@@ -1,0 +1,22 @@
+apply plugin: 'dagger.hilt.android.plugin'
+
+dependencies {
+
+    implementation project(':repository')
+
+    //Rx
+    //implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+    //implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+
+    //DI
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltVMVersion"
+    kapt "androidx.hilt:hilt-compiler:$hiltVMVersion"
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
+
+    //ViewModel
+    api "androidx.lifecycle:lifecycle-runtime:$viewModelversion"
+    api "androidx.lifecycle:lifecycle-extensions:$viewModelversion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$viewModelversion"
+
+}

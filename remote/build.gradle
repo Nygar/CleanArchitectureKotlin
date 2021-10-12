@@ -1,0 +1,16 @@
+
+dependencies {
+
+    api project(':dto')
+
+    //Rx
+    api "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
+    api "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+
+    //Retrofit
+    api "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    api "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    //implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+}
+

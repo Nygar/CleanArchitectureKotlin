@@ -1,0 +1,66 @@
+package cleancode.ui.activity
+
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import cleancode.model.MessageModel
+import cleancode.ui.base.BaseActivity
+import cleancode.ui.fragment.MessageListFragment
+import com.nygar.feature.R
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.toolbar_main.*
+
+/**
+ * Activity with navigation drawer
+ */
+@AndroidEntryPoint
+class MessageListActivity : BaseActivity(), MessageListFragment.MessageListListener {
+
+    companion object {
+
+        private const val INTENT_EXTRA_PARAM_CATEGORY_ID = "com.nygar.INTENT_PARAM_CATEGORY_ID"
+        private const val INSTANCE_STATE_PARAM_CATEGORY_ID = "com.nygar.STATE_PARAM_CATEGORY_ID"
+
+
+        fun getCallingIntent(context: Context, categoryId: Int): Intent {
+            val callingIntent = Intent(context, MessageListActivity::class.java)
+            callingIntent.putExtra(INTENT_EXTRA_PARAM_CATEGORY_ID, categoryId)
+            return callingIntent
+        }
+    }
+
+    private var categoryId: Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_layout_main)
+        this.initializeActivity(savedInstanceState)
+    }
+
+    /**
+     * Initializes this activity.
+     */
+    private fun initializeActivity(savedInstanceState: Bundle?) {
+        setSupportActionBar(toolbar_main)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+        //Listener can be replace with a lambda
+        toolbar_main.setNavigationOnClickListener { onBackPressed() }
+
+        if (savedInstanceState == null) {
+            categoryId = intent.getIntExtra(INTENT_EXTRA_PARAM_CATEGORY_ID, -1)
+            val fragment = MessageListFragment.newInstance(categoryId)
+            replaceFragment(R.id.content_frame, fragment)
+        }
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(INSTANCE_STATE_PARAM_CATEGORY_ID, categoryId)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onMessageClicked(messageModel: MessageModel) {
+        this.navigator.navigateToMessageDetails(this, messageModel.messageId)
+    }
+}

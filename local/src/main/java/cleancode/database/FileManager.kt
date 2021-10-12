@@ -12,7 +12,7 @@ object FileManager {
      * Write a value to a user preferences file.
      *
      * @param context [Context] to retrieve android user preferences.
-     * @param preferenceFileName A file name reprensenting where data will be written to.
+     * @param preferenceFileName A file name represented where data will be written to.
      * @param value A long representing the value to be inserted.
      */
     fun writeToPreferences(context: Context, preferenceFileName: String, value: Long) {

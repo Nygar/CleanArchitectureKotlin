@@ -1,5 +1,6 @@
 package cleancode.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +44,7 @@ internal object MessagesAdapter: RecyclerView.Adapter<MessagesAdapter.MessageVie
         return messagesCollection[position].messageId.toLong()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setMessagesCollection(messagesCollection: Collection<MessageModel>) {
         MessagesAdapter.messagesCollection = messagesCollection as List<MessageModel>
         this.notifyDataSetChanged()

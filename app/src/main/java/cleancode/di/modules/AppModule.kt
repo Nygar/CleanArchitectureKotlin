@@ -3,7 +3,6 @@ package cleancode.di.modules
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import cleancode.database.AppDatabase
 import cleancode.net.RestApi
 import cleancode.net.RestApiImpl
@@ -25,10 +24,7 @@ class AppModule
             .allowMainThreadQueries()
             .fallbackToDestructiveMigration()
             .addCallback(object : RoomDatabase.Callback() {
-                override fun onCreate(db: SupportSQLiteDatabase) {
-                    //prepopulate(db)
-                    super.onCreate(db)
-                }
+                //prepopulate(db)
             })
             .build()
     }

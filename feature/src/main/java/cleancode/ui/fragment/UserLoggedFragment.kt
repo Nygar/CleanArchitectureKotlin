@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import cleancode.ui.util.GlideApp
 import cleancode.viewmodel.UserLoggedViewModel
 import com.nygar.feature.R
@@ -28,7 +27,7 @@ class UserLoggedFragment: BaseFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getUserLogged().observe(viewLifecycleOwner, Observer { user ->
+        viewModel.getUserLogged().observe(viewLifecycleOwner, { user ->
             textView_Name.text = user.fullName
             GlideApp.with(this)
                 .load(user.avatarUrl)

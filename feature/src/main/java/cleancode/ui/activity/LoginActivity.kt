@@ -1,22 +1,22 @@
 package cleancode.ui.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import cleancode.ui.base.BaseActivity
 import com.nygar.feature.R
 import kotlinx.android.synthetic.main.activity_login.*
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.FirebaseApp
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.nygar.feature.BuildConfig
@@ -46,7 +46,12 @@ class LoginActivity: BaseActivity() {
         FirebaseApp.initializeApp(this)
         sign_in_button.setOnClickListener {
             val signInIntent = mGoogleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+            val resultLogIn = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK){
+                    googleLogInSuccessful(result.data)
+                }
+            }
+            resultLogIn.launch(signInIntent)
         }
 
         btn_Login.setOnClickListener {
@@ -78,20 +83,15 @@ class LoginActivity: BaseActivity() {
         return true
     }
 
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account!!)
-            } catch (e: ApiException) {
-                // Google Sign In failed, update UI appropriately
-                Toast.makeText(this,"ErrorLogin", LENGTH_LONG).show()
-            }
+    private fun googleLogInSuccessful(data: Intent?) {
+        val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+        try {
+            // Google Sign In was successful, authenticate with Firebase
+            val account = task.getResult(ApiException::class.java)
+            firebaseAuthWithGoogle(account!!)
+        } catch (e: ApiException) {
+            // Google Sign In failed, update UI appropriately
+            Toast.makeText(this,"ErrorLogin", LENGTH_LONG).show()
         }
     }
 

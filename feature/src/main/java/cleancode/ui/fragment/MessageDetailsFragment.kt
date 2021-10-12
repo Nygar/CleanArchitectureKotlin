@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import cleancode.ui.base.BaseFragment
 import cleancode.ui.util.GlideApp
 import cleancode.viewmodel.MessageDetailsViewModel
@@ -39,7 +38,7 @@ class MessageDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getInt(MESSAGE_KEY)?.let {
-            viewModel.getMessageById(it).observe(viewLifecycleOwner, Observer { data ->
+            viewModel.getMessageById(it).observe(viewLifecycleOwner, { data ->
                 GlideApp.with(this).load(data.imageUrl).into(iv_image)
                 tv_name.text = data.name
                 tv_description.text = data.description

@@ -1,5 +1,6 @@
 package cleancode.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,6 +50,7 @@ internal object UsersAdapter: RecyclerView.Adapter<UsersAdapter.CategoryViewHold
         return userCollection[position].userId.toLong()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setUsersCollection(userCollection: Collection<UserModel>) {
         UsersAdapter.userCollection = userCollection as List<UserModel>
         notifyDataSetChanged()

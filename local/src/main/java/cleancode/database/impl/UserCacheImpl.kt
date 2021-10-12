@@ -10,8 +10,10 @@ import javax.inject.Inject
 
 class UserCacheImpl @Inject constructor(private val context: Context, private val database: AppDatabase): UserCache {
 
-    private val SETTINGS_KEY = "USER"
-    private val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    companion object {
+        private const val SETTINGS_KEY = "USER"
+        private const val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    }
 
     private val fileManager: FileManager = FileManager
 

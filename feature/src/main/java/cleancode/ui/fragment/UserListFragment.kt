@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cleancode.model.UserModel
@@ -49,7 +48,7 @@ class UserListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        viewModel.getUserList().observe(this, Observer { data ->
+        viewModel.getUserList().observe(viewLifecycleOwner, { data ->
             adapter.setUsersCollection(data)
         })
     }

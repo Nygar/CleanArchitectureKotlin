@@ -8,10 +8,12 @@ import cleancode.entity.UserLoggedEntity
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class UserLoggedCaheImpl @Inject constructor(private val context: Context, private val database: AppDatabase) : UserLoggedCache {
+class UserLoggedCacheImpl @Inject constructor(private val context: Context, private val database: AppDatabase) : UserLoggedCache {
 
-    private val SETTINGS_KEY = "USERLOGGED"
-    private val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    companion object {
+        private const val SETTINGS_KEY = "USERLOGGED"
+        private const val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    }
 
     private val fileManager: FileManager = FileManager
 

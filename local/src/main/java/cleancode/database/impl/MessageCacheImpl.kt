@@ -10,8 +10,10 @@ import javax.inject.Inject
 
 class MessageCacheImpl @Inject constructor(private val context: Context, private val database: AppDatabase): MessageCache {
 
-    private val SETTINGS_KEY = "MESSAGE"
-    private val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    companion object{
+        private const val SETTINGS_KEY = "MESSAGE"
+        private const val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    }
 
     private val fileManager: FileManager = FileManager
 

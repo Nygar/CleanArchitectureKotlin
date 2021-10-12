@@ -1,5 +1,6 @@
 package cleancode.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,6 +43,7 @@ internal object CategoriesAdapter: RecyclerView.Adapter<CategoriesAdapter.Catego
         return categoriesCollection[position].categoryId.toLong()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setCategoriesCollection(categoriesCollection: Collection<CategoryModel>) {
         CategoriesAdapter.categoriesCollection = categoriesCollection as List<CategoryModel>
         notifyDataSetChanged()

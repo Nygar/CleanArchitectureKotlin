@@ -10,8 +10,10 @@ import javax.inject.Inject
 
 class CategoryCacheImpl @Inject constructor(private val context: Context, private val database: AppDatabase): CategoryCache {
 
-    private val SETTINGS_KEY = "CATEGORY"
-    private val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    companion object{
+        private const val SETTINGS_KEY = "CATEGORY"
+        private const val EXPIRATION_TIME = (60 * 10 * 1000).toLong()
+    }
 
     private val fileManager: FileManager = FileManager
 

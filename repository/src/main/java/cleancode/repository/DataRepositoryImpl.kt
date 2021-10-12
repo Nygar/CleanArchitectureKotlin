@@ -41,11 +41,10 @@ class DataRepositoryImpl
     }
 
     override fun category(categoryId: Int): Observable<CategoryEntity> {
-        val dataStore: CategoryDataStore
-        if (!categoryCache.isExpired(categoryId) && categoryCache.isCached(categoryId)) {
-            dataStore = DiskCategoryDataStore(categoryCache)
+        val dataStore: CategoryDataStore = if (!categoryCache.isExpired(categoryId) && categoryCache.isCached(categoryId)) {
+            DiskCategoryDataStore(categoryCache)
         } else {
-            dataStore = CloudCategoryDataStore(restApi, categoryCache)
+            CloudCategoryDataStore(restApi, categoryCache)
         }
         return dataStore.categoryEntityDetails(categoryId)
     }
@@ -57,11 +56,10 @@ class DataRepositoryImpl
     }
 
     override fun message(messageId: Int): Observable<MessageEntity> {
-        val dataStore: MessageDataStore
-        if (!messageCache.isExpired(messageId) && messageCache.isCached(messageId)) {
-            dataStore = DiskMessageDataStore(messageCache)
+        val dataStore: MessageDataStore = if (!messageCache.isExpired(messageId) && messageCache.isCached(messageId)) {
+            DiskMessageDataStore(messageCache)
         } else {
-            dataStore = CloudMessageDataStore(restApi, messageCache)
+            CloudMessageDataStore(restApi, messageCache)
         }
         return dataStore.messageEntityDetails(messageId)
     }
@@ -73,21 +71,19 @@ class DataRepositoryImpl
     }
 
     override fun user(userId: Int): Observable<UserEntity> {
-        val dataStore: UserDataStore
-        if (!userCache.isExpired(userId) && userCache.isCached(userId)) {
-            dataStore = DiskUserDataStore(userCache)
+        val dataStore: UserDataStore = if (!userCache.isExpired(userId) && userCache.isCached(userId)) {
+            DiskUserDataStore(userCache)
         } else {
-            dataStore = CloudUserDataStore(restApi, userCache)
+            CloudUserDataStore(restApi, userCache)
         }
         return dataStore.userEntityDetails(userId)
     }
 
     override fun userLogged(): Observable<UserLoggedEntity> {
-        val dataStore: UserLoggedDataStore
-        if (!userLoggedCache.isExpired() && userLoggedCache.isCached()) {
-            dataStore = DiskUserLoggedDataStore(userLoggedCache)
+        val dataStore: UserLoggedDataStore = if (!userLoggedCache.isExpired() && userLoggedCache.isCached()) {
+            DiskUserLoggedDataStore(userLoggedCache)
         } else {
-            dataStore = CloudUserLoggedDataStore(restApi, userLoggedCache)
+            CloudUserLoggedDataStore(restApi, userLoggedCache)
         }
         return dataStore.userLoggedEntity()
     }

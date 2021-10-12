@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.NonNull
-import androidx.annotation.Nullable
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import cleancode.ui.base.BaseFragment
 import cleancode.ui.base.withArgs
 import cleancode.ui.util.GlideApp
@@ -41,7 +38,7 @@ class UserDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getInt(USER_DETAILS_KEY)?.let {
-            viewModel.getUserById(it).observe(this, Observer { data ->
+            viewModel.getUserById(it).observe(viewLifecycleOwner, { data ->
                 GlideApp.with(this).load(data.coverUrl).into(iv_cover)
                 tv_fullname.text = data.fullName
                 tv_email.text = data.email

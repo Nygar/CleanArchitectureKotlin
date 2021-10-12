@@ -6,10 +6,7 @@ import cleancode.database.api.CategoryCache
 import cleancode.database.api.MessageCache
 import cleancode.database.api.UserCache
 import cleancode.database.api.UserLoggedCache
-import cleancode.database.impl.CategoryCacheImpl
-import cleancode.database.impl.MessageCacheImpl
-import cleancode.database.impl.UserCacheImpl
-import cleancode.database.impl.UserLoggedCaheImpl
+import cleancode.database.impl.*
 import cleancode.net.RestApi
 import cleancode.repository.DataRepository
 import cleancode.repository.DataRepositoryImpl
@@ -52,5 +49,5 @@ class DataModule {
     @Provides
     fun provideUserLoggedCache(@ApplicationContext  app: Context,
                                database: AppDatabase
-    ): UserLoggedCache = UserLoggedCaheImpl(app, database)
+    ): UserLoggedCache = UserLoggedCacheImpl(app, database)
 }

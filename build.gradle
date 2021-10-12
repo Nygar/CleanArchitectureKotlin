@@ -4,8 +4,8 @@ buildscript {
 
     ext{
         kotlin_version = '1.5.31'
-        compile_sdk_version = 30
-        min_sdk_version = 30
+        compile_sdk_version = 29
+        min_sdk_version = 21
         hiltVersion = '2.38.1'
     }
 
@@ -111,6 +111,8 @@ subprojects {
         testImplementation "io.mockk:mockk:1.10.2"
         testImplementation 'com.squareup.assertj:assertj-android:1.2.0'
         testImplementation "androidx.arch.core:core-testing:2.1.0"*/
+
+        //DI this must be commons for all proyect
         implementation "com.google.dagger:hilt-android:$hiltVersion"
         kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
     }

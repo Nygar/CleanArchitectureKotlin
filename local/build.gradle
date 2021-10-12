@@ -11,6 +11,4 @@ dependencies {
     api "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
-    //DI
-    api "com.google.dagger:hilt-android:$hiltVersion"
 }

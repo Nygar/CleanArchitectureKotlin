@@ -7,7 +7,4 @@ dependencies {
     //Rx
     //implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
     //implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-
-    //DI
-    //implementation "com.google.dagger:dagger:$daggerVersion"
 }

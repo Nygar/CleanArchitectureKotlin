@@ -1,7 +1,6 @@
 package cleancode.ui.util
 
 import android.app.Activity
-import android.content.Context
 import cleancode.ui.activity.*
 import cleancode.ui.base.BaseActivity
 import cleancode.ui.fragment.MessageCategoryFragment

@@ -42,7 +42,7 @@ class DataModule {
     ): MessageCache = MessageCacheImpl(app, database)
 
     @Provides
-    fun provideuserCache(@ApplicationContext  app: Context,
+    fun provideUserCache(@ApplicationContext  app: Context,
                          database: AppDatabase
     ): UserCache = UserCacheImpl(app, database)
 

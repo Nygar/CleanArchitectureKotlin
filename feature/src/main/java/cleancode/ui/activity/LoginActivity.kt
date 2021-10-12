@@ -37,7 +37,6 @@ class LoginActivity: BaseActivity() {
     private lateinit var auth: FirebaseAuth
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
-    private val RC_SIGN_IN: Int = 1234
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

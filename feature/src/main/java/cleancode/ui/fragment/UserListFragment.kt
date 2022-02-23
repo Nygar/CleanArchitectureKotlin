@@ -13,13 +13,11 @@ import cleancode.ui.adapter.UsersAdapter
 import cleancode.ui.base.BaseFragment
 import cleancode.viewmodel.UserListViewModel
 import com.nygar.feature.databinding.FragmentUserListBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Fragment that shows a list of Users.
  */
 
-@AndroidEntryPoint
 class UserListFragment : BaseFragment() {
 
     /**
@@ -42,7 +40,7 @@ class UserListFragment : BaseFragment() {
         viewInterface = context as UserListView
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentUserListBinding.inflate(inflater, container, false)
         return binding.root
     }

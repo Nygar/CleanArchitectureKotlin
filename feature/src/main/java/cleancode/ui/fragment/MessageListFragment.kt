@@ -14,13 +14,11 @@ import cleancode.ui.base.BaseFragment
 import cleancode.ui.base.withArgs
 import cleancode.viewmodel.MessageListViewModel
 import com.nygar.feature.databinding.FragmentMessageListBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Fragment that shows a list of Message.
  */
 
-@AndroidEntryPoint
 class MessageListFragment: BaseFragment() {
 
     companion object {
@@ -52,7 +50,7 @@ class MessageListFragment: BaseFragment() {
         messageListListener = context as MessageListListener
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentMessageListBinding.inflate(inflater, container, false)
         return binding.root
     }

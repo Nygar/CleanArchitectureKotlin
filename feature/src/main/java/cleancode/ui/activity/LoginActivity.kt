@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import cleancode.ui.base.BaseActivity
-import com.nygar.feature.R
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
@@ -20,13 +19,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.nygar.feature.BuildConfig
 import com.nygar.feature.databinding.ActivityLoginBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
  * Main application screen. This is the app entry point.
  */
-@AndroidEntryPoint
 class LoginActivity: BaseActivity() {
     companion object {
         fun getCallingIntent(context: Context): Intent {

@@ -13,13 +13,11 @@ import cleancode.ui.adapter.CategoriesAdapter
 import cleancode.ui.base.BaseFragment
 import cleancode.viewmodel.MessageCategoryViewModel
 import com.nygar.feature.databinding.FragmentCategoryListBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Fragment that shows a list of Message.
  */
 
-@AndroidEntryPoint
 class MessageCategoryFragment: BaseFragment(){
 
     interface MessageCategoryView{
@@ -39,7 +37,7 @@ class MessageCategoryFragment: BaseFragment(){
         viewInterface = context as MessageCategoryView
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentCategoryListBinding.inflate(inflater, container, false)
         return binding.root
     }

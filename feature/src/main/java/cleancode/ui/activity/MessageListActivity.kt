@@ -7,15 +7,11 @@ import cleancode.model.MessageModel
 import cleancode.ui.base.BaseActivity
 import cleancode.ui.fragment.MessageListFragment
 import com.nygar.feature.R
-import com.nygar.feature.databinding.ActivityLayoutBinding
 import com.nygar.feature.databinding.ActivityLayoutMainBinding
-import com.nygar.feature.databinding.ActivityLoginBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Activity with navigation drawer
  */
-@AndroidEntryPoint
 class MessageListActivity : BaseActivity(), MessageListFragment.MessageListListener {
 
     companion object {

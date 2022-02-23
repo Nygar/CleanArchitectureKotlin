@@ -10,13 +10,11 @@ import cleancode.ui.base.withArgs
 import cleancode.ui.util.GlideApp
 import cleancode.viewmodel.UserDetailsViewModel
 import com.nygar.feature.databinding.FragmentUserDetailsBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Fragment that shows details of a certain user.
  */
 
-@AndroidEntryPoint
 class UserDetailsFragment : BaseFragment() {
 
     companion object {
@@ -32,7 +30,7 @@ class UserDetailsFragment : BaseFragment() {
 
     private val viewModel: UserDetailsViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }

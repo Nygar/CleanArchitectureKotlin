@@ -16,12 +16,10 @@ import cleancode.ui.fragment.UserListFragment
 import cleancode.ui.fragment.UserLoggedFragment
 import com.nygar.feature.R
 import com.nygar.feature.databinding.ActivityLayoutMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Activity with navigation drawer
  */
-@AndroidEntryPoint
 class MainActivity: BaseActivity(), MessageCategoryFragment.MessageCategoryView, UserListFragment.UserListView {
     companion object {
         fun getCallingIntent(context: Context): Intent {

@@ -10,13 +10,11 @@ import cleancode.viewmodel.MessageDetailsViewModel
 import androidx.fragment.app.viewModels
 import cleancode.ui.base.withArgs
 import com.nygar.feature.databinding.FragmentMessageDetailsBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Fragment that shows details of a certain user.
  */
 
-@AndroidEntryPoint
 class MessageDetailsFragment : BaseFragment() {
 
     companion object {
@@ -32,7 +30,7 @@ class MessageDetailsFragment : BaseFragment() {
 
     private val viewModel: MessageDetailsViewModel by viewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentMessageDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }

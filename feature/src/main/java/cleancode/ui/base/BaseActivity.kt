@@ -6,7 +6,9 @@ import android.os.Bundle
 import cleancode.ui.util.Analitics
 import cleancode.ui.util.Navigator
 import com.google.firebase.analytics.FirebaseAnalytics
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 abstract class BaseActivity : AppCompatActivity(){
 
     val navigator: Navigator = Navigator

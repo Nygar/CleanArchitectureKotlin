@@ -15,8 +15,8 @@ import cleancode.ui.fragment.MessageCategoryFragment
 import cleancode.ui.fragment.UserListFragment
 import cleancode.ui.fragment.UserLoggedFragment
 import com.nygar.feature.R
+import com.nygar.feature.databinding.ActivityLayoutMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_layout_main.*
 
 /**
  * Activity with navigation drawer
@@ -29,9 +29,12 @@ class MainActivity: BaseActivity(), MessageCategoryFragment.MessageCategoryView,
         }
     }
 
+    private lateinit var binding: ActivityLayoutMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout_main)
+        binding = ActivityLayoutMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initializeActivity(savedInstanceState)
     }
 
@@ -41,12 +44,12 @@ class MainActivity: BaseActivity(), MessageCategoryFragment.MessageCategoryView,
     private fun initializeActivity(savedInstanceState: Bundle?) {
 
         //Listener can be replace with a lambda
-        navigation_view_menu.setNavigationItemSelectedListener { menuItem: MenuItem ->
+        binding.navigationViewMenu.setNavigationItemSelectedListener { menuItem: MenuItem ->
             when (menuItem.itemId) {
                 R.id.action_messages -> navigator.navigateToMessageCategoryList(this)
                 R.id.action_users -> navigator.navigateToUserList(this)
             }
-            drawer_layout.closeDrawers()
+            binding.drawerLayout.closeDrawers()
             true
         }
 
@@ -54,7 +57,7 @@ class MainActivity: BaseActivity(), MessageCategoryFragment.MessageCategoryView,
         setSupportActionBar(toolbar)
 
         val drawerToggle =
-            object : ActionBarDrawerToggle(this, drawer_layout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+            object : ActionBarDrawerToggle(this, binding.drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
                 override fun onDrawerClosed(view: View) {
                     super.onDrawerClosed(view)
                     invalidateOptionsMenu()
@@ -68,13 +71,13 @@ class MainActivity: BaseActivity(), MessageCategoryFragment.MessageCategoryView,
                 }
             }
 
-        drawer_layout!!.addDrawerListener(drawerToggle)
+        binding.drawerLayout.addDrawerListener(drawerToggle)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         drawerToggle.syncState()
         if (savedInstanceState == null) {
             addFragment(R.id.content_frame, MessageCategoryFragment())
         }
-        val headerContainer = navigation_view_menu.inflateHeaderView(R.layout.header_layout)
+        val headerContainer = binding.navigationViewMenu.inflateHeaderView(R.layout.header_layout)
         headerContainer.addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
             override fun onViewAttachedToWindow(v: View) {
                 supportFragmentManager
@@ -93,7 +96,7 @@ class MainActivity: BaseActivity(), MessageCategoryFragment.MessageCategoryView,
         // The action bar home/up action should open or close the drawer.
         when (item.itemId) {
             android.R.id.home -> {
-                drawer_layout.openDrawer(GravityCompat.START)
+                binding.drawerLayout.openDrawer(GravityCompat.START)
                 return true
             }
         }

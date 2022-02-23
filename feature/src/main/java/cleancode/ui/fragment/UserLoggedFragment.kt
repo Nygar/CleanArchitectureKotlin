@@ -8,9 +8,8 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import cleancode.ui.util.GlideApp
 import cleancode.viewmodel.UserLoggedViewModel
-import com.nygar.feature.R
+import com.nygar.feature.databinding.HeaderProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.header_profile.*
 
 /**
  * Fragment that shows details of a certain user.
@@ -19,20 +18,23 @@ import kotlinx.android.synthetic.main.header_profile.*
 @AndroidEntryPoint
 class UserLoggedFragment: BaseFragment(){
 
+    private lateinit var binding: HeaderProfileBinding
+
     private val viewModel: UserLoggedViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.header_profile, container, false)
+        binding = HeaderProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getUserLogged().observe(viewLifecycleOwner, { user ->
-            textView_Name.text = user.fullName
+        viewModel.getUserLogged().observe(viewLifecycleOwner) { user ->
+            binding.textViewName.text = user.fullName
             GlideApp.with(this)
                 .load(user.avatarUrl)
-                .into(imageView_Avatar)
-        })
+                .into(binding.imageViewAvatar)
+        }
     }
 
 }

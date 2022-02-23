@@ -9,9 +9,8 @@ import cleancode.ui.base.BaseFragment
 import cleancode.ui.base.withArgs
 import cleancode.ui.util.GlideApp
 import cleancode.viewmodel.UserDetailsViewModel
-import com.nygar.feature.R
+import com.nygar.feature.databinding.FragmentUserDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.view_user_details.*
 
 /**
  * Fragment that shows details of a certain user.
@@ -29,22 +28,25 @@ class UserDetailsFragment : BaseFragment() {
         }
     }
 
+    private lateinit var binding: FragmentUserDetailsBinding
+
     private val viewModel: UserDetailsViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_user_details, container, false)
+        binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getInt(USER_DETAILS_KEY)?.let {
-            viewModel.getUserById(it).observe(viewLifecycleOwner, { data ->
-                GlideApp.with(this).load(data.coverUrl).into(iv_cover)
-                tv_fullname.text = data.fullName
-                tv_email.text = data.email
-                tv_followers.text = data.followers.toString()
-                tv_description.text = data.description
-            })
+            viewModel.getUserById(it).observe(viewLifecycleOwner) { data ->
+                GlideApp.with(this).load(data.coverUrl).into(binding.viewUserDetail.ivCover)
+                binding.viewUserDetail.tvFullname.text = data.fullName
+                binding.viewUserDetail.tvEmail.text = data.email
+                binding.viewUserDetail.tvFollowers.text = data.followers.toString()
+                binding.viewUserDetail.tvDescription.text = data.description
+            }
         }
     }
 }

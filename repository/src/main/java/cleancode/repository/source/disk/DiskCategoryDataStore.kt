@@ -3,7 +3,7 @@ package cleancode.repository.source.disk
 import cleancode.entity.CategoryEntity
 import cleancode.database.api.CategoryCache
 import cleancode.repository.source.CategoryDataStore
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [CategoryDataStore] based file system data store.

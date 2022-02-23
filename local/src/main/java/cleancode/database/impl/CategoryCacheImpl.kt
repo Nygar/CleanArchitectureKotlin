@@ -5,7 +5,7 @@ import cleancode.database.AppDatabase
 import cleancode.database.FileManager
 import cleancode.database.api.CategoryCache
 import cleancode.entity.CategoryEntity
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
 class CategoryCacheImpl @Inject constructor(private val context: Context, private val database: AppDatabase): CategoryCache {

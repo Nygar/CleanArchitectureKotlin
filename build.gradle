@@ -3,14 +3,14 @@
 buildscript {
 
     ext{
-        kotlin_version = '1.5.31'
-        compile_sdk_version = 29
-        min_sdk_version = 21
-        hiltVersion = '2.38.1'
+        kotlin_version = '1.6.10'
+        compile_sdk_version = 31
+        min_sdk_version = 24
+        hiltVersion = '2.41'
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.android.tools.build:gradle:7.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.3.10'
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
@@ -33,13 +33,12 @@ allprojects {
 ext{
 
     //ESSENTIALS
-    viewModelversion = '2.2.0'
+    viewModelversion = '2.4.1'
     butterKnifeVersion = '10.1.0'
-    rxKotlinVersion = '2.3.0'
-    rxAndroidVersion = '2.1.1'
+    rxKotlinVersion = '3.0.1'
+    rxAndroidVersion = '3.0.0'
     retrofitVersion = '2.9.0'
-    roomVersion = '2.3.0'
-    hiltVMVersion = '1.0.0-alpha02'
+    roomVersion = '2.3.0' //Current version 2.4.1 give me error
 
     //OTHERS
     jodaTimeVersion = '2.10.6'
@@ -60,14 +59,17 @@ subprojects {
     if (it.name == 'app') {
         // remember, “it” refers to the sub-project.
         apply plugin: 'com.android.application'
+        apply plugin: 'dagger.hilt.android.plugin'
     } else {
         apply plugin: 'com.android.library'
     }
 
+    if(it.name == 'feature'){
+        apply plugin: 'dagger.hilt.android.plugin'
+    }
+
     apply plugin: 'kotlin-android'
     apply plugin: 'kotlin-kapt'
-    apply plugin: 'kotlin-android-extensions'
-    apply plugin: 'dagger.hilt.android.plugin'
 
     android {
         compileSdkVersion compile_sdk_version
@@ -99,6 +101,9 @@ subprojects {
         kotlinOptions {
             jvmTarget = "1.8"
         }
+
+        buildFeatures.viewBinding true
+
 
     }
 

@@ -11,7 +11,7 @@ import cleancode.entity.MessageEntity
 import cleancode.entity.UserEntity
 import cleancode.entity.UserLoggedEntity
 import cleancode.net.RestEndPoint.Companion.API_BASE_URL
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

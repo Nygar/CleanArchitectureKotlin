@@ -3,7 +3,7 @@ package cleancode.repository.source.disk
 import cleancode.entity.UserEntity
 import cleancode.database.api.UserCache
 import cleancode.repository.source.UserDataStore
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [UserDataStore] based file system data store.

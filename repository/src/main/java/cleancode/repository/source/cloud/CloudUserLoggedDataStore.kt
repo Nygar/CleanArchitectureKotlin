@@ -4,7 +4,7 @@ import cleancode.entity.UserLoggedEntity
 import cleancode.database.api.UserLoggedCache
 import cleancode.net.RestApi
 import cleancode.repository.source.UserLoggedDataStore
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [UserLoggedDataStore] based on connections to the api (Cloud).

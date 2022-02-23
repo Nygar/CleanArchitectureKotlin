@@ -12,9 +12,8 @@ import cleancode.model.UserModel
 import cleancode.ui.adapter.UsersAdapter
 import cleancode.ui.base.BaseFragment
 import cleancode.viewmodel.UserListViewModel
-import com.nygar.feature.R
+import com.nygar.feature.databinding.FragmentUserListBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_user_list.*
 
 /**
  * Fragment that shows a list of Users.
@@ -30,6 +29,8 @@ class UserListFragment : BaseFragment() {
         fun onUserClicked(userModel: UserModel)
     }
 
+    private lateinit var binding: FragmentUserListBinding
+
     private val viewModel: UserListViewModel by viewModels()
 
     private lateinit var viewInterface: UserListView
@@ -42,20 +43,21 @@ class UserListFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_user_list, container, false)
+        binding = FragmentUserListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        viewModel.getUserList().observe(viewLifecycleOwner, { data ->
+        viewModel.getUserList().observe(viewLifecycleOwner) { data ->
             adapter.setUsersCollection(data)
-        })
+        }
     }
     private fun setupRecyclerView() {
         adapter.setOnItemClickListener(onItemClickListener)
-        rv_users.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL ,false)
-        rv_users.adapter = adapter
+        binding.rvUsers.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL ,false)
+        binding.rvUsers.adapter = adapter
     }
 
     private val onItemClickListener : UsersAdapter.ItemClickListener = object : UsersAdapter.ItemClickListener {

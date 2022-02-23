@@ -3,7 +3,7 @@ package cleancode.repository.source.disk
 import cleancode.entity.MessageEntity
 import cleancode.database.api.MessageCache
 import cleancode.repository.source.MessageDataStore
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [MessageDataStore] based file system data store.

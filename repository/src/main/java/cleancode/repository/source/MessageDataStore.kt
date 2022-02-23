@@ -1,7 +1,7 @@
 package cleancode.repository.source
 
 import cleancode.entity.MessageEntity
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 
 /**

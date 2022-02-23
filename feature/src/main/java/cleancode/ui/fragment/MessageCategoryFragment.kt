@@ -12,9 +12,8 @@ import cleancode.model.CategoryModel
 import cleancode.ui.adapter.CategoriesAdapter
 import cleancode.ui.base.BaseFragment
 import cleancode.viewmodel.MessageCategoryViewModel
-import com.nygar.feature.R
+import com.nygar.feature.databinding.FragmentCategoryListBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_category_list.*
 
 /**
  * Fragment that shows a list of Message.
@@ -29,6 +28,8 @@ class MessageCategoryFragment: BaseFragment(){
 
     private val viewModel: MessageCategoryViewModel by viewModels()
 
+    private lateinit var binding: FragmentCategoryListBinding
+
     private lateinit var viewInterface: MessageCategoryView
 
     private val adapter: CategoriesAdapter = CategoriesAdapter
@@ -39,21 +40,22 @@ class MessageCategoryFragment: BaseFragment(){
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_category_list, container, false)
+        binding = FragmentCategoryListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        viewModel.getMessageCategory().observe(viewLifecycleOwner, { data ->
+        viewModel.getMessageCategory().observe(viewLifecycleOwner) { data ->
             adapter.setCategoriesCollection(data)
-        })
+        }
     }
 
     private fun setupRecyclerView() {
         adapter.setOnItemClickListener(onItemClickListener)
-        rv_categories.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL ,false)
-        rv_categories.adapter = adapter
+        binding.rvCategories.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL ,false)
+        binding.rvCategories.adapter = adapter
     }
 
     private val onItemClickListener : CategoriesAdapter.ItemClickListener = object : CategoriesAdapter.ItemClickListener {

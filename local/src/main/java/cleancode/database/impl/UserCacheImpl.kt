@@ -5,7 +5,7 @@ import cleancode.database.AppDatabase
 import cleancode.database.FileManager
 import cleancode.database.api.UserCache
 import cleancode.entity.UserEntity
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
 class UserCacheImpl @Inject constructor(private val context: Context, private val database: AppDatabase): UserCache {

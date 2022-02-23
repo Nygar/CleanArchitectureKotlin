@@ -7,8 +7,8 @@ dependencies {
     //implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 
     //ViewModel
-    api "androidx.lifecycle:lifecycle-runtime:$viewModelversion"
-    api "androidx.lifecycle:lifecycle-extensions:$viewModelversion"
-    kapt "androidx.lifecycle:lifecycle-compiler:$viewModelversion"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelversion"
+    api "androidx.lifecycle:lifecycle-runtime-ktx:$viewModelversion"
+    kapt "androidx.lifecycle:lifecycle-common-java8:$viewModelversion"
 
 }

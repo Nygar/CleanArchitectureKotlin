@@ -13,9 +13,8 @@ import cleancode.ui.adapter.MessagesAdapter
 import cleancode.ui.base.BaseFragment
 import cleancode.ui.base.withArgs
 import cleancode.viewmodel.MessageListViewModel
-import com.nygar.feature.R
+import com.nygar.feature.databinding.FragmentMessageListBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_message_list.*
 
 /**
  * Fragment that shows a list of Message.
@@ -40,6 +39,8 @@ class MessageListFragment: BaseFragment() {
         fun onMessageClicked(messageModel: MessageModel)
     }
 
+    private lateinit var binding: FragmentMessageListBinding
+
     private val viewModel: MessageListViewModel by viewModels()
 
     private val adapter: MessagesAdapter = MessagesAdapter
@@ -52,21 +53,22 @@ class MessageListFragment: BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_message_list, container, false)
+        binding = FragmentMessageListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        viewModel.getMessageList(arguments?.get(CATEGORY_KEY) as Int).observe(viewLifecycleOwner, { data ->
+        viewModel.getMessageList(arguments?.get(CATEGORY_KEY) as Int).observe(viewLifecycleOwner) { data ->
             adapter.setMessagesCollection(data)
-        })
+        }
     }
 
     private fun setupRecyclerView() {
         adapter.setOnItemClickListener(onItemClickListener)
-        rv_messages.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL ,false)
-        rv_messages.adapter = adapter
+        binding.rvMessages.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL ,false)
+        binding.rvMessages.adapter = adapter
     }
 
     private val onItemClickListener : MessagesAdapter.ItemClickListener = object : MessagesAdapter.ItemClickListener {

@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import cleancode.ui.base.BaseFragment
 import cleancode.ui.util.GlideApp
 import cleancode.viewmodel.MessageDetailsViewModel
-import kotlinx.android.synthetic.main.view_message_details.*
 import androidx.fragment.app.viewModels
 import cleancode.ui.base.withArgs
-import com.nygar.feature.R
+import com.nygar.feature.databinding.FragmentMessageDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -29,20 +28,23 @@ class MessageDetailsFragment : BaseFragment() {
         }
     }
 
+    private lateinit var binding: FragmentMessageDetailsBinding
+
     private val viewModel: MessageDetailsViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_message_details, container, false)
+        binding = FragmentMessageDetailsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getInt(MESSAGE_KEY)?.let {
-            viewModel.getMessageById(it).observe(viewLifecycleOwner, { data ->
-                GlideApp.with(this).load(data.imageUrl).into(iv_image)
-                tv_name.text = data.name
-                tv_description.text = data.description
-            })
+            viewModel.getMessageById(it).observe(viewLifecycleOwner) { data ->
+                GlideApp.with(this).load(data.imageUrl).into(binding.viewMessageDetail.ivImage)
+                binding.viewMessageDetail.tvName.text = data.name
+                binding.viewMessageDetail.tvDescription.text = data.description
+            }
         }
     }
 }

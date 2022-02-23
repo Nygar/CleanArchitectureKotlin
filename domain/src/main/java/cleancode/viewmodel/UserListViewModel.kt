@@ -8,7 +8,7 @@ import cleancode.model.UserModel
 import cleancode.model.mappers.MapperUser
 import cleancode.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import javax.inject.Inject
 
 @HiltViewModel

@@ -22,7 +22,7 @@ import cleancode.repository.source.disk.DiskCategoryDataStore
 import cleancode.repository.source.disk.DiskMessageDataStore
 import cleancode.repository.source.disk.DiskUserDataStore
 import cleancode.repository.source.disk.DiskUserLoggedDataStore
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
 class DataRepositoryImpl

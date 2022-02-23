@@ -4,7 +4,7 @@ import cleancode.entity.CategoryEntity
 import cleancode.entity.MessageEntity
 import cleancode.entity.UserEntity
 import cleancode.entity.UserLoggedEntity
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 /**
  * RestApi for retrieving data from the network.

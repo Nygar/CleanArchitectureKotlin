@@ -5,7 +5,7 @@ import cleancode.database.api.CategoryCache
 import cleancode.entity.CategoryEntity
 import cleancode.net.RestApi
 import cleancode.repository.source.CategoryDataStore
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [CategoryDataStore] based on connections to the api (Cloud).

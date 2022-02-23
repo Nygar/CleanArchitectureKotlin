@@ -2,13 +2,11 @@ package cleancode.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cleancode.model.MessageModel
-import com.nygar.feature.R
-import kotlinx.android.synthetic.main.row_message.view.*
+import com.nygar.feature.databinding.RowMessageBinding
 
 /**
 * Adapter that manages a collection of  [MessageModel].
@@ -28,8 +26,8 @@ internal object MessagesAdapter: RecyclerView.Adapter<MessagesAdapter.MessageVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.row_message, parent, false)
-        return MessageViewHolder(view)
+        val binding = RowMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MessageViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
@@ -54,9 +52,9 @@ internal object MessagesAdapter: RecyclerView.Adapter<MessagesAdapter.MessageVie
         MessagesAdapter.onItemClickListener = onItemClickListener
     }
 
-    internal class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    internal class MessageViewHolder(itemView: RowMessageBinding) : RecyclerView.ViewHolder(itemView.root) {
 
-        var textViewName: TextView = itemView.tv_name
+        var textViewName: TextView = itemView.tvName
 
     }
 }

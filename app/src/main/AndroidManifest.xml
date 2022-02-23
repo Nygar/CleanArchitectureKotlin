@@ -14,9 +14,10 @@
             tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-                android:name="cleancode.ui.activity.SplashActivity"
-                android:noHistory="true"
-                android:theme="@style/SplashStyle">
+            android:name="cleancode.ui.activity.SplashActivity"
+            android:noHistory="true"
+            android:theme="@style/SplashStyle"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,10 +29,6 @@
         <activity android:name="cleancode.ui.activity.MainActivity"/>
 
         <activity android:name="cleancode.ui.activity.MessageListActivity"/>
-
-        <activity android:name="cleancode.ui.activity.MessageDetailsActivity"/>
-
-        <activity android:name="cleancode.ui.activity.UserDetailsActivity"/>
 
     </application>
 </manifest>

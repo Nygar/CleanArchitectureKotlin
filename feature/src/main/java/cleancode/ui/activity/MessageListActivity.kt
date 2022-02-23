@@ -7,8 +7,10 @@ import cleancode.model.MessageModel
 import cleancode.ui.base.BaseActivity
 import cleancode.ui.fragment.MessageListFragment
 import com.nygar.feature.R
+import com.nygar.feature.databinding.ActivityLayoutBinding
+import com.nygar.feature.databinding.ActivityLayoutMainBinding
+import com.nygar.feature.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.toolbar_main.*
 
 /**
  * Activity with navigation drawer
@@ -29,11 +31,14 @@ class MessageListActivity : BaseActivity(), MessageListFragment.MessageListListe
         }
     }
 
+    private lateinit var binding: ActivityLayoutMainBinding
+
     private var categoryId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout_main)
+        binding = ActivityLayoutMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         this.initializeActivity(savedInstanceState)
     }
 
@@ -41,11 +46,11 @@ class MessageListActivity : BaseActivity(), MessageListFragment.MessageListListe
      * Initializes this activity.
      */
     private fun initializeActivity(savedInstanceState: Bundle?) {
-        setSupportActionBar(toolbar_main)
+        setSupportActionBar(binding.mainLayout.toolbarMainLayout.toolbarMain )
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         //Listener can be replace with a lambda
-        toolbar_main.setNavigationOnClickListener { onBackPressed() }
+        binding.mainLayout.toolbarMainLayout.toolbarMain.setNavigationOnClickListener { onBackPressed() }
 
         if (savedInstanceState == null) {
             categoryId = intent.getIntExtra(INTENT_EXTRA_PARAM_CATEGORY_ID, -1)

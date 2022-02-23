@@ -4,6 +4,8 @@ import android.os.Bundle
 import cleancode.ui.base.BaseActivity
 import android.os.Handler
 import com.nygar.feature.R
+import com.nygar.feature.databinding.ActivityLayoutMainBinding
+import com.nygar.feature.databinding.ActivitySplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -12,9 +14,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SplashActivity: BaseActivity() {
 
+    private lateinit var binding: ActivitySplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         Handler().postDelayed({ navigator.navigateToLogin(this) }, 2000)
     }
 }

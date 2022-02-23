@@ -4,7 +4,7 @@ import cleancode.database.api.MessageCache
 import cleancode.entity.MessageEntity
 import cleancode.net.RestApi
 import cleancode.repository.source.MessageDataStore
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [MessageDataStore] based on connections to the api (Cloud).

@@ -6,7 +6,10 @@ android:layout_height="match_parent"
 android:fitsSystemWindows="true">
 
 <!-- The main content view -->
-<include layout="@layout/activity_main" />
+<include
+    android:id="@+id/main_layout"
+    layout="@layout/activity_main"
+    />
 
 <!-- Layout del menú lateral (Navigation View) -->
 <com.google.android.material.navigation.NavigationView

@@ -2,13 +2,11 @@ package cleancode.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cleancode.model.CategoryModel
-import com.nygar.feature.R
-import kotlinx.android.synthetic.main.row_category.view.*
+import com.nygar.feature.databinding.RowCategoryBinding
 
 /**
  * Adapter that manages a collection of [CategoryModel].
@@ -27,8 +25,8 @@ internal object CategoriesAdapter: RecyclerView.Adapter<CategoriesAdapter.Catego
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.row_category, parent, false)
-        return CategoryViewHolder(view)
+        val binding = RowCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CategoryViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
@@ -53,7 +51,7 @@ internal object CategoriesAdapter: RecyclerView.Adapter<CategoriesAdapter.Catego
         CategoriesAdapter.onItemClickListener = onItemClickListener
     }
 
-    internal class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textViewName: TextView = itemView.tv_name
+    internal class CategoryViewHolder(itemView: RowCategoryBinding) : RecyclerView.ViewHolder(itemView.root) {
+        val textViewName: TextView = itemView.tvName
     }
 }

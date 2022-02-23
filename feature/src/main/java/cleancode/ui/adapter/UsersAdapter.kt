@@ -2,7 +2,6 @@ package cleancode.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import cleancode.model.UserModel
 import cleancode.ui.util.GlideApp
 import com.nygar.feature.R
-import kotlinx.android.synthetic.main.row_user.view.*
+import com.nygar.feature.databinding.RowUserBinding
 
 /**
  * Adapter that manages a collection of [UserModel].
@@ -29,8 +28,8 @@ internal object UsersAdapter: RecyclerView.Adapter<UsersAdapter.CategoryViewHold
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.row_user, parent, false)
-        return CategoryViewHolder(view)
+        val binding = RowUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CategoryViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
@@ -60,8 +59,8 @@ internal object UsersAdapter: RecyclerView.Adapter<UsersAdapter.CategoryViewHold
         UsersAdapter.onItemClickListener = onItemClickListener
     }
 
-    internal class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textViewName: TextView = itemView.tv_title
-        val avatarImageView: ImageView = itemView.iv_avatar
+    internal class CategoryViewHolder(itemView: RowUserBinding) : RecyclerView.ViewHolder(itemView.root) {
+        val textViewName: TextView = itemView.tvTitle
+        val avatarImageView: ImageView = itemView.ivAvatar
     }
 }

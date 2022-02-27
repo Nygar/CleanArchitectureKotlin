@@ -6,12 +6,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 object RxAsync {
-    fun <T> getAsync(observable: Observable<T>): Observable<T> {
+    fun <T: Any> getAsync(observable: Observable<T>): Observable<T> {
         return observable.subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun <T> getTest(observable: Observable<T>): Observable<T> {
+    fun <T: Any> getTest(observable: Observable<T>): Observable<T> {
         return observable.subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
     }

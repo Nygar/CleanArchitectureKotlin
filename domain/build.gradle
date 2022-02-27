@@ -9,6 +9,7 @@ dependencies {
     //ViewModel
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelversion"
     api "androidx.lifecycle:lifecycle-runtime-ktx:$viewModelversion"
-    kapt "androidx.lifecycle:lifecycle-common-java8:$viewModelversion"
+    //kapt "androidx.lifecycle:lifecycle-compiler:$viewModelversion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$viewModelversion"
 
 }

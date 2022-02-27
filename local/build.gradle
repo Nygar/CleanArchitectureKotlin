@@ -9,6 +9,6 @@ dependencies {
 
     //Room
     api "androidx.room:room-runtime:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
+    annotationProcessor  "androidx.room:room-compiler:$roomVersion"
 
 }

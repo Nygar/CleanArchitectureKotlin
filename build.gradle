@@ -38,7 +38,7 @@ ext{
     rxKotlinVersion = '3.0.1'
     rxAndroidVersion = '3.0.0'
     retrofitVersion = '2.9.0'
-    roomVersion = '2.3.0' //Current version 2.4.1 give me error
+    roomVersion = '2.4.2' //Current version 2.4.1 give me error
 
     //OTHERS
     jodaTimeVersion = '2.10.6'
@@ -109,6 +109,7 @@ subprojects {
 
     dependencies {
         // TEST
+        /*
         testImplementation 'junit:junit:4.13.2'
         testImplementation "androidx.test:runner:1.4.0"
         testImplementation 'androidx.test:core:1.4.0'
@@ -116,6 +117,7 @@ subprojects {
         testImplementation "io.mockk:mockk:1.10.2"
         testImplementation 'com.squareup.assertj:assertj-android:1.2.0'
         testImplementation "androidx.arch.core:core-testing:2.1.0"
+         */
 
         //DI this must be commons for all project
         implementation "com.google.dagger:hilt-android:$hiltVersion"

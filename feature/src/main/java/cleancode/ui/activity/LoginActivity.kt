@@ -19,11 +19,13 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.nygar.feature.BuildConfig
 import com.nygar.feature.databinding.ActivityLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
  * Main application screen. This is the app entry point.
  */
+@AndroidEntryPoint
 class LoginActivity: BaseActivity() {
     companion object {
         fun getCallingIntent(context: Context): Intent {

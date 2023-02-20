@@ -1,10 +1,13 @@
 
+apply plugin: "kotlinx-serialization"
+
 dependencies {
 
     //Room
-    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
 
     //Gson
-    implementation 'com.google.code.gson:gson:2.8.6'
+    // Use serialization library instead GSON for kapt plugin error
+    api 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1'
 
 }

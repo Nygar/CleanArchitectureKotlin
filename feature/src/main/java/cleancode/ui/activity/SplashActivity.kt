@@ -12,6 +12,7 @@ import javax.inject.Inject
 /**
  * Main application screen. This is the app entry point.
  */
+@AndroidEntryPoint
 class SplashActivity: BaseActivity() {
 
     @Inject lateinit var sharedPreferences: SharedPreferences

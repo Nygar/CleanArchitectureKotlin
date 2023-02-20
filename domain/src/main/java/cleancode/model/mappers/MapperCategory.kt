@@ -3,7 +3,7 @@ package cleancode.model.mappers
 import cleancode.entity.CategoryEntity
 import cleancode.entity.MessageEntity
 import cleancode.model.CategoryModel
-import com.nygar.remote.BuildConfig
+import com.nygar.domain.BuildConfig
 import java.util.ArrayList
 
 object MapperCategory {

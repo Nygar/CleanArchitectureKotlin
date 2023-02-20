@@ -2,7 +2,7 @@ package cleancode.model.mappers
 
 import cleancode.entity.UserEntity
 import cleancode.model.UserModel
-import com.nygar.remote.BuildConfig
+import com.nygar.domain.BuildConfig
 import java.util.ArrayList
 
 object MapperUser {

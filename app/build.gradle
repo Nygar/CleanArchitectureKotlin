@@ -1,3 +1,4 @@
+
 android{
 
     signingConfigs {
@@ -40,10 +41,11 @@ dependencies {
     implementation project(':repository')
 
     //ESSENTIALS DEPENDENCY
-    implementation "androidx.appcompat:appcompat:1.4.1"
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.room:room-ktx:$roomVersion"
 
     //Google Firebase
-    implementation 'com.google.firebase:firebase-core:19.0.2'
+    implementation 'com.google.firebase:firebase-core:21.1.1'
 
 }
 apply plugin: 'com.google.gms.google-services'

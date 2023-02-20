@@ -1,22 +1,22 @@
 package cleancode.net
 
-import android.Manifest
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import androidx.annotation.RequiresPermission
 import cleancode.entity.CategoryEntity
 import cleancode.entity.MessageEntity
 import cleancode.entity.UserEntity
 import cleancode.entity.UserLoggedEntity
 import cleancode.net.RestEndPoint.Companion.API_BASE_URL
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import io.reactivex.rxjava3.core.Observable
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.OkHttpClient
 
 /**
@@ -29,8 +29,8 @@ class RestApiImpl (context: Context) : RestApi {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(API_BASE_URL)
+        .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
         .client(client)
-        .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     var retrofitAPI: RestEndPoint =  retrofit.create(RestEndPoint::class.java)
@@ -157,24 +157,17 @@ class RestApiImpl (context: Context) : RestApi {
      *
      * @return true device with internet connection, otherwise false.
      */
-    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
-    private fun isNetworkAvailable(context: Context): Boolean {
+    private fun isInternetAvailable(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val activeNetwork = connectivityManager.activeNetwork ?: return false
-            val networkCapabilities =
-                connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-            return when {
-                networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
-                networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-                else -> false
-            }
-        } else {
-            val activeNetwork = connectivityManager.activeNetworkInfo ?: return false
-            return activeNetwork.isConnectedOrConnecting
+        val networkCapabilities = connectivityManager.activeNetwork ?: return false
+        val actNw =
+            connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+        return when {
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> false
         }
     }
 }

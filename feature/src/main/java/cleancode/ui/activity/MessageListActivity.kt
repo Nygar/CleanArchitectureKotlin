@@ -48,7 +48,7 @@ class MessageListActivity : BaseActivity(), MessageListFragment.MessageListListe
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
         //Listener can be replace with a lambda
-        binding.mainLayout.toolbarMainLayout.toolbarMain.setNavigationOnClickListener { onBackPressed() }
+        binding.mainLayout.toolbarMainLayout.toolbarMain.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         if (savedInstanceState == null) {
             categoryId = intent.getIntExtra(INTENT_EXTRA_PARAM_CATEGORY_ID, -1)

@@ -3,25 +3,27 @@ package cleancode.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Category Entity used in the data layer.
  */
 
+@Serializable
 @Entity
-class CategoryEntity{
+data class CategoryEntity(
+    @SerialName("id")
     @PrimaryKey
-    @SerializedName("id")
     @ColumnInfo(name = "id")
-    var categoryId: Int = 0
+    var categoryId: Int = 0,
 
-    @SerializedName("image_url")
+    @SerialName("image_url")
     @ColumnInfo(name = "image_url")
-    var imageUrl: String = ""
+    var imageUrl: String = "",
 
-    @SerializedName("name")
+    @SerialName("name")
     @ColumnInfo(name = "name")
     var name: String = ""
 
-}
+)

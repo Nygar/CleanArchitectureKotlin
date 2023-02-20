@@ -2,7 +2,7 @@ package cleancode.model.mappers
 
 import cleancode.entity.UserLoggedEntity
 import cleancode.model.UserLoggedModel
-import com.nygar.remote.BuildConfig
+import com.nygar.domain.BuildConfig
 
 object MapperUserLogged {
 

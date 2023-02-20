@@ -3,33 +3,35 @@ package cleancode.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 @Entity
-class UserEntity {
+data class UserEntity(
+    @SerialName("id")
     @PrimaryKey
-    @SerializedName("id")
     @ColumnInfo(name = "id")
-    var userId: Int = 0
+    var userId: Int = 0,
 
-    @SerializedName("cover_url")
+    @SerialName("cover_url")
     @ColumnInfo(name = "cover_url")
-    var coverUrl: String = ""
+    var coverUrl: String = "",
 
-    @SerializedName("full_name")
+    @SerialName("full_name")
     @ColumnInfo(name = "full_name")
-    var fullname: String = ""
+    var fullname: String = "",
 
-    @SerializedName("description")
+    @SerialName("description")
     @ColumnInfo(name = "description")
-    var description: String = ""
+    var description: String = "",
 
-    @SerializedName("followers")
+    @SerialName("followers")
     @ColumnInfo(name = "followers")
-    var followers: Int = 0
+    var followers: Int = 0,
 
-    @SerializedName("email")
+    @SerialName("email")
     @ColumnInfo(name = "email")
     var email: String = ""
 
-}
+)

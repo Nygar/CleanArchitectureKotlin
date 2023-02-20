@@ -3,17 +3,18 @@
 buildscript {
 
     ext{
-        kotlin_version = '1.6.10'
-        compile_sdk_version = 31
+        kotlin_version = '1.8.0'
+        compile_sdk_version = 33
         min_sdk_version = 24
-        hiltVersion = '2.41'
+        hiltVersion = '2.45'
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.1'
+        classpath 'com.android.tools.build:gradle:7.4.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.gms:google-services:4.3.15'
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
         //classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.1'
     }
 
@@ -33,12 +34,12 @@ allprojects {
 ext{
 
     //ESSENTIALS
-    viewModelversion = '2.4.1'
+    viewModelversion = '2.5.1'
     butterKnifeVersion = '10.1.0'
     rxKotlinVersion = '3.0.1'
-    rxAndroidVersion = '3.0.0'
+    rxAndroidVersion = '3.0.2'
     retrofitVersion = '2.9.0'
-    roomVersion = '2.4.2' //Current version 2.4.1 give me error
+    roomVersion = '2.5.0' //Current version 2.4.1 give me error
 
     //OTHERS
     jodaTimeVersion = '2.10.6'
@@ -59,20 +60,22 @@ subprojects {
     if (it.name == 'app') {
         // remember, “it” refers to the sub-project.
         apply plugin: 'com.android.application'
-        apply plugin: 'dagger.hilt.android.plugin'
     } else {
         apply plugin: 'com.android.library'
     }
 
-    if(it.name == 'feature'){
+    if(it.name == 'feature' || it.name == 'app'){
         apply plugin: 'dagger.hilt.android.plugin'
     }
 
     apply plugin: 'kotlin-android'
     apply plugin: 'kotlin-kapt'
 
+    def packageName = it.name
+
     android {
         compileSdkVersion compile_sdk_version
+        namespace "com.nygar.$packageName"
 
         defaultConfig {
 

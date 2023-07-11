@@ -17,13 +17,13 @@ class UserActivity : BaseActivity() {
 
     companion object {
 
-        private const val INTENT_EXTRA_PARAM_CATEGORY_ID = "com.nygar.INTENT_PARAM_USER_ID"
-        private const val INSTANCE_STATE_PARAM_CATEGORY_ID = "com.nygar.STATE_PARAM_USER_ID"
+        private const val INTENT_EXTRA_PARAM_USER_ID = "com.nygar.INTENT_PARAM_USER_ID"
+        private const val INSTANCE_STATE_PARAM_USER_ID = "com.nygar.STATE_PARAM_USER_ID"
 
 
         fun getCallingIntent(context: Context, categoryId: Int): Intent {
             val callingIntent = Intent(context, UserActivity::class.java)
-            callingIntent.putExtra(INTENT_EXTRA_PARAM_CATEGORY_ID, categoryId)
+            callingIntent.putExtra(INTENT_EXTRA_PARAM_USER_ID, categoryId)
             return callingIntent
         }
     }
@@ -50,7 +50,7 @@ class UserActivity : BaseActivity() {
         binding.mainLayout.toolbarMainLayout.toolbarMain.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         if (savedInstanceState == null) {
-            userId = intent.getIntExtra(INTENT_EXTRA_PARAM_CATEGORY_ID, -1)
+            userId = intent.getIntExtra(INTENT_EXTRA_PARAM_USER_ID, -1)
             val fragment = UserDetailsFragment.newInstance(userId)
             addFragment(R.id.content_frame, fragment)
         }
@@ -58,7 +58,7 @@ class UserActivity : BaseActivity() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt(INSTANCE_STATE_PARAM_CATEGORY_ID, userId)
+        outState.putInt(INSTANCE_STATE_PARAM_USER_ID, userId)
         super.onSaveInstanceState(outState)
     }
 }

@@ -34,10 +34,10 @@ allprojects {
 ext{
 
     //ESSENTIALS
-    viewModelversion = '2.5.1'
+    viewModelversion = '2.6.1'
     butterKnifeVersion = '10.1.0'
     retrofitVersion = '2.9.0'
-    roomVersion = '2.5.0' //Current version 2.4.1 give me error
+    roomVersion = '2.5.2'
 
     //OTHERS
     jodaTimeVersion = '2.10.6'

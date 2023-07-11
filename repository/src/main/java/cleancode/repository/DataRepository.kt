@@ -11,43 +11,43 @@ interface DataRepository {
     /**
      * Get an [Observable] which will emit a List of [CategoryEntity].
      */
-    fun categories(): Observable<List<CategoryEntity>>
+    suspend fun categories(): Result<List<CategoryEntity>>
 
     /**
      * Get an [Observable] which will emit a [CategoryEntity].
      *
      * @param categoryId The user id used to retrieve user data.
      */
-    fun category(categoryId: Int): Observable<CategoryEntity>
+    suspend fun category(categoryId: Int): Result<CategoryEntity>
 
     /**
      * Get an [Observable] which will emit a List of [MessageEntity].
      */
-    fun messages(): Observable<List<MessageEntity>>
+    suspend fun messages(): Result<List<MessageEntity>>
 
     /**
      * Get an [Observable] which will emit a [MessageEntity].
      *
      * @param messageId The user id used to retrieve user data.
      */
-    fun message(messageId: Int): Observable<MessageEntity>
+    suspend fun message(messageId: Int): Result<MessageEntity>
 
     /**
      * Get an [Observable] which will emit a List of [UserEntity].
      */
-    fun users(): Observable<List<UserEntity>>
+    suspend fun users(): Result<List<UserEntity>>
 
     /**
      * Get an [Observable] which will emit a [UserEntity].
      *
      * @param userId The user id used to retrieve user data.
      */
-    fun user(userId: Int): Observable<UserEntity>
+    suspend fun user(userId: Int): Result<UserEntity>
 
     /**
      * Get an [Observable] which will emit a [UserLoggedEntity].
      *
      */
-    fun userLogged(): Observable<UserLoggedEntity>
+    suspend fun userLogged(): Result<UserLoggedEntity>
 
 }

@@ -11,45 +11,45 @@ import io.reactivex.rxjava3.core.Observable
  */
 interface RestApi {
     /**
-     * Retrieves an [Observable] which will emit a [UserEntity].
+     * Retrieves an [Result] which will emit a [UserEntity].
      * Api url for getting a user profile: Remember to concatenate id + 'json'
      *
      * @param userId The user id used to get user data.
      */
-    fun userEntityById(userId: Int): Observable<UserEntity>
+    suspend fun userEntityById(userId: Int): Result<UserEntity>
 
     /**
-     * Retrieves an [Observable] which will emit a List of [UserEntity].
+     * Retrieves an [Result] which will emit a List of [UserEntity].
      * Api url for getting all users
      */
-    fun userEntityList(): Observable<List<UserEntity>>
+    suspend fun userEntityList(): Result<List<UserEntity>>
 
     /**
-     * Retrieves an [Observable] which will emit a [UserLoggedEntity].
+     * Retrieves an [Result] which will emit a [UserLoggedEntity].
      * Api url for getting a user profile: Remember to concatenate id + 'json'
      */
-    fun userLoggedEntity(): Observable<UserLoggedEntity>
+    suspend fun userLoggedEntity(): Result<UserLoggedEntity>
 
     /**
-     * Retrieves an [Observable] which will emit a List of [MessageEntity].
+     * Retrieves an [Result] which will emit a List of [MessageEntity].
      * Api url for getting all messages
      */
-    fun messageEntityList(): Observable<List<MessageEntity>>
+    suspend fun messageEntityList(): Result<List<MessageEntity>>
 
     /**
-     * Retrieves an [Observable] which will emit a [MessageEntity].
+     * Retrieves an [Result] which will emit a [MessageEntity].
      * Api url for getting a message details: Remember to concatenate id + 'json'
      *
      * @param messageId The user id used to get user data.
      */
-    fun messageEntityById(messageId: Int): Observable<MessageEntity>
+    suspend fun messageEntityById(messageId: Int): Result<MessageEntity>
 
 
     /**
      * Retrieves an [Observable] which will emit a List of [MessageEntity].
      * Api url for getting all messages
      */
-    fun categoryEntityList(): Observable<List<CategoryEntity>>
+    suspend fun categoryEntityList(): Result<List<CategoryEntity>>
 
     /**
      * Retrieves an [Observable] which will emit a [MessageEntity].
@@ -57,5 +57,5 @@ interface RestApi {
      *
      * @param categoryId The user id used to get user data.
      */
-    fun categoryEntityById(categoryId: Int): Observable<CategoryEntity>
+    suspend fun categoryEntityById(categoryId: Int): Result<CategoryEntity>
 }

@@ -1,7 +1,6 @@
 package cleancode.repository.source
 
 import cleancode.entity.MessageEntity
-import io.reactivex.rxjava3.core.Observable
 
 
 /**
@@ -9,14 +8,14 @@ import io.reactivex.rxjava3.core.Observable
  */
 interface MessageDataStore {
     /**
-     * Get an [Observable] which will emit a List of [MessageEntity].
+     * Get an [Result] which will emit a List of [MessageEntity].
      */
-    fun messageEntityList(): Observable<List<MessageEntity>>
+    suspend fun messageEntityList(): Result<List<MessageEntity>>
 
     /**
-     * Get an [Observable] which will emit a [MessageEntity] by its id.
+     * Get an [Result] which will emit a [MessageEntity] by its id.
      *
      * @param messageId The id to retrieve message data.
      */
-    fun messageEntityDetails(messageId: Int): Observable<MessageEntity>
+    suspend fun messageEntityDetails(messageId: Int): Result<MessageEntity>
 }

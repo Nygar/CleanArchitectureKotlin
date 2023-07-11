@@ -1,7 +1,6 @@
 package cleancode.repository.source
 
 import cleancode.entity.UserEntity
-import io.reactivex.rxjava3.core.Observable
 
 
 /**
@@ -9,14 +8,14 @@ import io.reactivex.rxjava3.core.Observable
  */
 interface UserDataStore {
     /**
-     * Get an [Observable] which will emit a List of [UserEntity].
+     * Get an [Result] which will emit a List of [UserEntity].
      */
-    fun userEntityList(): Observable<List<UserEntity>>
+    suspend fun userEntityList(): Result<List<UserEntity>>
 
     /**
-     * Get an [Observable] which will emit a [UserEntity] by its id.
+     * Get an [Result] which will emit a [UserEntity] by its id.
      *
      * @param userId The id to retrieve user data.
      */
-    fun userEntityDetails(userId: Int): Observable<UserEntity>
+    suspend fun userEntityDetails(userId: Int): Result<UserEntity>
 }

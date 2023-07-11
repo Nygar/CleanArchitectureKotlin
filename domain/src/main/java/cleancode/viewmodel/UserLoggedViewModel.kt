@@ -3,12 +3,14 @@ package cleancode.viewmodel
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cleancode.base.RxAsync
+import androidx.lifecycle.viewModelScope
 import cleancode.model.UserLoggedModel
 import cleancode.model.mappers.MapperUserLogged
 import cleancode.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,9 +30,17 @@ class UserLoggedViewModel @Inject constructor(
 
     @SuppressLint("CheckResult")
     private fun getUserLoggedTask() {
-        RxAsync.getAsync(repository.userLogged()).map { MapperUserLogged.transform(it) }.subscribeBy(
-            onNext = { userLogged?.postValue(it)},
-            onError =  { it.printStackTrace() },
-            onComplete = { })
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                repository.userLogged()
+            }.fold(
+                onSuccess = {
+                    userLogged?.postValue(MapperUserLogged.transform(it))
+                },
+                onFailure = {
+                    Throwable(it.message)
+                }
+            )
+        }
     }
 }

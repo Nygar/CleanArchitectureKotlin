@@ -22,7 +22,6 @@ import cleancode.repository.source.disk.DiskCategoryDataStore
 import cleancode.repository.source.disk.DiskMessageDataStore
 import cleancode.repository.source.disk.DiskUserDataStore
 import cleancode.repository.source.disk.DiskUserLoggedDataStore
-import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
 class DataRepositoryImpl
@@ -34,13 +33,13 @@ class DataRepositoryImpl
                     private val userLoggedCache: UserLoggedCache
 ): DataRepository {
 
-    override fun categories(): Observable<List<CategoryEntity>> {
+    override suspend fun categories(): Result<List<CategoryEntity>> {
         //we always get all messages from the cloud
         val dataStore = CloudCategoryDataStore(restApi, categoryCache)
         return dataStore.categoryEntityList()
     }
 
-    override fun category(categoryId: Int): Observable<CategoryEntity> {
+    override suspend fun category(categoryId: Int): Result<CategoryEntity> {
         val dataStore: CategoryDataStore = if (!categoryCache.isExpired(categoryId) && categoryCache.isCached(categoryId)) {
             DiskCategoryDataStore(categoryCache)
         } else {
@@ -49,13 +48,13 @@ class DataRepositoryImpl
         return dataStore.categoryEntityDetails(categoryId)
     }
 
-    override fun messages(): Observable<List<MessageEntity>> {
+    override suspend fun messages(): Result<List<MessageEntity>> {
         //we always get all messages from the cloud
         val dataStore = CloudMessageDataStore(restApi, messageCache)
         return dataStore.messageEntityList()
     }
 
-    override fun message(messageId: Int): Observable<MessageEntity> {
+    override suspend fun message(messageId: Int): Result<MessageEntity> {
         val dataStore: MessageDataStore = if (!messageCache.isExpired(messageId) && messageCache.isCached(messageId)) {
             DiskMessageDataStore(messageCache)
         } else {
@@ -64,13 +63,13 @@ class DataRepositoryImpl
         return dataStore.messageEntityDetails(messageId)
     }
 
-    override fun users(): Observable<List<UserEntity>> {
+    override suspend fun users(): Result<List<UserEntity>> {
         //we always get all messages from the cloud
         val dataStore = CloudUserDataStore(restApi, userCache)
         return dataStore.userEntityList()
     }
 
-    override fun user(userId: Int): Observable<UserEntity> {
+    override suspend fun user(userId: Int): Result<UserEntity> {
         val dataStore: UserDataStore = if (!userCache.isExpired(userId) && userCache.isCached(userId)) {
             DiskUserDataStore(userCache)
         } else {
@@ -79,7 +78,7 @@ class DataRepositoryImpl
         return dataStore.userEntityDetails(userId)
     }
 
-    override fun userLogged(): Observable<UserLoggedEntity> {
+    override suspend fun userLogged(): Result<UserLoggedEntity> {
         val dataStore: UserLoggedDataStore = if (!userLoggedCache.isExpired() && userLoggedCache.isCached()) {
             DiskUserLoggedDataStore(userLoggedCache)
         } else {

@@ -3,12 +3,14 @@ package cleancode.viewmodel
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cleancode.base.RxAsync
+import androidx.lifecycle.viewModelScope
 import cleancode.model.UserModel
 import cleancode.model.mappers.MapperUser
 import cleancode.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,9 +30,17 @@ class UserDetailsViewModel @Inject constructor(
 
     @SuppressLint("CheckResult")
     private fun getUserTaskById(messageId: Int) {
-        RxAsync.getAsync(repository.user(messageId)).map { MapperUser.transform(it) }.subscribeBy(
-            onNext = { userSingle?.postValue(it) },
-            onError = { it.printStackTrace() },
-            onComplete = {  })
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                repository.user(messageId)
+            }.fold(
+                onSuccess = {
+                    userSingle?.postValue(MapperUser.transform(it))
+                },
+                onFailure = {
+                    Throwable(it.message)
+                }
+            )
+        }
     }
 }

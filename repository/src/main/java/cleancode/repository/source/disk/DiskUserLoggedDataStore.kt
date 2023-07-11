@@ -3,7 +3,6 @@ package cleancode.repository.source.disk
 import cleancode.entity.UserLoggedEntity
 import cleancode.database.api.UserLoggedCache
 import cleancode.repository.source.UserLoggedDataStore
-import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [UserLoggedDataStore] based file system data store.
@@ -13,7 +12,7 @@ import io.reactivex.rxjava3.core.Observable
 class DiskUserLoggedDataStore(private val userLoggedCache: UserLoggedCache) :
     UserLoggedDataStore {
 
-    override fun userLoggedEntity(): Observable<UserLoggedEntity> {
+    override suspend fun userLoggedEntity(): Result<UserLoggedEntity> {
         return userLoggedCache.get()
     }
 }

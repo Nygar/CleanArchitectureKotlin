@@ -5,8 +5,9 @@ import cleancode.database.AppDatabase
 import cleancode.database.FileManager
 import cleancode.database.api.MessageCache
 import cleancode.entity.MessageEntity
-import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class MessageCacheImpl @Inject constructor(private val context: Context, private val database: AppDatabase): MessageCache {
 
@@ -17,12 +18,10 @@ class MessageCacheImpl @Inject constructor(private val context: Context, private
 
     private val fileManager: FileManager = FileManager
 
-    override operator fun get(messageId: Int): Observable<MessageEntity> {
-
-        return Observable.create { subscriber ->
+    override suspend fun get(messageId: Int): Result<MessageEntity> {
+        return suspendCoroutine {
             val m = database.messageCacheDao().getById(messageId)
-            subscriber.onNext(m)
-            subscriber.onComplete()
+            it.resume(Result.success(m))
         }
     }
 

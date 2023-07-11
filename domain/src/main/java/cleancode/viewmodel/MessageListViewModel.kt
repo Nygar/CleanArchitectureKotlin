@@ -3,12 +3,14 @@ package cleancode.viewmodel
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cleancode.base.RxAsync
+import androidx.lifecycle.viewModelScope
 import cleancode.model.MessageModel
 import cleancode.model.mappers.MapperMessage
 import cleancode.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,9 +31,17 @@ class MessageListViewModel @Inject constructor(
 
     @SuppressLint("CheckResult")
     private fun getMessageListTask(categoryId: Int) {
-        RxAsync.getAsync(repository.messages()).map { MapperMessage.transform(it) }.subscribeBy(
-            onNext = { messageList?.postValue(it)},
-            onError =  { it.printStackTrace() },
-            onComplete = { })
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                repository.messages()
+            }.fold(
+                onSuccess = {
+                    messageList?.postValue(MapperMessage.transform(it))
+                },
+                onFailure = {
+                    Throwable(it.message)
+                }
+            )
+        }
     }
 }

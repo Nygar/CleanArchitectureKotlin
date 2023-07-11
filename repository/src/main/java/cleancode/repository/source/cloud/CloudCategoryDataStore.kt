@@ -5,7 +5,6 @@ import cleancode.database.api.CategoryCache
 import cleancode.entity.CategoryEntity
 import cleancode.net.RestApi
 import cleancode.repository.source.CategoryDataStore
-import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [CategoryDataStore] based on connections to the api (Cloud).
@@ -16,11 +15,11 @@ import io.reactivex.rxjava3.core.Observable
 class CloudCategoryDataStore(private val restApi: RestApi, private val categoryCache: CategoryCache) :
     CategoryDataStore {
 
-    override fun categoryEntityList(): Observable<List<CategoryEntity>> {
+    override suspend fun categoryEntityList(): Result<List<CategoryEntity>> {
         return restApi.categoryEntityList()
     }
 
-    override fun categoryEntityDetails(categoryId: Int): Observable<CategoryEntity> {
-        return restApi.categoryEntityById(categoryId).doOnNext(categoryCache::put)
+    override suspend fun categoryEntityDetails(categoryId: Int): Result<CategoryEntity> {
+        return restApi.categoryEntityById(categoryId).onSuccess(categoryCache::put)
     }
 }

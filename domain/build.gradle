@@ -3,10 +3,6 @@ dependencies {
 
     implementation project(':repository')
 
-    //Rx
-    //implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
-    //implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-
     //ViewModel
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelversion"
     api "androidx.lifecycle:lifecycle-runtime-ktx:$viewModelversion"

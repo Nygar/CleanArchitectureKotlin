@@ -3,10 +3,6 @@ dependencies {
 
     api project(':dto')
 
-    //Rx
-    api "io.reactivex.rxjava3:rxkotlin:$rxKotlinVersion"
-    api "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
-
     //Room
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"

@@ -5,8 +5,9 @@ import cleancode.database.AppDatabase
 import cleancode.database.FileManager
 import cleancode.database.api.UserLoggedCache
 import cleancode.entity.UserLoggedEntity
-import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class UserLoggedCacheImpl @Inject constructor(private val context: Context, private val database: AppDatabase) : UserLoggedCache {
 
@@ -17,12 +18,10 @@ class UserLoggedCacheImpl @Inject constructor(private val context: Context, priv
 
     private val fileManager: FileManager = FileManager
 
-    override fun get(): Observable<UserLoggedEntity> {
-        return Observable.create { subscriber ->
+    override suspend fun get(): Result<UserLoggedEntity> {
+        return suspendCoroutine {
             val userLoggedEntity = database.userLoggedCacheDao().getById()
-            subscriber.onNext(userLoggedEntity)
-            subscriber.onComplete()
-
+            it.resume(Result.success(userLoggedEntity))
         }
     }
 

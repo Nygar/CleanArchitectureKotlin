@@ -5,8 +5,9 @@ import cleancode.database.AppDatabase
 import cleancode.database.FileManager
 import cleancode.database.api.UserCache
 import cleancode.entity.UserEntity
-import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class UserCacheImpl @Inject constructor(private val context: Context, private val database: AppDatabase): UserCache {
 
@@ -17,11 +18,10 @@ class UserCacheImpl @Inject constructor(private val context: Context, private va
 
     private val fileManager: FileManager = FileManager
 
-    override operator fun get(userId: Int): Observable<UserEntity> {
-        return Observable.create { subscriber ->
+    override suspend fun get(userId: Int): Result<UserEntity> {
+        return suspendCoroutine {
             val userEntity = database.userCacheDao().getById(userId)
-            subscriber.onNext(userEntity)
-            subscriber.onComplete()
+            it.resume(Result.success(userEntity))
         }
     }
 

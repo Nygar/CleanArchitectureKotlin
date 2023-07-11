@@ -3,7 +3,6 @@ package cleancode.repository.source.disk
 import cleancode.entity.MessageEntity
 import cleancode.database.api.MessageCache
 import cleancode.repository.source.MessageDataStore
-import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [MessageDataStore] based file system data store.
@@ -12,12 +11,12 @@ import io.reactivex.rxjava3.core.Observable
  */
 class DiskMessageDataStore(private val messageCache: MessageCache) : MessageDataStore {
 
-    override fun messageEntityList(): Observable<List<MessageEntity>> {
+    override suspend fun messageEntityList(): Result<List<MessageEntity>> {
         //TODO: implement simple cache for storing/retrieving collections of messages.
         throw UnsupportedOperationException("Operation is not available!!!")
     }
 
-    override fun messageEntityDetails(messageId: Int): Observable<MessageEntity> {
-        return messageCache[messageId]
+    override suspend fun messageEntityDetails(messageId: Int): Result<MessageEntity> {
+        return messageCache.get(messageId)
     }
 }

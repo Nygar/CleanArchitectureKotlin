@@ -2,19 +2,18 @@ package cleancode.repository.source
 
 import cleancode.entity.CategoryEntity
 import cleancode.entity.MessageEntity
-import io.reactivex.rxjava3.core.Observable
 
 
 interface CategoryDataStore {
     /**
-     * Get an [Observable] which will emit a List of [MessageEntity].
+     * Get an [Result] which will emit a List of [MessageEntity].
      */
-    fun categoryEntityList(): Observable<List<CategoryEntity>>
+    suspend fun categoryEntityList(): Result<List<CategoryEntity>>
 
     /**
-     * Get an [Observable] which will emit a [MessageEntity] by its id.
+     * Get an [Result] which will emit a [MessageEntity] by its id.
      *
      * @param categoryId The id to retrieve message data.
      */
-    fun categoryEntityDetails(categoryId: Int): Observable<CategoryEntity>
+    suspend fun categoryEntityDetails(categoryId: Int): Result<CategoryEntity>
 }

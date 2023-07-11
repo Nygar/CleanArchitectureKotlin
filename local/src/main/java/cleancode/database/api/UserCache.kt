@@ -1,7 +1,6 @@
 package cleancode.database.api
 
 import cleancode.entity.UserEntity
-import io.reactivex.rxjava3.core.Observable
 
 
 /**
@@ -9,11 +8,11 @@ import io.reactivex.rxjava3.core.Observable
  */
 interface UserCache {
     /**
-     * Gets an [Observable] which will emit a [UserEntity].
+     * Gets an [Result] which will emit a [UserEntity].
      *
      * @param userId The user id to retrieve data.
      */
-    operator fun get(userId: Int): Observable<UserEntity>
+    suspend fun get(userId: Int): Result<UserEntity>
 
     /**
      * Puts and element into the cache.

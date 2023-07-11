@@ -1,7 +1,6 @@
 package cleancode.database.api
 
 import cleancode.entity.MessageEntity
-import io.reactivex.rxjava3.core.Observable
 
 
 /**
@@ -9,11 +8,11 @@ import io.reactivex.rxjava3.core.Observable
  */
 interface MessageCache {
     /**
-     * Gets an [Observable] which will emit a [MessageEntity].
+     * Gets an [Result] which will emit a [MessageEntity].
      *
      * @param messageId The message id to retrieve data.
      */
-    operator fun get(messageId: Int): Observable<MessageEntity>
+    suspend fun get(messageId: Int): Result<MessageEntity>
 
     /**
      * Puts and element into the cache.

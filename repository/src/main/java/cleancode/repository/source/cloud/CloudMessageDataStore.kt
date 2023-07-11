@@ -4,7 +4,6 @@ import cleancode.database.api.MessageCache
 import cleancode.entity.MessageEntity
 import cleancode.net.RestApi
 import cleancode.repository.source.MessageDataStore
-import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [MessageDataStore] based on connections to the api (Cloud).
@@ -15,11 +14,11 @@ import io.reactivex.rxjava3.core.Observable
 class CloudMessageDataStore(private val restApi: RestApi, private val messageCache: MessageCache) :
     MessageDataStore {
 
-    override fun messageEntityList(): Observable<List<MessageEntity>> {
+    override suspend fun messageEntityList(): Result<List<MessageEntity>> {
         return this.restApi.messageEntityList()
     }
 
-    override fun messageEntityDetails(messageId: Int): Observable<MessageEntity> {
-        return this.restApi.messageEntityById(messageId).doOnNext(messageCache::put)
+    override suspend fun messageEntityDetails(messageId: Int): Result<MessageEntity> {
+        return this.restApi.messageEntityById(messageId).onSuccess(messageCache::put)
     }
 }

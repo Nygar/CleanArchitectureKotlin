@@ -3,7 +3,6 @@ package cleancode.repository.source.disk
 import cleancode.entity.UserEntity
 import cleancode.database.api.UserCache
 import cleancode.repository.source.UserDataStore
-import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [UserDataStore] based file system data store.
@@ -12,12 +11,12 @@ import io.reactivex.rxjava3.core.Observable
  */
 class DiskUserDataStore(private val userCache: UserCache) : UserDataStore {
 
-    override fun userEntityList(): Observable<List<UserEntity>> {
+    override suspend fun userEntityList(): Result<List<UserEntity>> {
         //TODO: implement simple cache for storing/retrieving collections of users.
         throw UnsupportedOperationException("Operation is not available!!!")
     }
 
-    override fun userEntityDetails(userId: Int): Observable<UserEntity> {
-        return userCache[userId]
+    override suspend fun userEntityDetails(userId: Int): Result<UserEntity> {
+        return userCache.get(userId)
     }
 }

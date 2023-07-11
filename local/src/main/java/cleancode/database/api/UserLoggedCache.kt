@@ -1,7 +1,6 @@
 package cleancode.database.api
 
 import cleancode.entity.UserLoggedEntity
-import io.reactivex.rxjava3.core.Observable
 
 
 /**
@@ -24,10 +23,10 @@ interface UserLoggedCache {
     fun isExpired(): Boolean
 
     /**
-     * Gets an [Observable] which will emit a [UserLoggedEntity].
+     * Gets an [Result] which will emit a [UserLoggedEntity].
      *
      */
-    fun get(): Observable<UserLoggedEntity>
+    suspend fun get(): Result<UserLoggedEntity>
 
     /**
      * Puts and element into the cache.

@@ -1,7 +1,6 @@
 package cleancode.repository.source
 
 import cleancode.entity.UserLoggedEntity
-import io.reactivex.rxjava3.core.Observable
 
 
 /**
@@ -9,8 +8,8 @@ import io.reactivex.rxjava3.core.Observable
  */
 interface UserLoggedDataStore {
     /**
-     * Get an [Observable] which will emit a [UserLoggedEntity].
+     * Get an [Result] which will emit a [UserLoggedEntity].
      *
      */
-    fun userLoggedEntity(): Observable<UserLoggedEntity>
+    suspend fun userLoggedEntity(): Result<UserLoggedEntity>
 }

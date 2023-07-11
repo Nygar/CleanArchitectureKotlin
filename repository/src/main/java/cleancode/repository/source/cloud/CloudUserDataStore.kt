@@ -4,7 +4,6 @@ import cleancode.database.api.UserCache
 import cleancode.entity.UserEntity
 import cleancode.net.RestApi
 import cleancode.repository.source.UserDataStore
-import io.reactivex.rxjava3.core.Observable
 
 /**
  * Construct a [UserDataStore] based on connections to the api (Cloud).
@@ -15,11 +14,11 @@ import io.reactivex.rxjava3.core.Observable
 class CloudUserDataStore(private val restApi: RestApi, private val userCache: UserCache) :
     UserDataStore {
 
-    override fun userEntityList(): Observable<List<UserEntity>> {
+    override suspend fun userEntityList(): Result<List<UserEntity>> {
         return this.restApi.userEntityList()
     }
 
-    override fun userEntityDetails(userId: Int): Observable<UserEntity> {
-        return this.restApi.userEntityById(userId).doOnNext( userCache::put)
+    override suspend fun userEntityDetails(userId: Int): Result<UserEntity> {
+        return this.restApi.userEntityById(userId).onSuccess( userCache::put)
     }
 }

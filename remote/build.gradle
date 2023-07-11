@@ -3,10 +3,6 @@ dependencies {
 
     api project(':dto')
 
-    //Rx
-    api "io.reactivex.rxjava3:rxkotlin:$rxKotlinVersion"
-    api "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
-
     //Retrofit
     api "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"

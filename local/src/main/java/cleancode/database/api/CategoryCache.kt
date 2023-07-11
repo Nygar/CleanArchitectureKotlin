@@ -1,7 +1,6 @@
 package cleancode.database.api
 
 import cleancode.entity.CategoryEntity
-import io.reactivex.rxjava3.core.Observable
 
 
 /**
@@ -9,11 +8,11 @@ import io.reactivex.rxjava3.core.Observable
  */
 interface CategoryCache {
     /**
-     * Gets an [Observable] which will emit a [CategoryEntity].
+     * Gets an [Result] which will emit a [CategoryEntity].
      *
      * @param categoryId The message id to retrieve data.
      */
-    operator fun get(categoryId: Int): Observable<CategoryEntity>
+    suspend fun get(categoryId: Int): Result<CategoryEntity>
 
     /**
      * Puts and element into the cache.

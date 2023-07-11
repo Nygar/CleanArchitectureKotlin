@@ -5,8 +5,9 @@ import cleancode.database.AppDatabase
 import cleancode.database.FileManager
 import cleancode.database.api.CategoryCache
 import cleancode.entity.CategoryEntity
-import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class CategoryCacheImpl @Inject constructor(private val context: Context, private val database: AppDatabase): CategoryCache {
 
@@ -17,11 +18,10 @@ class CategoryCacheImpl @Inject constructor(private val context: Context, privat
 
     private val fileManager: FileManager = FileManager
 
-    override operator fun get(categoryId: Int): Observable<CategoryEntity> {
-        return Observable.create { subscriber ->
+    override suspend fun get(categoryId: Int): Result<CategoryEntity> {
+        return suspendCoroutine {
             val data = database.categoryCacheDao().getById(categoryId)
-            subscriber.onNext(data)
-            subscriber.onComplete()
+            it.resume(Result.success(data))
         }
     }
 

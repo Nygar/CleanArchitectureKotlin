@@ -32,6 +32,18 @@ class MessageCacheImpl @Inject constructor(private val context: Context, private
         }
     }
 
+    override suspend fun getList(): Result<List<MessageEntity>> {
+        return suspendCoroutine {
+            val m = database.messageCacheDao().getList()
+            it.resume(Result.success(m))
+        }
+    }
+
+    override fun putList(listEntity: List<MessageEntity>) {
+        database.messageCacheDao().insertList(listEntity)
+        setLastCacheUpdateTimeMillis()
+    }
+
     override fun isCached(messageId: Int): Boolean {
         var res = false
         val result: MessageEntity? = database.messageCacheDao().getById(messageId)

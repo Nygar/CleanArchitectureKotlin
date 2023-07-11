@@ -12,8 +12,7 @@ import cleancode.repository.source.UserDataStore
 class DiskUserDataStore(private val userCache: UserCache) : UserDataStore {
 
     override suspend fun userEntityList(): Result<List<UserEntity>> {
-        //TODO: implement simple cache for storing/retrieving collections of users.
-        throw UnsupportedOperationException("Operation is not available!!!")
+        return userCache.getList()
     }
 
     override suspend fun userEntityDetails(userId: Int): Result<UserEntity> {

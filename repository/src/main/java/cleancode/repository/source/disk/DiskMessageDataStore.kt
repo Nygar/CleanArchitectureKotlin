@@ -12,8 +12,7 @@ import cleancode.repository.source.MessageDataStore
 class DiskMessageDataStore(private val messageCache: MessageCache) : MessageDataStore {
 
     override suspend fun messageEntityList(): Result<List<MessageEntity>> {
-        //TODO: implement simple cache for storing/retrieving collections of messages.
-        throw UnsupportedOperationException("Operation is not available!!!")
+        return messageCache.getList()
     }
 
     override suspend fun messageEntityDetails(messageId: Int): Result<MessageEntity> {

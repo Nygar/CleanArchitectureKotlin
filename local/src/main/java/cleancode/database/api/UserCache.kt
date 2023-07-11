@@ -22,6 +22,19 @@ interface UserCache {
     fun put(userEntity: UserEntity)
 
     /**
+     * Gets an [Result] which will emit a [UserEntity].
+     *
+     */
+    suspend fun getList(): Result<List<UserEntity>>
+
+    /**
+     * Puts and element into the cache.
+     *
+     * @param listEntity Element to insert in the cache.
+     */
+    fun putList(listEntity: List<UserEntity>)
+
+    /**
      * Checks if an element (User) exists in the cache.
      *
      * @param userId The id used to look for inside the cache.

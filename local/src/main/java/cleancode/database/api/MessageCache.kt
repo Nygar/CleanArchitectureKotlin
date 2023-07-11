@@ -22,6 +22,19 @@ interface MessageCache {
     fun put(messageEntity: MessageEntity)
 
     /**
+     * Gets an [Result] which will emit a [MessageEntity].
+     *
+     */
+    suspend fun getList(): Result<List<MessageEntity>>
+
+    /**
+     * Puts and element into the cache.
+     *
+     * @param listEntity Element to insert in the cache.
+     */
+    fun putList(listEntity: List<MessageEntity>)
+
+    /**
      * Checks if an element (Message) exists in the cache.
      *
      * @param messageId The id message to look for inside the cache.

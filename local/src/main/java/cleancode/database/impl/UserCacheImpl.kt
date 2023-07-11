@@ -33,6 +33,18 @@ class UserCacheImpl @Inject constructor(private val context: Context, private va
 
     }
 
+    override suspend fun getList(): Result<List<UserEntity>> {
+        return suspendCoroutine {
+            val m = database.userCacheDao().getList()
+            it.resume(Result.success(m))
+        }
+    }
+
+    override fun putList(listEntity: List<UserEntity>) {
+        database.userCacheDao().insertList(listEntity)
+        setLastCacheUpdateTimeMillis()
+    }
+
     override fun isCached(userId: Int): Boolean {
         var res = false
         val result: UserEntity? = database.userCacheDao().getById(userId)

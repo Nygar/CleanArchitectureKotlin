@@ -28,7 +28,9 @@
 
         <activity android:name="cleancode.ui.activity.MainActivity"/>
 
-        <activity android:name="cleancode.ui.activity.MessageListActivity"/>
+        <activity android:name="cleancode.ui.activity.MessageActivity"/>
+
+        <activity android:name="cleancode.ui.activity.UserActivity"/>
 
     </application>
 </manifest>

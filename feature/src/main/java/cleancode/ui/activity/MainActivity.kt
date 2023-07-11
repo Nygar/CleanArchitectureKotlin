@@ -1,5 +1,6 @@
 package cleancode.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -53,7 +54,7 @@ class MainActivity: BaseActivity(), MessageCategoryFragment.MessageCategoryView,
             true
         }
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar_main)
+        val toolbar: Toolbar = binding.mainLayout.toolbarMainLayout.toolbarMain
         setSupportActionBar(toolbar)
 
         val drawerToggle =
@@ -72,7 +73,7 @@ class MainActivity: BaseActivity(), MessageCategoryFragment.MessageCategoryView,
             }
 
         binding.drawerLayout.addDrawerListener(drawerToggle)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         drawerToggle.syncState()
         if (savedInstanceState == null) {
             addFragment(R.id.content_frame, MessageCategoryFragment())
@@ -80,16 +81,18 @@ class MainActivity: BaseActivity(), MessageCategoryFragment.MessageCategoryView,
         val headerContainer = binding.navigationViewMenu.inflateHeaderView(R.layout.header_layout)
         headerContainer.addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
             override fun onViewAttachedToWindow(v: View) {
-                supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.header_frame, UserLoggedFragment())
-                    .commit()
+                attachHeader()
             }
 
             override fun onViewDetachedFromWindow(v: View) {
 
             }
         })
+    }
+
+    @SuppressLint("CommitTransaction")
+    private fun attachHeader(){
+        supportFragmentManager.beginTransaction().add(R.id.header_frame, UserLoggedFragment()).commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -109,5 +112,10 @@ class MainActivity: BaseActivity(), MessageCategoryFragment.MessageCategoryView,
 
     override fun onUserClicked(userModel: UserModel) {
         this.navigator.navigateToUserDetails(this, userModel.userId)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
 }

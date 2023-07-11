@@ -12,8 +12,7 @@ import retrofit2.http.Path
 interface RestEndPoint {
 
     companion object {
-        val API_BASE_URL: String
-            get() = BuildConfig.URL_BASE
+        const val API_BASE_URL: String = BuildConfig.URL_BASE
     }
 
     /**

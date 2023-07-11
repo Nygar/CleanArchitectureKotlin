@@ -74,9 +74,8 @@ class LoginActivity: BaseActivity() {
     /**
      * Goes to the message list screen.
      */
-    private fun navigateToMessageList():Boolean {
+    private fun navigateToMessageList() {
         navigator.navigateToMain(this)
-        return true
     }
 
     private fun googleLogInSuccessful(data: Intent?) {
@@ -98,7 +97,7 @@ class LoginActivity: BaseActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
-                    analitics.sendAnaliticLoginGoogle(user!!.email!!)
+                    analytics.sendAnalyticLoginGoogle(user!!.email!!)
                     navigateToMessageList()
                 } else {
                     // If sign in fails, display a message to the user.

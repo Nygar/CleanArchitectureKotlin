@@ -11,7 +11,7 @@ android:fitsSystemWindows="true">
     layout="@layout/activity_main"
     />
 
-<!-- Layout del menú lateral (Navigation View) -->
+<!-- Layout del menu lateral (Navigation View) -->
 <com.google.android.material.navigation.NavigationView
     android:id="@+id/navigation_view_menu"
     android:layout_width="wrap_content"

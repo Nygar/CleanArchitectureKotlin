@@ -4,7 +4,6 @@ import cleancode.entity.CategoryEntity
 import cleancode.entity.MessageEntity
 import cleancode.entity.UserEntity
 import cleancode.entity.UserLoggedEntity
-import io.reactivex.rxjava3.core.Observable
 
 /**
  * RestApi for retrieving data from the network.
@@ -46,13 +45,13 @@ interface RestApi {
 
 
     /**
-     * Retrieves an [Observable] which will emit a List of [MessageEntity].
+     * Retrieves an [Result] which will emit a List of [MessageEntity].
      * Api url for getting all messages
      */
     suspend fun categoryEntityList(): Result<List<CategoryEntity>>
 
     /**
-     * Retrieves an [Observable] which will emit a [MessageEntity].
+     * Retrieves an [Result] which will emit a [MessageEntity].
      * Api url for getting a message details: Remember to concatenate id + 'json'
      *
      * @param categoryId The user id used to get user data.

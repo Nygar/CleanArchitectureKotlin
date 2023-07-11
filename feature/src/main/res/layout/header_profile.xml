@@ -6,13 +6,15 @@
     android:orientation="vertical"
     android:paddingBottom="@dimen/menu_header_vertical_margin"
     android:paddingTop="@dimen/menu_header_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin">
+    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
+    >
 
     <ImageView
         android:id="@+id/imageView_Avatar"
         android:layout_width="@dimen/menu_header_avatar_size"
         android:layout_height="@dimen/menu_header_avatar_size"
-        android:layout_gravity="center|left" />
+        android:layout_gravity="center|start" />
 
 
     <TextView
@@ -21,7 +23,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:paddingTop="@dimen/menu_header_text_vertical_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:paddingEnd="@dimen/activity_horizontal_margin"
         android:textColor="@color/black"
         android:textSize="@dimen/menu_header_text_size"
         android:textStyle="bold" />

@@ -3,20 +3,20 @@ package cleancode.ui.base
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import android.os.Bundle
-import cleancode.ui.util.Analitics
+import cleancode.ui.util.Analytics
 import cleancode.ui.util.Navigator
 import com.google.firebase.analytics.FirebaseAnalytics
 
 abstract class BaseActivity : AppCompatActivity(){
 
     val navigator: Navigator = Navigator
-    lateinit var analitics: Analitics
+    lateinit var analytics: Analytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-        analitics = Analitics(firebaseAnalytics)
-        analitics.sendAnaliticViewScreen(this::class.java.simpleName)
+        analytics = Analytics(firebaseAnalytics)
+        analytics.sendAnalyticViewScreen(this::class.java.simpleName)
     }
 
     /**

@@ -1,21 +1,20 @@
 package cleancode.ui.fragment
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.viewModels
-import cleancode.ui.base.BaseFragment
+import cleancode.ui.base.BaseFragmentCompose
 import cleancode.ui.base.withArgs
-import cleancode.ui.util.GlideApp
 import cleancode.viewmodel.UserDetailsViewModel
+import coil.compose.AsyncImage
 import com.nygar.feature.databinding.FragmentUserDetailsBinding
 
 /**
  * Fragment that shows details of a certain user.
  */
 
-class UserDetailsFragment : BaseFragment() {
+class UserDetailsFragment : BaseFragmentCompose() {
 
     companion object {
 
@@ -30,6 +29,7 @@ class UserDetailsFragment : BaseFragment() {
 
     private val viewModel: UserDetailsViewModel by viewModels()
 
+    /*
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
         return binding.root
@@ -47,4 +47,26 @@ class UserDetailsFragment : BaseFragment() {
             }
         }
     }
+
+     */
+
+    @Composable
+    override fun UI() {
+        ImageFull("https://www.droidcon.com/wp-content/uploads/2021/09/1_OAMmB9eBFEAhF0HsUu6MyQ.png")
+    }
+
+    @Preview
+    @Composable
+    fun PreviewCompose(){
+        Text(text = "Esto es una prueba")
+        ImageFull("https://www.droidcon.com/wp-content/uploads/2021/09/1_OAMmB9eBFEAhF0HsUu6MyQ.png")
+    }
+
+
+    @Composable
+    fun ImageFull(dataUrl: String){
+        AsyncImage(model = dataUrl, contentDescription = null)
+    }
+
+
 }

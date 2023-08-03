@@ -15,7 +15,7 @@ object Navigator {
      *
      * @param context A Context needed to open the destiny activity.
      */
-    fun navigateToMain(context: BaseActivity) {
+    fun navigateToMain(context: Activity) {
         val intentToLaunch = MainActivity.getCallingIntent(context)
         context.startActivity(intentToLaunch)
         context.finish()

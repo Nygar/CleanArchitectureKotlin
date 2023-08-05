@@ -1,19 +1,33 @@
 package cleancode.ui.fragment
 
+import androidx.compose.foundation.layout.absolutePadding
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.viewmodel.compose.viewModel
+import cleancode.model.UserModel
 import cleancode.ui.base.BaseFragmentCompose
 import cleancode.ui.base.withArgs
+import cleancode.ui.view.fragment.ImageFull
+import cleancode.ui.view.fragment.UserDetailsGenericField
 import cleancode.viewmodel.UserDetailsViewModel
-import coil.compose.AsyncImage
+import com.nygar.feature.R
 import com.nygar.feature.databinding.FragmentUserDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Fragment that shows details of a certain user.
  */
-
+@AndroidEntryPoint
 class UserDetailsFragment : BaseFragmentCompose() {
 
     companion object {
@@ -25,16 +39,11 @@ class UserDetailsFragment : BaseFragmentCompose() {
         }
     }
 
-    private lateinit var binding: FragmentUserDetailsBinding
+    //private lateinit var binding: FragmentUserDetailsBinding
 
     private val viewModel: UserDetailsViewModel by viewModels()
 
     /*
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FragmentUserDetailsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getInt(USER_DETAILS_KEY)?.let {
@@ -47,26 +56,67 @@ class UserDetailsFragment : BaseFragmentCompose() {
             }
         }
     }
-
      */
 
+    @Preview(showBackground = true)
     @Composable
     override fun UI() {
-        ImageFull("https://www.droidcon.com/wp-content/uploads/2021/09/1_OAMmB9eBFEAhF0HsUu6MyQ.png")
+        val user by viewModel.userSingle.observeAsState(initial = UserModel())
+        LaunchedEffect(Unit) {
+            arguments?.getInt(USER_DETAILS_KEY)?.let {
+                viewModel.getUserById(it)
+            }
+        }
+
+        PaintedUi(user = user)
     }
 
-    @Preview
     @Composable
-    fun PreviewCompose(){
-        Text(text = "Esto es una prueba")
-        ImageFull("https://www.droidcon.com/wp-content/uploads/2021/09/1_OAMmB9eBFEAhF0HsUu6MyQ.png")
+    fun PaintedUi(user: UserModel){
+        ConstraintLayout(
+            modifier = Modifier
+                .fillMaxSize()
+        ){
+            val (ivCover, tvFullname, tvEmail, tvFollowers, tvDescription) = createRefs()
+
+            ImageFull(user.coverUrl,
+                Modifier.constrainAs(ivCover){
+                    top.linkTo(parent.top)
+                })
+            Text(text = user.fullName ,
+                Modifier
+                    .absolutePadding(15.dp, 0.dp, 15.dp, 0.dp)
+                    .constrainAs(tvFullname) {
+                        top.linkTo(ivCover.bottom, margin = 5.dp)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    })
+            UserDetailsGenericField(
+                stringResource(id = R.string.view_text_email),
+                user.email,
+                Modifier
+                    .absolutePadding(15.dp, 0.dp, 15.dp, 0.dp)
+                    .constrainAs(tvEmail) {
+                        top.linkTo(tvFullname.bottom, margin = 5.dp)
+                        start.linkTo(parent.start)
+                    })
+            UserDetailsGenericField(
+                stringResource(id = R.string.view_text_followers),
+                user.followers.toString(),
+                Modifier
+                    .absolutePadding(15.dp, 0.dp, 15.dp, 0.dp)
+                    .constrainAs(tvFollowers) {
+                        top.linkTo(tvEmail.bottom, margin = 5.dp)
+                        start.linkTo(parent.start)
+                    })
+            UserDetailsGenericField(
+                stringResource(id = R.string.view_text_description),
+                user.description,
+                Modifier
+                    .absolutePadding(15.dp, 0.dp, 15.dp, 0.dp)
+                    .constrainAs(tvDescription) {
+                        top.linkTo(tvFollowers.bottom, margin = 5.dp)
+                    })
+        }
     }
-
-
-    @Composable
-    fun ImageFull(dataUrl: String){
-        AsyncImage(model = dataUrl, contentDescription = null)
-    }
-
-
 }

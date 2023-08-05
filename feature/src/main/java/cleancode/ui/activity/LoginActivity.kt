@@ -11,7 +11,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import cleancode.ui.base.BaseActivityCompose
-import cleancode.ui.view.LoginActivityView
+import cleancode.ui.view.activity.LoginActivityCompose
+import cleancode.ui.view.activity.LoginActivityDelegate
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -28,7 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * Main application screen. This is the app entry point.
  */
 @AndroidEntryPoint
-class LoginActivity: BaseActivityCompose(), LoginActivityView.LoginActivityDelegate {
+class LoginActivity: BaseActivityCompose(), LoginActivityDelegate {
     companion object {
         fun getCallingIntent(context: Context): Intent {
             return Intent(context, LoginActivity::class.java)
@@ -41,7 +42,7 @@ class LoginActivity: BaseActivityCompose(), LoginActivityView.LoginActivityDeleg
     @Preview(showBackground = true)
     @Composable
     override fun UI() {
-        LoginActivityView().UI(this)
+        LoginActivityCompose(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

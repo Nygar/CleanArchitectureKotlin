@@ -1,7 +1,6 @@
 package cleancode.viewmodel
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,15 +18,12 @@ class UserDetailsViewModel @Inject constructor(
     private val repository: DataRepository
 ): ViewModel() {
 
-    private var userLivedata: MutableLiveData<UserModel> = MutableLiveData()
-    val userSingle: LiveData<UserModel> = userLivedata
+    var userLivedata: MutableLiveData<UserModel> = MutableLiveData()
 
-    fun getUserById(userId: Int): MutableLiveData<UserModel> {
+    fun getUserById(userId: Int) {
         if (userLivedata.value == null) {
-            userLivedata = MutableLiveData()
             getUserTaskById(userId)
         }
-        return userLivedata
     }
 
     @SuppressLint("CheckResult")
@@ -37,8 +33,6 @@ class UserDetailsViewModel @Inject constructor(
                 repository.user(messageId)
             }.fold(
                 onSuccess = {
-                    //userSingle?.postValue(MapperUser.transform(it))
-                    userLivedata.value = MapperUser.transform(it)
                     userLivedata.postValue(MapperUser.transform(it))
                 },
                 onFailure = {

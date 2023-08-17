@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -13,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewmodel.compose.viewModel
 import cleancode.model.UserModel
 import cleancode.ui.base.BaseFragmentCompose
 import cleancode.ui.base.withArgs
@@ -21,7 +20,6 @@ import cleancode.ui.view.fragment.ImageFull
 import cleancode.ui.view.fragment.UserDetailsGenericField
 import cleancode.viewmodel.UserDetailsViewModel
 import com.nygar.feature.R
-import com.nygar.feature.databinding.FragmentUserDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -39,33 +37,18 @@ class UserDetailsFragment : BaseFragmentCompose() {
         }
     }
 
-    //private lateinit var binding: FragmentUserDetailsBinding
-
     private val viewModel: UserDetailsViewModel by viewModels()
-
-    /*
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        arguments?.getInt(USER_DETAILS_KEY)?.let {
-            viewModel.getUserById(it).observe(viewLifecycleOwner) { data ->
-                GlideApp.with(this).load(data.coverUrl).into(binding.viewUserDetail.ivCover)
-                binding.viewUserDetail.tvFullname.text = data.fullName
-                binding.viewUserDetail.tvEmail.text = data.email
-                binding.viewUserDetail.tvFollowers.text = data.followers.toString()
-                binding.viewUserDetail.tvDescription.text = data.description
-            }
-        }
-    }
-     */
 
     @Preview(showBackground = true)
     @Composable
     override fun UI() {
-        val user by viewModel.userSingle.observeAsState(initial = UserModel())
-        LaunchedEffect(Unit) {
+        val user by viewModel.userLivedata.observeAsState(initial = UserModel())
+
+        DisposableEffect(Unit){
             arguments?.getInt(USER_DETAILS_KEY)?.let {
                 viewModel.getUserById(it)
             }
+            onDispose {  }
         }
 
         PaintedUi(user = user)

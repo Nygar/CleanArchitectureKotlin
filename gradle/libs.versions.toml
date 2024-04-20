@@ -14,13 +14,17 @@ ui-test = "1.6.5"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
 composeBom = "2024.04.00"
+firebasePluginVersion = "4.4.1"
+firebaseBom = "32.8.1"
+playServicesAuth = "21.1.0"
 appcompat = "1.6.1"
 material = "1.11.0"
 hilt = "2.49"
 hiltNav = "1.2.0"
 retrofit = "2.11.0"
 retrofitKotlinxSerializationJson = "1.0.0"
-kotlinSerialization = "1.5.0"
+kotlinSerialization = "1.6.0"
+kotlinPluginSerialization = "1.9.23"
 uiTooling = "1.6.5"
 splashScreen = "1.1.0-rc01"
 navigationCompose = "2.7.7"
@@ -28,9 +32,13 @@ coilVersion = "2.4.0"
 spotlessVersion = "6.25.0"
 pagingVersion = "3.2.1"
 lifecycleRuntimeCompose = "2.7.0"
+lifecycleRuntimeViewModel = "2.7.0"
 navigationTesting = "2.7.7"
 coroutinesTesting = "1.8.1-Beta"
 mokkVersion = "1.13.10"
+roomVersion = "2.6.1"
+kspVersion = "1.9.23-1.0.20"
+constraintlayout = "1.0.1"
 
 [libraries]
 # Dependencies Kotlin/Android
@@ -60,6 +68,13 @@ retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "re
 retrofit-json = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
+
+# Dependencies of the included domain layer
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
+androidx-lifecycle-runtime-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleRuntimeViewModel" }
+
 # Dependencies for ui layer
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -77,11 +92,16 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilVersion" }
 android-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "pagingVersion" }
 android-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingVersion" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayout" }
+
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "app" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 
 
 [plugins]
@@ -90,3 +110,6 @@ jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "k
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 hiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 spotlessPlugin = { id = "com.diffplug.spotless", version.ref = "spotlessVersion" }
+ksp = {id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinPluginSerialization" }
+firebasePlugin = { id = "com.google.gms.google-services", version.ref = "firebasePluginVersion" }

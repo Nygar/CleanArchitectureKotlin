@@ -4,7 +4,6 @@ import cleancode.entity.CategoryEntity
 import cleancode.entity.MessageEntity
 import cleancode.entity.UserEntity
 import cleancode.entity.UserLoggedEntity
-import com.nygar.remote.BuildConfig
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

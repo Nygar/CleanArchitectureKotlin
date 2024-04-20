@@ -1,7 +1,5 @@
 plugins {
     id("cleanarchitecturekotlin.android.library")
-    id("kotlin-kapt")
-    alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
 android {
@@ -10,10 +8,11 @@ android {
 
 dependencies {
 
-    //implementation(project(":data:network"))
+    implementation(project(":dto"))
 
     implementation(libs.androidx.core.ktx)
 
-    implementation(libs.hilt)
-    kapt(libs.hilt.compiler)
+    api(libs.retrofit)
+    implementation(libs.retrofit.json)
+    implementation(libs.retrofit.kotlin.serialization)
 }

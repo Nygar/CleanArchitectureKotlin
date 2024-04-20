@@ -1,7 +1,8 @@
 plugins {
     id("cleanarchitecturekotlin.android.library")
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.firebasePlugin)
 }
 
 android {
@@ -10,10 +11,26 @@ android {
 
 dependencies {
 
-    //implementation(project(":data:network"))
+    implementation(project(":domain"))
 
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.material3)
+    implementation(libs.splash.screen)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.ui.tooling.preview)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.analytics)
+    implementation(libs.play.services.auth)
+
+    implementation(libs.coil)
 
     implementation(libs.hilt)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 }

@@ -1,7 +1,6 @@
 plugins {
     id("cleanarchitecturekotlin.android.library")
-    id("kotlin-kapt")
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -10,10 +9,13 @@ android {
 
 dependencies {
 
-    //implementation(project(":data:network"))
+    implementation(project(":dto"))
 
     implementation(libs.androidx.core.ktx)
 
     implementation(libs.hilt)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
+
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
 }

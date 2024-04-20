@@ -23,8 +23,9 @@ dependencyResolutionManagement {
 rootProject.name = "CleanArchitectureKotlin"
 include(":app")
 include(":feature")
-include(":repository")
-include(":local")
-include(":remote")
 include(":domain")
 include(":dto")
+
+include(":network:repository")
+include(":network:local")
+include(":network:remote")

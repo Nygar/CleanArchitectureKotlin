@@ -26,7 +26,7 @@ class MessageCacheImpl @Inject constructor(private val context: Context, private
     }
 
     override fun put(messageEntity: MessageEntity) {
-        if (!isCached(messageEntity.messageId)) {
+        if (!isCached(messageEntity.id)) {
             database.messageCacheDao().insertSingle(messageEntity)
             setLastCacheUpdateTimeMillis()
         }

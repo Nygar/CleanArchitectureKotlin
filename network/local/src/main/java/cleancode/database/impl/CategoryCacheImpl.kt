@@ -26,7 +26,7 @@ class CategoryCacheImpl @Inject constructor(private val context: Context, privat
     }
 
     override fun put(categoryEntity: CategoryEntity) {
-        if (!isCached(categoryEntity.categoryId)) {
+        if (!isCached(categoryEntity.id)) {
             database.categoryCacheDao().insertSingle(categoryEntity)
             setLastCacheUpdateTimeMillis()
         }

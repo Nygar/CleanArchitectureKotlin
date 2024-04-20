@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cleancode.ui.base.BaseFragment
-import cleancode.ui.util.GlideApp
 import cleancode.viewmodel.MessageDetailsViewModel
 import androidx.fragment.app.viewModels
 import cleancode.ui.base.withArgs
@@ -39,7 +38,7 @@ class MessageDetailsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getInt(MESSAGE_KEY)?.let {
             viewModel.getMessageById(it).observe(viewLifecycleOwner) { data ->
-                GlideApp.with(this).load(data.imageUrl).into(binding.viewMessageDetail.ivImage)
+                //GlideApp.with(this).load(data.imageUrl).into(binding.viewMessageDetail.ivImage)
                 binding.viewMessageDetail.tvName.text = data.name
                 binding.viewMessageDetail.tvDescription.text = data.description
             }

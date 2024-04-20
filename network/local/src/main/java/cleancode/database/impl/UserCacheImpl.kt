@@ -26,7 +26,7 @@ class UserCacheImpl @Inject constructor(private val context: Context, private va
     }
 
     override fun put(userEntity: UserEntity) {
-        if (!isCached(userEntity.userId)) {
+        if (!isCached(userEntity.id)) {
             database.userCacheDao().insertSingle(userEntity)
             setLastCacheUpdateTimeMillis()
         }

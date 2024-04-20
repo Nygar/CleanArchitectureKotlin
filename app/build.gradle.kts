@@ -1,6 +1,6 @@
 plugins {
     id("cleanarchitecturekotlin.android.application")
-    id("kotlin-kapt")
+    alias(libs.plugins.ksp)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.hiltPlugin)
 }
@@ -13,7 +13,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        //testInstrumentationRunner = "com.rafaelroldan.technicaltestmango.CustomTestRunner"
+        testInstrumentationRunner = "com.nygar.cleanarchitecturekotlin.CustomTestRunner"
 
         buildFeatures {
             compose = true
@@ -58,12 +58,16 @@ android {
 dependencies {
 
     implementation(project(":network:repository"))
+    implementation(project(":feature"))
 
     implementation(libs.hilt)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     androidTestImplementation(libs.hilt.android.testing)
-    kaptAndroidTest(libs.hilt.compiler)
+    //kaptAndroidTest(libs.hilt.compiler)
 
     implementation(libs.room.runtime)
+
+    implementation("androidx.compose.compiler:compiler:1.5.12")
+    implementation("androidx.compose.runtime:runtime:1.6.6")
 }

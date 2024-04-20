@@ -14,7 +14,6 @@
 
   <TextView
       android:id="@+id/tv_name"
-      style="@style/AppTheme.TextViewHeader"
       android:freezesText="true"
       />
 
@@ -26,7 +25,6 @@
       android:orientation="vertical"
       >
     <TextView
-        style="@style/AppTheme.TextViewTitle"
         android:text="@string/view_text_description"
         />
     <TextView

@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.nygar.repository"
+    namespace = "com.nygar.remote"
 }
 
 dependencies {

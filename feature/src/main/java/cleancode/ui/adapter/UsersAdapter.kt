@@ -7,8 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cleancode.model.UserModel
-import cleancode.ui.util.GlideApp
-import com.nygar.feature.R
 import com.nygar.feature.databinding.RowUserBinding
 
 /**
@@ -35,11 +33,14 @@ internal object UsersAdapter: RecyclerView.Adapter<UsersAdapter.CategoryViewHold
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val item = userCollection[position]
         holder.textViewName.text = item.fullName
+        /*
         GlideApp.with(holder.itemView.context)
             //.load(item.coverUrl)
             .load(R.drawable.ic_person_black_24dp)
             .placeholder(R.drawable.ic_person_black_24dp)
             .into(holder.avatarImageView)
+
+         */
         holder.itemView.setOnClickListener {
             onItemClickListener.clickItem(item)
         }

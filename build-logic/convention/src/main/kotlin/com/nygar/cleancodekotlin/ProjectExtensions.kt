@@ -1,4 +1,4 @@
-package com.rafaelroldan.technicaltestmango
+package com.nygar.cleancodekotlin
 
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalog

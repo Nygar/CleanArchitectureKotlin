@@ -1,7 +1,6 @@
 plugins {
     id("cleanarchitecturekotlin.android.library")
     alias(libs.plugins.ksp)
-    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
@@ -14,6 +13,4 @@ dependencies {
 
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
-
-    implementation(libs.kotlin.serialization)
 }

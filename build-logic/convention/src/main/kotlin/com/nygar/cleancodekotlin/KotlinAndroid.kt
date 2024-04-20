@@ -1,16 +1,11 @@
-package com.rafaelroldan.technicaltestmango
+package com.nygar.cleancodekotlin
 
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaPluginExtension
-import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.io.File
-import java.io.FileInputStream
-import java.util.Properties
 
 /**
  * Configure base Kotlin with Android options

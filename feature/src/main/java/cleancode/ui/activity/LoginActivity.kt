@@ -21,7 +21,6 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.nygar.feature.BuildConfig
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -49,7 +48,7 @@ class LoginActivity: BaseActivityCompose(), LoginActivityDelegate {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(BuildConfig.GOOGLE_TOKEN)
+            .requestIdToken("BuildConfig.GOOGLE_TOKEN")
             .requestEmail()
             .build()
 

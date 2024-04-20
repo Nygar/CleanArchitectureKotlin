@@ -2,7 +2,6 @@ package cleancode.model.mappers
 
 import cleancode.entity.UserEntity
 import cleancode.model.UserModel
-import com.nygar.domain.BuildConfig
 import java.util.ArrayList
 
 object MapperUser {
@@ -15,9 +14,9 @@ object MapperUser {
      */
     fun transform(input: UserEntity): UserModel {
         val output = UserModel()
-        output.userId = input.userId
-        output.coverUrl = BuildConfig.URL_BASE + input.coverUrl
-        output.fullName = input.fullname
+        output.userId = input.id
+        output.coverUrl = "BuildConfig.URL_BASE" + input.cover_url
+        output.fullName = input.full_name
         output.description = input.description
         output.followers = input.followers
         output.email = input.email

@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.viewModels
-import cleancode.ui.util.GlideApp
 import cleancode.viewmodel.UserLoggedViewModel
 import com.nygar.feature.databinding.HeaderProfileBinding
 
@@ -29,9 +28,12 @@ class UserLoggedFragment: BaseFragment(){
         super.onViewCreated(view, savedInstanceState)
         viewModel.getUserLogged().observe(viewLifecycleOwner) { user ->
             binding.textViewName.text = user.fullName
+            /*
             GlideApp.with(this)
                 .load(user.avatarUrl)
                 .into(binding.imageViewAvatar)
+
+             */
         }
     }
 

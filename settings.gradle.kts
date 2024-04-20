@@ -26,6 +26,9 @@ include(":feature")
 include(":domain")
 include(":dto")
 
+include(":core:common")
+include(":core:designsystem")
+
 include(":network:repository")
 include(":network:local")
 include(":network:remote")

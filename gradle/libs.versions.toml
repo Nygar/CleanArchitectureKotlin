@@ -1,0 +1,92 @@
+[versions]
+agp = "8.3.2"
+app = "8.1.4"
+kotlin = "1.9.0"
+kotlinCompile = "1.5.1"
+targetSdk = "34"
+compileSdk = "34"
+minSdk = "28"
+coreKtx = "1.12.0"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+ui-test = "1.6.5"
+lifecycleRuntimeKtx = "2.7.0"
+activityCompose = "1.8.2"
+composeBom = "2024.04.00"
+appcompat = "1.6.1"
+material = "1.11.0"
+hilt = "2.49"
+hiltNav = "1.2.0"
+retrofit = "2.11.0"
+retrofitKotlinxSerializationJson = "1.0.0"
+kotlinSerialization = "1.5.0"
+uiTooling = "1.6.5"
+splashScreen = "1.1.0-rc01"
+navigationCompose = "2.7.7"
+coilVersion = "2.4.0"
+spotlessVersion = "6.25.0"
+pagingVersion = "3.2.1"
+lifecycleRuntimeCompose = "2.7.0"
+navigationTesting = "2.7.7"
+coroutinesTesting = "1.8.1-Beta"
+mokkVersion = "1.13.10"
+
+[libraries]
+# Dependencies Kotlin/Android
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+
+# Dependencies for testing
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "ui-test" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-navigation-testing = { group = "androidx.navigation", name = "navigation-testing", version.ref = "navigationTesting" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+android-coroutines-testing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTesting" }
+mokk = { group = "io.mockk", name = "mockk", version.ref = "mokkVersion" }
+mokk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mokkVersion" }
+mokk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mokkVersion" }
+
+# Dependencies for DI
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNav" }
+
+# Dependencies for data layer
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
+retrofit-json = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+
+# Dependencies for ui layer
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "uiTooling" }
+splash-screen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashScreen" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilVersion" }
+android-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "pagingVersion" }
+android-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingVersion" }
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "app" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
+
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+hiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+spotlessPlugin = { id = "com.diffplug.spotless", version.ref = "spotlessVersion" }

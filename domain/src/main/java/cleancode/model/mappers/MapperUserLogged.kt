@@ -2,6 +2,7 @@ package cleancode.model.mappers
 
 import cleancode.entity.UserLoggedEntity
 import cleancode.model.UserLoggedModel
+import com.nygar.common.BuildConfig
 
 object MapperUserLogged {
 
@@ -14,7 +15,7 @@ object MapperUserLogged {
     fun transform(input: UserLoggedEntity): UserLoggedModel {
         val output = UserLoggedModel()
         output.userLoggedId = input.id
-        output.avatarUrl = "BuildConfig.URL_BASE" + input.avatar_url
+        output.avatarUrl = BuildConfig.URL_BASE + input.avatar_url
         output.fullName = input.full_name
 
         return output

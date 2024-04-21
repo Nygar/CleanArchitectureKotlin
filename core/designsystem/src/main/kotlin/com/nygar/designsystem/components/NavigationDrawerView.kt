@@ -1,15 +1,8 @@
 package com.nygar.designsystem.components
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
@@ -55,6 +48,8 @@ const val ROUTER_USER_LIST = "userListScreen"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavigationDrawerView(
+    fullName: String = "",
+    avatarUrl: String = "",
     navigateToCategoryList : @Composable () -> Unit,
     navigateToUserList : @Composable () -> Unit
 ) {
@@ -71,6 +66,8 @@ fun NavigationDrawerView(
             drawerContent = {
                 NavigationDrawerLateralContent(
                     modifier = Modifier,
+                    fullName = fullName,
+                    avatarUrl = avatarUrl,
                     navigateToCategory = { navController.navigate(ROUTER_CATEGORY_LIST) },
                     navigateToUser = { navController.navigate(ROUTER_USER_LIST) },
                     closeDrawer = { scope.launch { drawerState.close() } },
@@ -121,6 +118,8 @@ fun NavigationDrawerView(
 @Composable
 fun NavigationDrawerLateralContent(
     modifier: Modifier = Modifier,
+    fullName: String = "",
+    avatarUrl: String = "",
     navigateToCategory: () -> Unit,
     navigateToUser: () -> Unit,
     closeDrawer: () -> Unit
@@ -131,7 +130,11 @@ fun NavigationDrawerLateralContent(
         }
 
         ModalDrawerSheet(modifier = Modifier) {
-            DrawerHeader(modifier)
+            DrawerHeader(
+                modifier = Modifier,
+                fullName = fullName,
+                avatarUrl = avatarUrl
+            )
             Spacer(modifier = Modifier.padding(5.dp))
             NavigationDrawerItem(
                 modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
@@ -162,35 +165,5 @@ fun NavigationDrawerLateralContent(
                 icon = { Icon(imageVector = Icons.Default.Person, contentDescription = null) },
             )
         }
-    }
-}
-
-@Composable
-fun DrawerHeader(modifier: Modifier) {
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.Start,
-        modifier = modifier
-            .background(MaterialTheme.colorScheme.secondary)
-            .padding(16.dp)
-            .fillMaxWidth()
-    ) {
-
-        Image(
-            painterResource(id = R.drawable.ic_person_black_24dp),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = modifier
-                .size(70.dp)
-                .clip(CircleShape)
-        )
-        Spacer(modifier = Modifier.padding(5.dp))
-
-        Text(
-            text = "UserNameLogged",
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onPrimary,
-        )
     }
 }

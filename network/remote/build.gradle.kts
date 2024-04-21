@@ -9,6 +9,7 @@ android {
 dependencies {
 
     implementation(project(":dto"))
+    implementation(project(":core:common"))
 
     implementation(libs.androidx.core.ktx)
 

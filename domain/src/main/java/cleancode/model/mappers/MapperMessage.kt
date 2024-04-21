@@ -2,6 +2,7 @@ package cleancode.model.mappers
 
 import cleancode.entity.MessageEntity
 import cleancode.model.MessageModel
+import com.nygar.common.BuildConfig
 import java.util.ArrayList
 
 object MapperMessage{
@@ -15,7 +16,7 @@ object MapperMessage{
     fun transform(input: MessageEntity): MessageModel {
         val output = MessageModel()
         output.messageId = input.id
-        output.imageUrl = "BuildConfig.URL_BASE" + input.image_url
+        output.imageUrl = BuildConfig.URL_BASE + input.image_url
         output.name = input.name
         output.description = input.description
 

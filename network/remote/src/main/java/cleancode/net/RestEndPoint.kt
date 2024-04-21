@@ -10,10 +10,6 @@ import retrofit2.http.Path
 
 interface RestEndPoint {
 
-    companion object {
-        const val API_BASE_URL: String = "BuildConfig.URL_BASE"
-    }
-
     /**
      * Retrieves an [Result] which will emit a [UserEntity].
      * Api url for getting a user profile: Remember to concatenate id + 'json'

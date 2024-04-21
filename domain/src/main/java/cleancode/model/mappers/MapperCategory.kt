@@ -3,6 +3,7 @@ package cleancode.model.mappers
 import cleancode.entity.CategoryEntity
 import cleancode.entity.MessageEntity
 import cleancode.model.CategoryModel
+import com.nygar.common.BuildConfig
 import java.util.ArrayList
 
 object MapperCategory {
@@ -15,7 +16,7 @@ object MapperCategory {
     fun transform(input: CategoryEntity): CategoryModel {
         val output = CategoryModel()
         output.categoryId = input.id
-        output.imageUrl = "BuildConfig.URL_BASE" + input.image_url
+        output.imageUrl = BuildConfig.URL_BASE + input.image_url
         output.name = input.name
 
         return output

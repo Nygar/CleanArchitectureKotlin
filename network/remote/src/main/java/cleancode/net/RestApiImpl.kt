@@ -8,9 +8,7 @@ import cleancode.entity.MessageEntity
 import cleancode.entity.UserEntity
 import cleancode.entity.UserLoggedEntity
 import cleancode.errors.Error
-import cleancode.net.RestEndPoint.Companion.API_BASE_URL
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import okhttp3.MediaType
+import com.nygar.common.BuildConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +28,7 @@ class RestApiImpl (context: Context) : RestApi {
         .build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl(API_BASE_URL)
+        .baseUrl(BuildConfig.URL_BASE)
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()

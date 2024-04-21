@@ -27,8 +27,11 @@ class UserLoggedViewModel @Inject constructor(
     )
     val userLoggedSingleResult: SharedFlow<UserLoggedResult> = _userLoggedSingleResult
 
+    init {
+        getUserLogged()
+    }
 
-    private fun getUserLoggedTask() {
+    private fun getUserLogged() {
         viewModelScope.launch {
             _userLoggedSingleResult.emit(UserLoggedResult.Loading)
             usecase.getUserLoggedUsecase().collect{ result ->

@@ -12,6 +12,7 @@ dependencies {
 
     implementation(project(":dto"))
     implementation(project(":network:repository"))
+    implementation(project(":core:common"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

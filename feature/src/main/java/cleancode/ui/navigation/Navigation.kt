@@ -6,9 +6,12 @@ import androidx.compose.ui.platform.testTag
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import cleancode.ui.view.CategoryListScreen
 import cleancode.ui.view.LoginActivityDelegate
 import cleancode.ui.view.LoginScreen
+import cleancode.ui.view.UserListScreen
 import com.nygar.common.ConstantsTesting.TEST_TAG_NAVIGATION_HOST
+import com.nygar.designsystem.components.NavigationDrawerView
 
 @Composable
 fun Navigation() {
@@ -24,13 +27,21 @@ fun Navigation() {
             LoginScreen(
                 object : LoginActivityDelegate {
                     override fun normalLoginAction() {
-
+                        navController.navigate(ROUTER_MAIN)
                     }
 
                     override fun googleLoginAction() {
-
+                        navController.navigate(ROUTER_MAIN)
                     }
                 }
+            )
+        }
+        composable(
+            route = NavItem.MainScreen.route
+        ) {
+            NavigationDrawerView(
+                navigateToCategoryList = { CategoryListScreen() },
+                navigateToUserList = { UserListScreen() },
             )
         }
         composable(

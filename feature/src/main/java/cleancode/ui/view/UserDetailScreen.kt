@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.nygar.feature.R
+import com.nygar.designsystem.R
 
 @Composable
 fun ImageFull(dataUrl: String, modifier: Modifier){

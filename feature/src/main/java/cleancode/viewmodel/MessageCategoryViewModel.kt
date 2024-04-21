@@ -1,4 +1,5 @@
 package cleancode.viewmodel
+
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -26,8 +27,11 @@ class MessageCategoryViewModel @Inject constructor(
     )
     val categoryListResult: SharedFlow<CategoryResult> = _categoryListResult
 
+    init {
+        getMessageCategory()
+    }
 
-    fun getMessageCategory() {
+    private fun getMessageCategory() {
         viewModelScope.launch {
             _categoryListResult.emit(CategoryResult.Loading)
             usecase.getCategoriesListUsecase().collect{ result ->

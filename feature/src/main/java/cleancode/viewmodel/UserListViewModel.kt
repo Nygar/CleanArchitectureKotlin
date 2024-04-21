@@ -27,11 +27,16 @@ class UserListViewModel @Inject constructor(
     )
     val userListResult: SharedFlow<UserListResult> = _userListResult
 
+    init {
+        getUserList()
+    }
+
     private fun getUserList() {
         viewModelScope.launch {
             _userListResult.emit(UserListResult.Loading)
             usecase.getUserListUsecase().collect{ result ->
                 result.onSuccess {
+                    userList = it
                     _userListResult.emit(UserListResult.Success)
                 }
                 result.onFailure {

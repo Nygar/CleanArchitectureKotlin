@@ -2,21 +2,28 @@ package cleancode.ui.view
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import cleancode.model.CategoryModel
+import androidx.hilt.navigation.compose.hiltViewModel
+import cleancode.viewmodel.MessageCategoryViewModel
 import com.nygar.common.Constants
-import com.nygar.designsystem.components.CharacterRow
+import com.nygar.designsystem.components.GenericRow
+import com.nygar.designsystem.components.TypeRow
 import com.nygar.designsystem.components.skeleton.SkeletonGridRow
 import com.nygar.designsystem.theme.ThemeConfig
 
 @Composable
-fun CategoryListScreen() {
+fun CategoryListScreen(
+    viewModel: MessageCategoryViewModel = hiltViewModel(),
+) {
+    val lazyState = rememberLazyListState()
+    val categoryList = viewModel.categoryList
 
-    val categoryList: List<CategoryModel> = arrayListOf()
-
-    LazyColumn {
-        if(categoryList.isNullOrEmpty()) {
+    LazyColumn(
+        state = lazyState
+    ) {
+        if(categoryList.isEmpty()) {
             items(Constants.PAGE_SIZE) {
                 SkeletonGridRow(
                     modifier = Modifier.padding(all = ThemeConfig.theme.spacing.sizeSpacing8),
@@ -25,11 +32,11 @@ fun CategoryListScreen() {
         }else {
                 items(categoryList.size){index ->
                     categoryList[index]?.let { category ->
-                        CharacterRow(
+                        GenericRow(
                             modifier = Modifier.padding( all = ThemeConfig.theme.spacing.sizeSpacing8),
-                            characterName = category.name,
-                            characterAvatar = category.imageUrl,
-                            numComics = category.categoryId,
+                            title = category.name,
+                            image = category.imageUrl,
+                            type = TypeRow.CategoryRow,
                             onViewCLickListener = {
                                 //onCharacterItemClick(character.id)
                             }

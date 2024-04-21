@@ -1,4 +1,4 @@
-package cleancode.ui.view.fragment
+package cleancode.ui.view
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
@@ -12,9 +12,6 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.nygar.feature.R
-
-class UserDetailsFragmentView {
-}
 
 @Composable
 fun ImageFull(dataUrl: String, modifier: Modifier){

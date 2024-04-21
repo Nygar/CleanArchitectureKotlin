@@ -1,4 +1,4 @@
-package cleancode.ui.view.activity
+package cleancode.ui.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -34,7 +33,7 @@ interface LoginActivityDelegate{
 }
 
 @Composable
-fun LoginActivityCompose(
+fun LoginScreen(
     delegate: LoginActivityDelegate
 ) {
     ConstraintLayout(
@@ -56,12 +55,15 @@ fun LoginActivityCompose(
                 bottom.linkTo(parent.bottom, margin = 16.dp)
             }) {
             GoogleBtn(Modifier, delegate)
-            NormalLoginBtn(Modifier, delegate)
+
+            NormalLoginBtn(
+                modifier =  Modifier.padding(
+                top = 16.dp
+            ), delegate)
         }
     }
 }
 
-//@Preview
 @Composable
 fun GoogleBtn(modifier: Modifier, delegate: LoginActivityDelegate){
     Button(
@@ -84,7 +86,6 @@ fun GoogleBtn(modifier: Modifier, delegate: LoginActivityDelegate){
         Text(text = "Sign out with Google", modifier = Modifier.padding(6.dp))
     }
 }
-//@Preview
 @Composable
 fun NormalLoginBtn(modifier: Modifier, delegate: LoginActivityDelegate){
     Button(
@@ -104,7 +105,6 @@ fun NormalLoginBtn(modifier: Modifier, delegate: LoginActivityDelegate){
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginUserField(modifier: Modifier){
     var usernameTextState by rememberSaveable { mutableStateOf("") }
@@ -119,7 +119,6 @@ fun LoginUserField(modifier: Modifier){
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginPassField(modifier: Modifier){
     var passTextState by rememberSaveable { mutableStateOf("") }

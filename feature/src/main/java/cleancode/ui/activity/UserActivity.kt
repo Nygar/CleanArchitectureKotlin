@@ -3,17 +3,14 @@ package cleancode.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import cleancode.ui.base.BaseActivity
-import cleancode.ui.fragment.UserDetailsFragment
-import com.nygar.feature.R
-import com.nygar.feature.databinding.ActivityLayoutMainBinding
+import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Activity with navigation drawer
  */
 @AndroidEntryPoint
-class UserActivity : BaseActivity() {
+class UserActivity : AppCompatActivity() {
 
     companion object {
 
@@ -28,14 +25,12 @@ class UserActivity : BaseActivity() {
         }
     }
 
-    private lateinit var binding: ActivityLayoutMainBinding
-
     private var userId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLayoutMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        //binding = ActivityLayoutMainBinding.inflate(layoutInflater)
+        //setContentView(binding.root)
         this.initializeActivity(savedInstanceState)
     }
 
@@ -43,16 +38,16 @@ class UserActivity : BaseActivity() {
      * Initializes this activity.
      */
     private fun initializeActivity(savedInstanceState: Bundle?) {
-        setSupportActionBar(binding.mainLayout.toolbarMainLayout.toolbarMain )
+        //setSupportActionBar(binding.mainLayout.toolbarMainLayout.toolbarMain )
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //Listener can be replace with a lambda
-        binding.mainLayout.toolbarMainLayout.toolbarMain.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        //binding.mainLayout.toolbarMainLayout.toolbarMain.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         if (savedInstanceState == null) {
             userId = intent.getIntExtra(INTENT_EXTRA_PARAM_USER_ID, -1)
-            val fragment = UserDetailsFragment.newInstance(userId)
-            addFragment(R.id.content_frame, fragment)
+            //val fragment = UserDetailsFragment.newInstance(userId)
+            //addFragment(R.id.content_frame, fragment)
         }
 
     }

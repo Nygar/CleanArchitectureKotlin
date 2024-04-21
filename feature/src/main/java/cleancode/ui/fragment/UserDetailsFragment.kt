@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.absolutePadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -12,44 +11,48 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.fragment.app.viewModels
 import cleancode.model.UserModel
-import cleancode.ui.base.BaseFragmentCompose
-import cleancode.ui.base.withArgs
-import cleancode.ui.view.fragment.ImageFull
-import cleancode.ui.view.fragment.UserDetailsGenericField
+import cleancode.ui.view.ImageFull
+import cleancode.ui.view.UserDetailsGenericField
 import cleancode.viewmodel.UserDetailsViewModel
-import com.nygar.feature.R
-import dagger.hilt.android.AndroidEntryPoint
+import com.nygar.designsystem.R
 
 /**
  * Fragment that shows details of a certain user.
  */
-@AndroidEntryPoint
-class UserDetailsFragment : BaseFragmentCompose() {
+class UserDetailsFragment {
 
     companion object {
 
         private const val USER_DETAILS_KEY:String = "categoryId"
 
+        /*
         fun newInstance(userId: Int) = UserDetailsFragment().withArgs {
             putInt(USER_DETAILS_KEY, userId)
         }
+
+         */
     }
 
-    private val viewModel: UserDetailsViewModel by viewModels()
+    private val viewModel: UserDetailsViewModel?  = null
 
     @Preview(showBackground = true)
     @Composable
-    override fun UI() {
-        val user by viewModel.userLivedata.observeAsState(initial = UserModel())
+    fun UI() {
+        val user by viewModel?.userLivedata!!.observeAsState(initial = UserModel())
 
+        /*
         DisposableEffect(Unit){
+
             arguments?.getInt(USER_DETAILS_KEY)?.let {
                 viewModel.getUserById(it)
             }
             onDispose {  }
+
+
         }
+
+         */
 
         PaintedUi(user = user)
     }

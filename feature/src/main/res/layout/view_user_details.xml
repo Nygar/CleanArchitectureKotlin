@@ -26,7 +26,7 @@
       android:orientation="vertical"
       >
     <TextView
-        android:text="@string/view_text_email"
+        android:text="view_text_email"
         android:layout_height="wrap_content" android:layout_width="match_parent"
         />
     <TextView
@@ -36,7 +36,7 @@
         android:freezesText="true"
         />
     <TextView
-        android:text="@string/view_text_followers"
+        android:text="view_text_followers"
         android:layout_height="wrap_content" android:layout_width="match_parent"
         />
     <TextView
@@ -47,7 +47,7 @@
         />
 
     <TextView
-        android:text="@string/view_text_description"
+        android:text="view_text_description"
          android:layout_height="wrap_content" android:layout_width="match_parent"/>
     <TextView
         android:id="@+id/tv_description"

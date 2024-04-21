@@ -3,18 +3,16 @@ package cleancode.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import cleancode.model.MessageModel
-import cleancode.ui.base.BaseActivity
 import cleancode.ui.fragment.MessageListFragment
-import com.nygar.feature.R
-import com.nygar.feature.databinding.ActivityLayoutMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Activity with navigation drawer
  */
 @AndroidEntryPoint
-class MessageActivity : BaseActivity(), MessageListFragment.MessageListListener {
+class MessageActivity : AppCompatActivity(), MessageListFragment.MessageListListener {
 
     companion object {
 
@@ -29,14 +27,13 @@ class MessageActivity : BaseActivity(), MessageListFragment.MessageListListener 
         }
     }
 
-    private lateinit var binding: ActivityLayoutMainBinding
 
     private var categoryId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLayoutMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        //binding = ActivityLayoutMainBinding.inflate(layoutInflater)
+        //setContentView(binding.root)
         this.initializeActivity(savedInstanceState)
     }
 
@@ -44,16 +41,16 @@ class MessageActivity : BaseActivity(), MessageListFragment.MessageListListener 
      * Initializes this activity.
      */
     private fun initializeActivity(savedInstanceState: Bundle?) {
-        setSupportActionBar(binding.mainLayout.toolbarMainLayout.toolbarMain )
+        //setSupportActionBar(binding.mainLayout.toolbarMainLayout.toolbarMain )
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //Listener can be replace with a lambda
-        binding.mainLayout.toolbarMainLayout.toolbarMain.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
+        //binding.mainLayout.toolbarMainLayout.toolbarMain.setNavigationOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
         if (savedInstanceState == null) {
             categoryId = intent.getIntExtra(INTENT_EXTRA_PARAM_CATEGORY_ID, -1)
             val fragment = MessageListFragment.newInstance(categoryId)
-            replaceFragment(R.id.content_frame, fragment)
+            //replaceFragment(R.id.content_frame, fragment)
         }
 
     }
@@ -64,6 +61,6 @@ class MessageActivity : BaseActivity(), MessageListFragment.MessageListListener 
     }
 
     override fun onMessageClicked(messageModel: MessageModel) {
-        this.navigator.navigateToMessageDetails(this, messageModel.messageId)
+        //this.navigator.navigateToMessageDetails(this, messageModel.messageId)
     }
 }

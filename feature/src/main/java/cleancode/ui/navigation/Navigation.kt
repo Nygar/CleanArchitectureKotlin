@@ -6,10 +6,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import cleancode.ui.navigation.ARGUMENT_CHARACTER_DETAILS_ID
-import cleancode.ui.navigation.NavItem
-import cleancode.ui.view.activity.LoginActivityCompose
-import cleancode.ui.view.activity.LoginActivityDelegate
+import cleancode.ui.view.LoginActivityDelegate
+import cleancode.ui.view.LoginScreen
 import com.nygar.common.ConstantsTesting.TEST_TAG_NAVIGATION_HOST
 
 @Composable
@@ -23,7 +21,7 @@ fun Navigation() {
         composable(
             route = NavItem.LoginScreen.route
         ) {
-            LoginActivityCompose(
+            LoginScreen(
                 object : LoginActivityDelegate {
                     override fun normalLoginAction() {
 

@@ -12,7 +12,10 @@
       android:background="@android:color/darker_gray"
       />
 
+
   <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:id="@+id/tv_name"
       android:freezesText="true"
       />
@@ -25,7 +28,9 @@
       android:orientation="vertical"
       >
     <TextView
-        android:text="@string/view_text_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="view_text_description"
         />
     <TextView
         android:id="@+id/tv_description"

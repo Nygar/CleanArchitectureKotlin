@@ -2,6 +2,7 @@ package com.nygar.designsystem.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -20,20 +21,18 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -55,17 +54,21 @@ fun NavigationDrawerView(
 ) {
 
     val navController = rememberNavController()
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
+    val topAppBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
+
 
     Surface(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().nestedScroll(topAppBarScrollBehavior.nestedScrollConnection),
         color = MaterialTheme.colorScheme.background
     ) {
-        val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-        val scope = rememberCoroutineScope()
+
         ModalNavigationDrawer(
+            modifier = Modifier,
             drawerContent = {
                 NavigationDrawerLateralContent(
-                    modifier = Modifier,
+                    modifier = Modifier.fillMaxWidth(0.7f),
                     fullName = fullName,
                     avatarUrl = avatarUrl,
                     navigateToCategory = { navController.navigate(ROUTER_CATEGORY_LIST) },
@@ -76,7 +79,6 @@ fun NavigationDrawerView(
             drawerState = drawerState,
         ) {
             Scaffold(
-
                 topBar = {
                     TopAppBar(
                         title = {
@@ -91,6 +93,7 @@ fun NavigationDrawerView(
                                 Icon(imageVector = Icons.Default.Menu, contentDescription = null)
                             }
                         },
+                        scrollBehavior = topAppBarScrollBehavior
                     )
                 },
 
@@ -129,7 +132,7 @@ fun NavigationDrawerLateralContent(
             mutableStateOf(ROUTER_CATEGORY_LIST)
         }
 
-        ModalDrawerSheet(modifier = Modifier) {
+        ModalDrawerSheet(modifier = modifier) {
             DrawerHeader(
                 modifier = Modifier,
                 fullName = fullName,

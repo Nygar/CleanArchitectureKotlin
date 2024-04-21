@@ -1,7 +1,6 @@
 package com.nygar.designsystem.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -69,20 +68,12 @@ fun GenericRow(
                     .padding(horizontal = ThemeConfig.theme.spacing.sizeSpacing4),
             )
 
-            Column(
-                Modifier
-                    .padding(end = ThemeConfig.theme.spacing.sizeSpacing8)
-                    .fillMaxWidth(),
-                verticalArrangement = Arrangement.SpaceEvenly,
-                horizontalAlignment = Alignment.Start
-            ) {
-                Text(
-                    modifier = Modifier,
-                    text = title,
-                    fontFamily = ThemeConfig.theme.font.comicHelvetic,
-                    fontWeight = FontWeight.Medium
-                )
-            }
+            Text(
+                modifier = Modifier,
+                text = title,
+                fontFamily = ThemeConfig.theme.font.comicHelvetic,
+                fontWeight = FontWeight.Medium
+            )
         }
     }
 }

@@ -39,7 +39,7 @@ class UserDetailsFragment {
     @Preview(showBackground = true)
     @Composable
     fun UI() {
-        val user by viewModel?.userLivedata!!.observeAsState(initial = UserModel())
+        //val user by viewModel.userSingle ?: null
 
         /*
         DisposableEffect(Unit){
@@ -54,7 +54,7 @@ class UserDetailsFragment {
 
          */
 
-        PaintedUi(user = user)
+        //PaintedUi(user = user)
     }
 
     @Composable

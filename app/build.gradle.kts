@@ -19,36 +19,24 @@ android {
             compose = true
         }
 
-        /*
         signingConfigs {
-            debug {
-                storeFile = file('../keystore/debug.jks')
-                storePassword = 'aa123456'
-                keyAlias = 'Cleancode'
-                keyPassword = 'aa123456'
+            getByName("debug") {
+                keyAlias = "Cleancode"
+                keyPassword = "aa123456"
+                storeFile = file("../keystore/debug.jks")
+                storePassword = "aa123456"
             }
         }
-
-         */
     }
-
-    /*
-    flavorDimensions = "version"
-    productFlavors {
-        normal {
-        }
-        especial {
-        }
-    }
-
-     */
 
     buildTypes {
         release {
             isMinifyEnabled = true
+            buildConfigField("boolean", "IS_DONATE", false.toString())
         }
         debug {
             isMinifyEnabled = false
+            buildConfigField("boolean", "IS_DONATE", false.toString())
             //applicationIdSuffix '.dev'
         }
     }
@@ -57,7 +45,6 @@ android {
 
 dependencies {
 
-    implementation(project(":network:repository"))
     implementation(project(":feature"))
 
     implementation(libs.hilt)
@@ -65,8 +52,6 @@ dependencies {
 
     androidTestImplementation(libs.hilt.android.testing)
     //kaptAndroidTest(libs.hilt.compiler)
-
-    implementation(libs.room.runtime)
 
     implementation("androidx.compose.compiler:compiler:1.5.12")
     implementation("androidx.compose.runtime:runtime:1.6.6")

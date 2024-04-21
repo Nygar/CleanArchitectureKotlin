@@ -37,11 +37,14 @@ class MessageDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getInt(MESSAGE_KEY)?.let {
+            /*
             viewModel.getMessageById(it).observe(viewLifecycleOwner) { data ->
                 //GlideApp.with(this).load(data.imageUrl).into(binding.viewMessageDetail.ivImage)
                 binding.viewMessageDetail.tvName.text = data.name
                 binding.viewMessageDetail.tvDescription.text = data.description
             }
+
+             */
         }
     }
 }

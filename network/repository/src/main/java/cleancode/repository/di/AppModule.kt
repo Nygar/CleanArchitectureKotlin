@@ -1,4 +1,4 @@
-package cleancode.di.modules
+package cleancode.repository.di
 
 import android.content.Context
 import androidx.room.Room

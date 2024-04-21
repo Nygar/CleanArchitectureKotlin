@@ -48,9 +48,12 @@ class UserListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        /*
         viewModel.getUserList().observe(viewLifecycleOwner) { data ->
             adapter.setUsersCollection(data)
         }
+
+         */
     }
     private fun setupRecyclerView() {
         adapter.setOnItemClickListener(onItemClickListener)

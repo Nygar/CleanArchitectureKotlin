@@ -58,9 +58,12 @@ class MessageListFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        /*
         viewModel.getMessageList(arguments?.getInt(CATEGORY_KEY) ?: 0).observe(viewLifecycleOwner) { data ->
             adapter.setMessagesCollection(data)
         }
+
+         */
     }
 
     private fun setupRecyclerView() {

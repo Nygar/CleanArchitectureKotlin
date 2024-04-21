@@ -26,6 +26,7 @@ class UserLoggedFragment: BaseFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /*
         viewModel.getUserLogged().observe(viewLifecycleOwner) { user ->
             binding.textViewName.text = user.fullName
             /*
@@ -35,6 +36,8 @@ class UserLoggedFragment: BaseFragment(){
 
              */
         }
+        
+         */
     }
 
 }

@@ -31,9 +31,10 @@ fun CategoryListScreen(
             }
         }else {
                 items(categoryList.size){index ->
-                    categoryList[index]?.let { category ->
+                    categoryList[index].let { category ->
                         GenericRow(
                             modifier = Modifier.padding( all = ThemeConfig.theme.spacing.sizeSpacing8),
+                            id = category.categoryId,
                             title = category.name,
                             image = category.imageUrl,
                             type = TypeRow.CategoryRow,

@@ -15,6 +15,7 @@ import com.nygar.designsystem.theme.ThemeConfig
 @Composable
 fun UserListScreen(
     viewModel: UserListViewModel = hiltViewModel(),
+    onNavigateToUserDetails: (Int) -> Unit
 ) {
     val userList = viewModel.userList
 
@@ -27,14 +28,15 @@ fun UserListScreen(
             }
         }else {
                 items(userList.size){index ->
-                    userList[index]?.let { user ->
+                    userList[index].let { user ->
                         GenericRow(
                             modifier = Modifier.padding( all = ThemeConfig.theme.spacing.sizeSpacing8),
+                            id = user.userId,
                             title = user.fullName,
                             image = user.coverUrl,
                             type = TypeRow.UserRow,
                             onViewCLickListener = {
-                                //onCharacterItemClick(character.id)
+                                onNavigateToUserDetails(it)
                             }
                         )
                     }

@@ -3,11 +3,12 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.hiltPlugin)
+    alias(libs.plugins.firebasePlugin)
 }
 
 android {
     defaultConfig {
-        applicationId = "com.nygar.cleanarchitecturekotlin"
+        applicationId = "com.nygar.app"
         versionCode = 1
 
         vectorDrawables {
@@ -32,11 +33,9 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
-            buildConfigField("boolean", "IS_DONATE", false.toString())
         }
         debug {
             isMinifyEnabled = false
-            buildConfigField("boolean", "IS_DONATE", false.toString())
             //applicationIdSuffix '.dev'
         }
     }

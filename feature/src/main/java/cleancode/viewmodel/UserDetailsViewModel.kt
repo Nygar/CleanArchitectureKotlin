@@ -27,8 +27,7 @@ class UserDetailsViewModel @Inject constructor(
     )
     val userSingleResult: SharedFlow<UserDetailsResult> = _userSingleResult
 
-
-    private fun getUserById(userId: Int) {
+    fun getUserById(userId: Int) {
         viewModelScope.launch {
             _userSingleResult.emit(UserDetailsResult.Loading)
             usecase.getUserUsecase(userId).collect{ result ->

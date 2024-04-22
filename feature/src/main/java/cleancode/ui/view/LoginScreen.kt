@@ -24,7 +24,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.google.android.gms.auth.api.R
 
 
 interface LoginActivityDelegate{
@@ -80,7 +79,7 @@ fun GoogleBtn(modifier: Modifier, delegate: LoginActivityDelegate){
         )
     ) {
         Image(
-            painter = painterResource(id = R.drawable.googleg_standard_color_18),
+            painter = painterResource(id = com.google.firebase.appcheck.interop.R.drawable.googleg_standard_color_18),
             contentDescription = null
         )
         Text(text = "Sign out with Google", modifier = Modifier.padding(6.dp))

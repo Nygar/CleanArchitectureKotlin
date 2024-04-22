@@ -6,17 +6,16 @@ kotlinCompile = "1.5.12"
 targetSdk = "34"
 compileSdk = "34"
 minSdk = "28"
-coreKtx = "1.12.0"
+coreKtx = "1.13.0"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-ui-test = "1.6.5"
+ui-test = "1.6.6"
 lifecycleRuntimeKtx = "2.7.0"
-activityCompose = "1.8.2"
-composeBom = "2024.04.00"
+activityCompose = "1.9.0"
+composeBom = "2024.04.01"
 firebasePluginVersion = "4.4.1"
 firebaseBom = "32.8.1"
-playServicesAuth = "21.1.0"
 appcompat = "1.6.1"
 material = "1.11.0"
 hilt = "2.49"
@@ -25,12 +24,11 @@ retrofit = "2.11.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 kotlinSerialization = "1.6.0"
 kotlinPluginSerialization = "1.9.23"
-uiTooling = "1.6.5"
+uiTooling = "1.6.6"
 splashScreen = "1.1.0-rc01"
 navigationCompose = "2.7.7"
 coilVersion = "2.4.0"
 spotlessVersion = "6.25.0"
-pagingVersion = "3.2.1"
 lifecycleRuntimeCompose = "2.7.0"
 lifecycleRuntimeViewModel = "2.7.0"
 navigationTesting = "2.7.7"
@@ -90,14 +88,11 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 splash-screen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashScreen" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilVersion" }
-android-paging-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "pagingVersion" }
-android-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingVersion" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayout" }
 
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
-play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "app" }

@@ -35,9 +35,6 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.firebase.analytics)
-    implementation(libs.play.services.auth)
-
-    implementation(libs.coil)
 
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
@@ -45,7 +42,6 @@ dependencies {
 
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
-    implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("androidx.compose.compiler:compiler:1.5.12")
     implementation("androidx.compose.runtime:runtime:1.6.6")
     implementation("androidx.compose.runtime:runtime-livedata:1.6.6")

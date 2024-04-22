@@ -12,6 +12,7 @@ import cleancode.ui.view.LoginScreen
 import cleancode.ui.view.UserListScreen
 import cleancode.viewmodel.UserLoggedViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
+import cleancode.ui.view.UserDetailsScreen
 import com.nygar.common.ConstantsTesting.TEST_TAG_NAVIGATION_HOST
 import com.nygar.designsystem.components.NavigationDrawerView
 
@@ -48,22 +49,22 @@ fun Navigation(
                 fullName = userLogged?.fullName ?: "",
                 avatarUrl = userLogged?.avatarUrl ?: "",
                 navigateToCategoryList = { CategoryListScreen() },
-                navigateToUserList = { UserListScreen() },
+                navigateToUserList = { UserListScreen(){
+                    navController.navigate(NavItem.UserDetail.createNavRoute(it))
+                } },
             )
         }
         composable(
-            route = NavItem.CharacterDetail.route,
-            arguments = NavItem.CharacterDetail.navArgs
+            route = NavItem.UserDetail.route,
+            arguments = NavItem.UserDetail.navArgs
         ) { backStackEntry ->
-            val characterId = backStackEntry.arguments?.getInt(ARGUMENT_CHARACTER_DETAILS_ID)
-            requireNotNull(characterId)
-            /*
-            CharacterDetailsScreen(
-                characterId = characterId
+            val userId = backStackEntry.arguments?.getInt(ARGUMENT_USER_DETAILS_ID)
+            requireNotNull(userId)
+            UserDetailsScreen(
+                userId = userId
             ){
                 navController.navigateUp()
             }
-             */
         }
     }
 }

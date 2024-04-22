@@ -28,15 +28,16 @@ fun GenericRow(
     modifier: Modifier = Modifier,
     title: String = "",
     image: String = "",
+    id: Int = 0,
     type: TypeRow,
-    onViewCLickListener: (() -> Unit)? = null
+    onViewCLickListener: ((Int) -> Unit)? = null
 ){
 
     Card(
         modifier = modifier
             .testTag(ConstantsTesting.TEST_TAG_COMIC_ROW)
             .fillMaxWidth()
-            .clickable { onViewCLickListener?.invoke() },
+            .clickable { onViewCLickListener?.invoke(id) },
         elevation = CardDefaults.cardElevation(
             defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2
         ),
@@ -91,6 +92,7 @@ fun PreviewGenericRow(){
         GenericRow(
             title = "name",
             image = "image",
+            id = 0,
             type = TypeRow.UserRow,
         )
     }

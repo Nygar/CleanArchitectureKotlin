@@ -1,7 +1,10 @@
 package cleancode.ui.navigation
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,6 +18,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import cleancode.ui.view.MessageDetailsScreen
 import cleancode.ui.view.MessageListScreen
 import cleancode.ui.view.UserDetailsScreen
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.nygar.common.ConstantsTesting.TEST_TAG_NAVIGATION_HOST
 import com.nygar.designsystem.components.NavigationDrawerView
 
@@ -22,8 +27,21 @@ import com.nygar.designsystem.components.NavigationDrawerView
 fun Navigation(
     viewModel: UserLoggedViewModel = hiltViewModel(),
 ) {
+
     val userLogged = viewModel.userLoggedSingle
     val navController = rememberNavController()
+
+    val mGoogleSignInClient: GoogleSignInClient = GoogleSignIn.getClient(LocalContext.current, viewModel.gso)
+
+    val resultLogIn = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        result.data?.let {
+            viewModel.authWithGoogle(it){
+                navController.navigate(ROUTER_MAIN)
+            }
+        }
+    }
+
+
     NavHost(
         modifier = Modifier.testTag(TEST_TAG_NAVIGATION_HOST),
         navController = navController,
@@ -39,7 +57,7 @@ fun Navigation(
                     }
 
                     override fun googleLoginAction() {
-                        navController.navigate(ROUTER_MAIN)
+                        resultLogIn.launch(mGoogleSignInClient.signInIntent)
                     }
                 }
             )

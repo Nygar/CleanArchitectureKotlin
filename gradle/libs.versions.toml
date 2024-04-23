@@ -16,6 +16,7 @@ activityCompose = "1.9.0"
 composeBom = "2024.04.01"
 firebasePluginVersion = "4.4.1"
 firebaseBom = "32.8.1"
+googleLogin = "21.0.0"
 appcompat = "1.6.1"
 material = "1.11.0"
 hilt = "2.49"
@@ -93,6 +94,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+google-login = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "googleLogin" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "app" }

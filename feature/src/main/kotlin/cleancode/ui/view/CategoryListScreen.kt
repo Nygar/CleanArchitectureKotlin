@@ -16,6 +16,7 @@ import com.nygar.designsystem.theme.ThemeConfig
 @Composable
 fun CategoryListScreen(
     viewModel: MessageCategoryViewModel = hiltViewModel(),
+    onNavigateToMessageList: (Int) -> Unit
 ) {
     val lazyState = rememberLazyListState()
     val categoryList = viewModel.categoryList
@@ -39,7 +40,7 @@ fun CategoryListScreen(
                             image = category.imageUrl,
                             type = TypeRow.CategoryRow,
                             onViewCLickListener = {
-                                //onCharacterItemClick(character.id)
+                                onNavigateToMessageList(it)
                             }
                         )
                     }

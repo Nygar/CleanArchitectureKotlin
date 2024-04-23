@@ -25,8 +25,7 @@ import cleancode.repository.source.disk.DiskUserLoggedDataStore
 import javax.inject.Inject
 
 class DataRepositoryImpl
-@Inject constructor(private val context: Context,
-                    private val restApi: RestApi,
+@Inject constructor(private val restApi: RestApi,
                     private val categoryCache: CategoryCache,
                     private val messageCache: MessageCache,
                     private val userCache: UserCache,

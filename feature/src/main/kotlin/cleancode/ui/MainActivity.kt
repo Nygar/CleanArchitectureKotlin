@@ -1,4 +1,4 @@
-package cleancode.ui.activity
+package cleancode.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

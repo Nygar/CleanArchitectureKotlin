@@ -10,8 +10,6 @@ android {
     namespace = "com.nygar.feature"
 
     buildFeatures {
-        dataBinding = true
-        viewBinding = true
         compose = true
     }
 }
@@ -39,13 +37,4 @@ dependencies {
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation)
-
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.fragment:fragment-ktx:1.6.2")
-    implementation("androidx.compose.compiler:compiler:1.5.12")
-    implementation("androidx.compose.runtime:runtime:1.6.6")
-    implementation("androidx.compose.runtime:runtime-livedata:1.6.6")
-    implementation("androidx.annotation:annotation:1.7.1")
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
-    implementation("com.google.android.material:material:1.11.0")
 }

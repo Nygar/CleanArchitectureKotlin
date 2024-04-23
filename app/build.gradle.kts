@@ -16,10 +16,6 @@ android {
         }
         testInstrumentationRunner = "com.nygar.cleanarchitecturekotlin.CustomTestRunner"
 
-        buildFeatures {
-            compose = true
-        }
-
         signingConfigs {
             getByName("debug") {
                 keyAlias = "Cleancode"
@@ -51,7 +47,4 @@ dependencies {
 
     androidTestImplementation(libs.hilt.android.testing)
     //kaptAndroidTest(libs.hilt.compiler)
-
-    implementation("androidx.compose.compiler:compiler:1.5.12")
-    implementation("androidx.compose.runtime:runtime:1.6.6")
 }

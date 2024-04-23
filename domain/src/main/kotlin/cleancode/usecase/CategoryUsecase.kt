@@ -1,6 +1,5 @@
 package cleancode.usecase
 
-import cleancode.entity.CategoryEntity
 import cleancode.model.CategoryModel
 import kotlinx.coroutines.flow.Flow
 

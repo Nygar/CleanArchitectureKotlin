@@ -12,6 +12,8 @@ import cleancode.ui.view.LoginScreen
 import cleancode.ui.view.UserListScreen
 import cleancode.viewmodel.UserLoggedViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
+import cleancode.ui.view.MessageDetailsScreen
+import cleancode.ui.view.MessageListScreen
 import cleancode.ui.view.UserDetailsScreen
 import com.nygar.common.ConstantsTesting.TEST_TAG_NAVIGATION_HOST
 import com.nygar.designsystem.components.NavigationDrawerView
@@ -48,7 +50,9 @@ fun Navigation(
             NavigationDrawerView(
                 fullName = userLogged?.fullName ?: "",
                 avatarUrl = userLogged?.avatarUrl ?: "",
-                navigateToCategoryList = { CategoryListScreen() },
+                navigateToCategoryList = { CategoryListScreen(){
+                    navController.navigate(NavItem.MessageList.createNavRoute(it))
+                } },
                 navigateToUserList = { UserListScreen(){
                     navController.navigate(NavItem.UserDetail.createNavRoute(it))
                 } },
@@ -62,6 +66,36 @@ fun Navigation(
             requireNotNull(userId)
             UserDetailsScreen(
                 userId = userId
+            ){
+                navController.navigateUp()
+            }
+        }
+
+        composable(
+            route = NavItem.MessageList.route,
+            arguments = NavItem.MessageList.navArgs
+        ) { backStackEntry ->
+            val userId = backStackEntry.arguments?.getInt(ARGUMENT_MESSAGE_LIST_ID)
+            requireNotNull(userId)
+            MessageListScreen(
+                categoryId = userId,
+                onNavigateToMessageDetails = {
+                    navController.navigate(NavItem.MessageDetail.createNavRoute(it))
+                },
+                onNavigateBack = {
+                    navController.navigateUp()
+                }
+            )
+        }
+
+        composable(
+            route = NavItem.MessageDetail.route,
+            arguments = NavItem.MessageDetail.navArgs
+        ) { backStackEntry ->
+            val userId = backStackEntry.arguments?.getInt(ARGUMENT_MESSAGE_DETAILS_ID)
+            requireNotNull(userId)
+            MessageDetailsScreen(
+                messageId = userId
             ){
                 navController.navigateUp()
             }

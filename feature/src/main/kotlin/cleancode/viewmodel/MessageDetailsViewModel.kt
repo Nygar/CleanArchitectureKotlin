@@ -15,35 +15,36 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MessageListViewModel @Inject constructor(
+class MessageDetailsViewModel @Inject constructor(
     private val usecase: MessageUsecase
-):ViewModel(){
+): ViewModel(){
 
-    var messageList by mutableStateOf<List<MessageModel>>(arrayListOf())
+    var messageSingle by mutableStateOf<MessageModel?>(null)
 
-    private val _messageListResult = MutableSharedFlow<MessageListResult>(
+    private val _messageSingleResult = MutableSharedFlow<MessageResult>(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
-    val messageListResult: SharedFlow<MessageListResult> = _messageListResult
+    val messageSingleResult: SharedFlow<MessageResult> = _messageSingleResult
 
-    fun getMessageCategory(categoryId: Int) {
+    fun getMessageById(messageId:Int) {
         viewModelScope.launch {
-            _messageListResult.emit(MessageListResult.Loading)
-            usecase.getMessageListUsecase(categoryId).collect{ result ->
+            _messageSingleResult.emit(MessageResult.Loading)
+            usecase.getMesageUsecase(messageId).collect{ result ->
                 result.onSuccess {
-                    _messageListResult.emit(MessageListResult.Success)
+                    messageSingle = it
+                    _messageSingleResult.emit(MessageResult.Success)
                 }
                 result.onFailure {
-                    _messageListResult.emit(MessageListResult.Error)
+                    _messageSingleResult.emit(MessageResult.Error)
                 }
             }
         }
     }
 }
 
-sealed interface MessageListResult {
-    data object Loading : MessageListResult
-    data object Success : MessageListResult
-    data object Error : MessageListResult
+sealed interface MessageResult {
+    data object Loading : MessageResult
+    data object Success : MessageResult
+    data object Error : MessageResult
 }

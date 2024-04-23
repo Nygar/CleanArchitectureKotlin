@@ -21,14 +21,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 class DataModule {
 
     @Provides
-    fun provideDataRepository(@ApplicationContext app: Context,
-                              api: RestApi,
+    fun provideDataRepository(api: RestApi,
                               categoryCache: CategoryCache,
                               messageCache: MessageCache,
                               userCache: UserCache,
                               userLoggedCache: UserLoggedCache
     ): DataRepository =
-        DataRepositoryImpl(app, api, categoryCache, messageCache, userCache, userLoggedCache)
+        DataRepositoryImpl(api, categoryCache, messageCache, userCache, userLoggedCache)
 
     //Database
     @Provides

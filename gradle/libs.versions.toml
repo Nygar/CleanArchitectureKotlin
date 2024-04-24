@@ -38,6 +38,7 @@ mokkVersion = "1.13.10"
 roomVersion = "2.6.1"
 kspVersion = "1.9.23-1.0.20"
 constraintlayout = "1.0.1"
+lottieVersion = "6.4.0"
 
 [libraries]
 # Dependencies Kotlin/Android
@@ -90,6 +91,7 @@ splash-screen = { group = "androidx.core", name = "core-splashscreen", version.r
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilVersion" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayout" }
+lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottieVersion" }
 
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx" }

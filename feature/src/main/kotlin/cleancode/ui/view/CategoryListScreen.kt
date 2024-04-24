@@ -10,7 +10,7 @@ import cleancode.viewmodel.MessageCategoryViewModel
 import com.nygar.common.Constants
 import com.nygar.designsystem.components.GenericRow
 import com.nygar.designsystem.components.TypeRow
-import com.nygar.designsystem.components.skeleton.SkeletonGridRow
+import com.nygar.designsystem.components.skeleton.SkeletonRow
 import com.nygar.designsystem.theme.ThemeConfig
 
 @Composable
@@ -26,7 +26,7 @@ fun CategoryListScreen(
     ) {
         if(categoryList.isEmpty()) {
             items(Constants.PAGE_SIZE) {
-                SkeletonGridRow(
+                SkeletonRow(
                     modifier = Modifier.padding(all = ThemeConfig.theme.spacing.sizeSpacing8),
                 )
             }

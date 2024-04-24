@@ -2,6 +2,7 @@ package cleancode.viewmodel
 
 import android.content.Intent
 import android.util.Log
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -28,7 +29,7 @@ class UserLoggedViewModel @Inject constructor(
     private val usecase: UserLoggedUsecase
 ): ViewModel(){
 
-    val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     var userLoggedSingle by mutableStateOf<UserLoggedModel?>(null)
 
@@ -38,6 +39,10 @@ class UserLoggedViewModel @Inject constructor(
     )
     val userLoggedSingleResult: SharedFlow<UserLoggedResult> = _userLoggedSingleResult
 
+    var isLogingFinished by mutableStateOf(false )
+    var isAnimationComplete by mutableStateOf(false )
+    val isAllowLoginNavigate by derivedStateOf { isAnimationComplete && isLogingFinished }
+    var isShowingAnimation by mutableStateOf( false )
 
     init {
         getUserLogged()

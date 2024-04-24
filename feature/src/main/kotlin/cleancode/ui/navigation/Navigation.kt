@@ -3,6 +3,7 @@ package cleancode.ui.navigation
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -21,6 +22,7 @@ import cleancode.ui.view.UserDetailsScreen
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.nygar.common.ConstantsTesting.TEST_TAG_NAVIGATION_HOST
+import com.nygar.designsystem.components.LottieLoadingView
 import com.nygar.designsystem.components.NavigationDrawerView
 
 @Composable
@@ -36,8 +38,25 @@ fun Navigation(
     val resultLogIn = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         result.data?.let {
             viewModel.authWithGoogle(it){
-                navController.navigate(ROUTER_MAIN)
+                viewModel.isLogingFinished = true
             }
+        }
+    }
+
+    LaunchedEffect(viewModel.isAllowLoginNavigate) {
+        if(viewModel.isAllowLoginNavigate){
+            navController.navigate(ROUTER_MAIN)
+            /*
+            navController.navigate(ROUTER_MAIN){
+                popUpTo(ROUTER_LOGIN) {
+                    inclusive = true
+                }
+            }
+
+             */
+            viewModel.isShowingAnimation = false
+            viewModel.isLogingFinished = false
+            viewModel.isAnimationComplete = false
         }
     }
 
@@ -50,20 +69,30 @@ fun Navigation(
         composable(
             route = NavItem.LoginScreen.route
         ) {
+
             LoginScreen(
                 object : LoginActivityDelegate {
                     override fun normalLoginAction() {
-                        navController.navigate(ROUTER_MAIN)
+                        viewModel.isLogingFinished = true
+                        viewModel.isShowingAnimation = true
                     }
 
                     override fun googleLoginAction() {
+                        viewModel.isLogingFinished = false
+                        viewModel.isShowingAnimation = true
                         resultLogIn.launch(mGoogleSignInClient.signInIntent)
                     }
                 }
             )
+
+            if(viewModel.isShowingAnimation) {
+                LottieLoadingView {
+                    viewModel.isAnimationComplete = true
+                }
+            }
         }
         composable(
-            route = NavItem.MainScreen.route
+            route = NavItem.MainScreen.route,
         ) {
             NavigationDrawerView(
                 fullName = userLogged?.fullName ?: "",

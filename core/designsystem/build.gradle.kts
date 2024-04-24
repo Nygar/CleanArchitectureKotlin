@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.splash.screen)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.constraintlayout)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -30,4 +31,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.coil)
+    implementation(libs.lottie)
 }

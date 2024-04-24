@@ -4,7 +4,7 @@ import android.content.Context
 import cleancode.database.AppDatabase
 import cleancode.database.FileManager
 import cleancode.database.api.UserCache
-import cleancode.entity.UserEntity
+import com.nygar.entity.UserEntity
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

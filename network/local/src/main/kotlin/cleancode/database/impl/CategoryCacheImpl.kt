@@ -4,7 +4,7 @@ import android.content.Context
 import cleancode.database.AppDatabase
 import cleancode.database.FileManager
 import cleancode.database.api.CategoryCache
-import cleancode.entity.CategoryEntity
+import com.nygar.entity.CategoryEntity
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

@@ -1,9 +1,9 @@
 package cleancode.net
 
-import cleancode.entity.CategoryEntity
-import cleancode.entity.MessageEntity
-import cleancode.entity.UserEntity
-import cleancode.entity.UserLoggedEntity
+import com.nygar.entity.CategoryEntity
+import com.nygar.entity.MessageEntity
+import com.nygar.entity.UserEntity
+import com.nygar.entity.UserLoggedEntity
 
 /**
  * RestApi for retrieving data from the network.

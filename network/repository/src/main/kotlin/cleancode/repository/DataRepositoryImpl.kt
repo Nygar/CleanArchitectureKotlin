@@ -4,10 +4,6 @@ import cleancode.database.api.CategoryCache
 import cleancode.database.api.MessageCache
 import cleancode.database.api.UserCache
 import cleancode.database.api.UserLoggedCache
-import cleancode.entity.CategoryEntity
-import cleancode.entity.MessageEntity
-import cleancode.entity.UserEntity
-import cleancode.entity.UserLoggedEntity
 import cleancode.net.RestApi
 import cleancode.repository.source.CategoryDataStore
 import cleancode.repository.source.MessageDataStore
@@ -21,6 +17,10 @@ import cleancode.repository.source.disk.DiskCategoryDataStore
 import cleancode.repository.source.disk.DiskMessageDataStore
 import cleancode.repository.source.disk.DiskUserDataStore
 import cleancode.repository.source.disk.DiskUserLoggedDataStore
+import com.nygar.entity.CategoryEntity
+import com.nygar.entity.MessageEntity
+import com.nygar.entity.UserEntity
+import com.nygar.entity.UserLoggedEntity
 import javax.inject.Inject
 
 class DataRepositoryImpl

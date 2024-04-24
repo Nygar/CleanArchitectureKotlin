@@ -1,9 +1,9 @@
 package cleancode.repository.source.cloud
 
 import cleancode.database.api.CategoryCache
-import cleancode.entity.CategoryEntity
 import cleancode.net.RestApi
 import cleancode.repository.source.CategoryDataStore
+import com.nygar.entity.CategoryEntity
 
 /**
  * Construct a [CategoryDataStore] based on connections to the api (Cloud).

@@ -1,6 +1,6 @@
 package cleancode.repository.source
 
-import cleancode.entity.MessageEntity
+import com.nygar.entity.MessageEntity
 
 /**
  * Interface that represents a data store from where data is retrieved.

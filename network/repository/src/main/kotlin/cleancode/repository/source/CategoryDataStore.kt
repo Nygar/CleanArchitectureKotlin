@@ -1,7 +1,7 @@
 package cleancode.repository.source
 
-import cleancode.entity.CategoryEntity
-import cleancode.entity.MessageEntity
+import com.nygar.entity.CategoryEntity
+import com.nygar.entity.MessageEntity
 
 interface CategoryDataStore {
     /**

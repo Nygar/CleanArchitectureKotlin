@@ -3,12 +3,12 @@ package cleancode.net
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import cleancode.entity.CategoryEntity
-import cleancode.entity.MessageEntity
-import cleancode.entity.UserEntity
-import cleancode.entity.UserLoggedEntity
 import cleancode.errors.Error
 import com.nygar.common.BuildConfig
+import com.nygar.entity.CategoryEntity
+import com.nygar.entity.MessageEntity
+import com.nygar.entity.UserEntity
+import com.nygar.entity.UserLoggedEntity
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback

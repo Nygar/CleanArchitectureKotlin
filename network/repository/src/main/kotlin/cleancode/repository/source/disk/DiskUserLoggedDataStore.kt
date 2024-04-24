@@ -1,8 +1,8 @@
 package cleancode.repository.source.disk
 
 import cleancode.database.api.UserLoggedCache
-import cleancode.entity.UserLoggedEntity
 import cleancode.repository.source.UserLoggedDataStore
+import com.nygar.entity.UserLoggedEntity
 
 /**
  * Construct a [UserLoggedDataStore] based file system data store.

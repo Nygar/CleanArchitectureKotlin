@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import cleancode.entity.UserLoggedEntity
+import com.nygar.entity.UserLoggedEntity
 
 @Dao
 interface UserLoggedCacheDao {

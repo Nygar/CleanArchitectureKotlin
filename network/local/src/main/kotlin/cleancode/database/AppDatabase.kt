@@ -6,10 +6,10 @@ import cleancode.database.dao.CategoryCacheDao
 import cleancode.database.dao.MessageCacheDao
 import cleancode.database.dao.UserCacheDao
 import cleancode.database.dao.UserLoggedCacheDao
-import cleancode.entity.CategoryEntity
-import cleancode.entity.MessageEntity
-import cleancode.entity.UserEntity
-import cleancode.entity.UserLoggedEntity
+import com.nygar.entity.CategoryEntity
+import com.nygar.entity.MessageEntity
+import com.nygar.entity.UserEntity
+import com.nygar.entity.UserLoggedEntity
 
 @Database(
     entities = [UserEntity::class, CategoryEntity::class, UserLoggedEntity::class, MessageEntity::class],

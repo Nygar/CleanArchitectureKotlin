@@ -1,6 +1,6 @@
 package cleancode.database.api
 
-import cleancode.entity.UserLoggedEntity
+import com.nygar.entity.UserLoggedEntity
 
 /**
  * An interface representing a user logged Cache.

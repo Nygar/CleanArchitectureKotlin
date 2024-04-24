@@ -1,9 +1,9 @@
 package cleancode.repository.source.cloud
 
 import cleancode.database.api.MessageCache
-import cleancode.entity.MessageEntity
 import cleancode.net.RestApi
 import cleancode.repository.source.MessageDataStore
+import com.nygar.entity.MessageEntity
 
 /**
  * Construct a [MessageDataStore] based on connections to the api (Cloud).

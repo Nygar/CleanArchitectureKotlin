@@ -1,8 +1,8 @@
 package cleancode.repository.source.disk
 
 import cleancode.database.api.CategoryCache
-import cleancode.entity.CategoryEntity
 import cleancode.repository.source.CategoryDataStore
+import com.nygar.entity.CategoryEntity
 
 /**
  * Construct a [CategoryDataStore] based file system data store.

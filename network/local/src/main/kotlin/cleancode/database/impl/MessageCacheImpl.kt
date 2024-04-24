@@ -4,7 +4,7 @@ import android.content.Context
 import cleancode.database.AppDatabase
 import cleancode.database.FileManager
 import cleancode.database.api.MessageCache
-import cleancode.entity.MessageEntity
+import com.nygar.entity.MessageEntity
 import javax.inject.Inject
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine

@@ -1,6 +1,6 @@
 package cleancode.database.api
 
-import cleancode.entity.MessageEntity
+import com.nygar.entity.MessageEntity
 
 /**
  * An interface representing a message Cache.

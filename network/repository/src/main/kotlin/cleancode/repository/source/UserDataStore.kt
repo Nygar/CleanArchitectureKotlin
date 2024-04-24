@@ -1,6 +1,6 @@
 package cleancode.repository.source
 
-import cleancode.entity.UserEntity
+import com.nygar.entity.UserEntity
 
 /**
  * Interface that represents a data store from where data is retrieved.

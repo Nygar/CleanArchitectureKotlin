@@ -1,9 +1,9 @@
 package cleancode.repository.source.cloud
 
 import cleancode.database.api.UserCache
-import cleancode.entity.UserEntity
 import cleancode.net.RestApi
 import cleancode.repository.source.UserDataStore
+import com.nygar.entity.UserEntity
 
 /**
  * Construct a [UserDataStore] based on connections to the api (Cloud).

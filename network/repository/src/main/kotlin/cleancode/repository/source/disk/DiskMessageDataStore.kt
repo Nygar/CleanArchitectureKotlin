@@ -1,8 +1,8 @@
 package cleancode.repository.source.disk
 
 import cleancode.database.api.MessageCache
-import cleancode.entity.MessageEntity
 import cleancode.repository.source.MessageDataStore
+import com.nygar.entity.MessageEntity
 
 /**
  * Construct a [MessageDataStore] based file system data store.

@@ -15,36 +15,40 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MessageListViewModel @Inject constructor(
-    private val usecase: MessageUsecase
-):ViewModel(){
+class MessageListViewModel
+    @Inject
+    constructor(
+        private val usecase: MessageUsecase,
+    ) : ViewModel() {
+        var messageList by mutableStateOf<List<MessageModel>>(arrayListOf())
 
-    var messageList by mutableStateOf<List<MessageModel>>(arrayListOf())
+        private val _messageListResult =
+            MutableSharedFlow<MessageListResult>(
+                replay = 1,
+                onBufferOverflow = BufferOverflow.DROP_OLDEST,
+            )
+        val messageListResult: SharedFlow<MessageListResult> = _messageListResult
 
-    private val _messageListResult = MutableSharedFlow<MessageListResult>(
-        replay = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-    val messageListResult: SharedFlow<MessageListResult> = _messageListResult
-
-    fun getMessageCategory(categoryId: Int) {
-        viewModelScope.launch {
-            _messageListResult.emit(MessageListResult.Loading)
-            usecase.getMessageListUsecase(categoryId).collect{ result ->
-                result.onSuccess {
-                    messageList = it
-                    _messageListResult.emit(MessageListResult.Success)
-                }
-                result.onFailure {
-                    _messageListResult.emit(MessageListResult.Error)
+        fun getMessageCategory(categoryId: Int) {
+            viewModelScope.launch {
+                _messageListResult.emit(MessageListResult.Loading)
+                usecase.getMessageListUsecase(categoryId).collect { result ->
+                    result.onSuccess {
+                        messageList = it
+                        _messageListResult.emit(MessageListResult.Success)
+                    }
+                    result.onFailure {
+                        _messageListResult.emit(MessageListResult.Error)
+                    }
                 }
             }
         }
     }
-}
 
 sealed interface MessageListResult {
     data object Loading : MessageListResult
+
     data object Success : MessageListResult
+
     data object Error : MessageListResult
 }

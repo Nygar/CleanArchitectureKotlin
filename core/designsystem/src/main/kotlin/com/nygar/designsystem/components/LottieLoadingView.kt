@@ -14,25 +14,23 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.nygar.designsystem.theme.ThemeConfig
 
 @Composable
-fun LottieLoadingView(
-    onAnimationComplete: () -> Unit
-) {
+fun LottieLoadingView(onAnimationComplete: () -> Unit) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(com.nygar.designsystem.R.raw.login_loading_animation))
     val progress by animateLottieCompositionAsState(
         composition,
-        clipSpec = LottieClipSpec.Progress(0f, 1f)
+        clipSpec = LottieClipSpec.Progress(0f, 1f),
     )
     ConstraintLayout(
-        modifier = Modifier.fillMaxSize().background(ThemeConfig.theme.color.colorWhite)
+        modifier = Modifier.fillMaxSize().background(ThemeConfig.theme.color.colorWhite),
     ) {
-
         val (vAnimation) = createRefs()
 
         LottieAnimation(
-            modifier = Modifier.constrainAs(vAnimation){
-                top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-            },
+            modifier =
+                Modifier.constrainAs(vAnimation) {
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                },
             composition = composition,
             progress = { progress },
         )

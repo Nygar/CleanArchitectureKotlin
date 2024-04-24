@@ -15,40 +15,44 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class UserListViewModel @Inject constructor(
-    private val usecase: UserUsecase
-): ViewModel(){
+class UserListViewModel
+    @Inject
+    constructor(
+        private val usecase: UserUsecase,
+    ) : ViewModel() {
+        var userList by mutableStateOf<List<UserModel>>(arrayListOf())
 
-    var userList by mutableStateOf<List<UserModel>>(arrayListOf())
+        private val _userListResult =
+            MutableSharedFlow<UserListResult>(
+                replay = 1,
+                onBufferOverflow = BufferOverflow.DROP_OLDEST,
+            )
+        val userListResult: SharedFlow<UserListResult> = _userListResult
 
-    private val _userListResult = MutableSharedFlow<UserListResult>(
-        replay = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-    val userListResult: SharedFlow<UserListResult> = _userListResult
+        init {
+            getUserList()
+        }
 
-    init {
-        getUserList()
-    }
-
-    private fun getUserList() {
-        viewModelScope.launch {
-            _userListResult.emit(UserListResult.Loading)
-            usecase.getUserListUsecase().collect{ result ->
-                result.onSuccess {
-                    userList = it
-                    _userListResult.emit(UserListResult.Success)
-                }
-                result.onFailure {
-                    _userListResult.emit(UserListResult.Error)
+        private fun getUserList() {
+            viewModelScope.launch {
+                _userListResult.emit(UserListResult.Loading)
+                usecase.getUserListUsecase().collect { result ->
+                    result.onSuccess {
+                        userList = it
+                        _userListResult.emit(UserListResult.Success)
+                    }
+                    result.onFailure {
+                        _userListResult.emit(UserListResult.Error)
+                    }
                 }
             }
         }
     }
-}
 
 sealed interface UserListResult {
     data object Loading : UserListResult
+
     data object Success : UserListResult
+
     data object Error : UserListResult
 }

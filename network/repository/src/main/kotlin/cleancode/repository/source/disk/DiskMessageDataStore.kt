@@ -1,7 +1,7 @@
 package cleancode.repository.source.disk
 
-import cleancode.entity.MessageEntity
 import cleancode.database.api.MessageCache
+import cleancode.entity.MessageEntity
 import cleancode.repository.source.MessageDataStore
 
 /**
@@ -10,7 +10,6 @@ import cleancode.repository.source.MessageDataStore
  * @param messageCache A [MessageCache] to cache data retrieved from the api.
  */
 class DiskMessageDataStore(private val messageCache: MessageCache) : MessageDataStore {
-
     override suspend fun messageEntityList(): Result<List<MessageEntity>> {
         return messageCache.getList()
     }

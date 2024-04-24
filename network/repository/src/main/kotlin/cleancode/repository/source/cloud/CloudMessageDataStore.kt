@@ -13,7 +13,6 @@ import cleancode.repository.source.MessageDataStore
  */
 class CloudMessageDataStore(private val restApi: RestApi, private val messageCache: MessageCache) :
     MessageDataStore {
-
     override suspend fun messageEntityList(): Result<List<MessageEntity>> {
         return this.restApi.messageEntityList()
     }

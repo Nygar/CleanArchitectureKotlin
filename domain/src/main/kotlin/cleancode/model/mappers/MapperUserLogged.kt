@@ -5,7 +5,6 @@ import cleancode.model.UserLoggedModel
 import com.nygar.common.BuildConfig
 
 object MapperUserLogged {
-
     /**
      * Transform a [UserLoggedEntity] into an [UserLoggedModel].
      *

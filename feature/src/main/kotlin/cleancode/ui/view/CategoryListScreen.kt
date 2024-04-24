@@ -16,35 +16,35 @@ import com.nygar.designsystem.theme.ThemeConfig
 @Composable
 fun CategoryListScreen(
     viewModel: MessageCategoryViewModel = hiltViewModel(),
-    onNavigateToMessageList: (Int) -> Unit
+    onNavigateToMessageList: (Int) -> Unit,
 ) {
     val lazyState = rememberLazyListState()
     val categoryList = viewModel.categoryList
 
     LazyColumn(
-        state = lazyState
+        state = lazyState,
     ) {
-        if(categoryList.isEmpty()) {
+        if (categoryList.isEmpty()) {
             items(Constants.PAGE_SIZE) {
                 SkeletonRow(
                     modifier = Modifier.padding(all = ThemeConfig.theme.spacing.sizeSpacing8),
                 )
             }
-        }else {
-                items(categoryList.size){index ->
-                    categoryList[index].let { category ->
-                        GenericRow(
-                            modifier = Modifier.padding( all = ThemeConfig.theme.spacing.sizeSpacing8),
-                            id = category.categoryId,
-                            title = category.name,
-                            image = category.imageUrl,
-                            type = TypeRow.CategoryRow,
-                            onViewCLickListener = {
-                                onNavigateToMessageList(it)
-                            }
-                        )
-                    }
+        } else {
+            items(categoryList.size) { index ->
+                categoryList[index].let { category ->
+                    GenericRow(
+                        modifier = Modifier.padding(all = ThemeConfig.theme.spacing.sizeSpacing8),
+                        id = category.categoryId,
+                        title = category.name,
+                        image = category.imageUrl,
+                        type = TypeRow.CategoryRow,
+                        onViewCLickListener = {
+                            onNavigateToMessageList(it)
+                        },
+                    )
                 }
             }
         }
     }
+}

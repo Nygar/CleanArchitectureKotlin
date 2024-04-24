@@ -1,7 +1,7 @@
 plugins {
     id("cleanarchitecturekotlin.android.library")
-    alias(libs.plugins.ksp)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hiltPlugin)
 }
 

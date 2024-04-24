@@ -7,7 +7,7 @@ import androidx.room.Query
 import cleancode.entity.UserLoggedEntity
 
 @Dao
-interface UserLoggedCacheDao{
+interface UserLoggedCacheDao {
     @Insert
     fun insertSingle(entity: UserLoggedEntity)
 

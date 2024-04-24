@@ -2,7 +2,6 @@ package cleancode.database.api
 
 import cleancode.entity.CategoryEntity
 
-
 /**
  * An interface representing a message Cache.
  */

@@ -13,11 +13,8 @@ data class CategoryEntity(
     @PrimaryKey
     @ColumnInfo(name = "id")
     var id: Int = 0,
-
     @ColumnInfo(name = "image_url")
     var image_url: String = "",
-
     @ColumnInfo(name = "name")
-    var name: String = ""
-
+    var name: String = "",
 )

@@ -13,12 +13,11 @@ import cleancode.repository.source.UserDataStore
  */
 class CloudUserDataStore(private val restApi: RestApi, private val userCache: UserCache) :
     UserDataStore {
-
     override suspend fun userEntityList(): Result<List<UserEntity>> {
         return this.restApi.userEntityList()
     }
 
     override suspend fun userEntityDetails(userId: Int): Result<UserEntity> {
-        return this.restApi.userEntityById(userId).onSuccess( userCache::put)
+        return this.restApi.userEntityById(userId).onSuccess(userCache::put)
     }
 }

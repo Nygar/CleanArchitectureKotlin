@@ -7,7 +7,7 @@ import androidx.room.Query
 import cleancode.entity.MessageEntity
 
 @Dao
-interface MessageCacheDao{
+interface MessageCacheDao {
     @Insert
     fun insertSingle(entity: MessageEntity)
 

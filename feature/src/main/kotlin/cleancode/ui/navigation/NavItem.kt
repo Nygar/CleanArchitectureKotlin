@@ -6,35 +6,50 @@ import androidx.navigation.navArgument
 
 sealed class NavItem(
     val baseRoute: String,
-    val navArgs: List<NamedNavArgument> = emptyList()
+    val navArgs: List<NamedNavArgument> = emptyList(),
 ) {
-    val route = run {
-        val argKeys = navArgs.map { "{${it.name}}" }
-        listOf(baseRoute)
-            .plus(argKeys)
-            .joinToString("/")
-    }
-    data object LoginScreen: NavItem(ROUTER_LOGIN)
+    val route =
+        run {
+            val argKeys = navArgs.map { "{${it.name}}" }
+            listOf(baseRoute)
+                .plus(argKeys)
+                .joinToString("/")
+        }
 
-    data object MainScreen: NavItem(ROUTER_MAIN)
+    data object LoginScreen : NavItem(ROUTER_LOGIN)
 
-    data object MessageList: NavItem(
-        ROUTER_MESSAGE_LIST, listOf(navArgument(
-            ARGUMENT_MESSAGE_LIST_ID
-        ) { type = NavType.IntType })){
+    data object MainScreen : NavItem(ROUTER_MAIN)
+
+    data object MessageList : NavItem(
+        ROUTER_MESSAGE_LIST,
+        listOf(
+            navArgument(
+                ARGUMENT_MESSAGE_LIST_ID,
+            ) { type = NavType.IntType },
+        ),
+    ) {
         fun createNavRoute(categoryId: Int) = "$baseRoute/$categoryId"
     }
-    data object UserDetail: NavItem(
-        ROUTER_USER_DETAILS, listOf(navArgument(
-            ARGUMENT_USER_DETAILS_ID
-        ) { type = NavType.IntType })){
+
+    data object UserDetail : NavItem(
+        ROUTER_USER_DETAILS,
+        listOf(
+            navArgument(
+                ARGUMENT_USER_DETAILS_ID,
+            ) { type = NavType.IntType },
+        ),
+    ) {
         fun createNavRoute(userId: Int) = "$baseRoute/$userId"
     }
 
-    data object MessageDetail: NavItem(
-        ROUTER_MESSAGE_DETAILS, listOf(navArgument(
-            ARGUMENT_MESSAGE_DETAILS_ID
-        ) { type = NavType.IntType })){
+    data object MessageDetail : NavItem(
+        ROUTER_MESSAGE_DETAILS,
+        listOf(
+            navArgument(
+                ARGUMENT_MESSAGE_DETAILS_ID,
+            ) { type = NavType.IntType },
+        ),
+    ) {
         fun createNavRoute(messageId: Int) = "$baseRoute/$messageId"
     }
 }

@@ -15,28 +15,27 @@ import androidx.compose.ui.Modifier
 import com.nygar.designsystem.theme.ThemeConfig
 
 @Composable
-fun SkeletonRow(
-    modifier: Modifier = Modifier,
-) {
+fun SkeletonRow(modifier: Modifier = Modifier) {
     Card(
-        modifier = modifier
-            .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2
-        ),
+        modifier =
+            modifier
+                .fillMaxWidth(),
+        elevation =
+            CardDefaults.cardElevation(
+                defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2,
+            ),
         shape = RoundedCornerShape(ThemeConfig.theme.spacing.sizeSpacing8),
     ) {
         Row(
             modifier = Modifier,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-
-
             Box(
-                modifier = Modifier
-                    .size(ThemeConfig.theme.spacing.sizeSpacing45)
-                    .padding(horizontal = ThemeConfig.theme.spacing.sizeSpacing4)
-                    .shimmerEffect(),
+                modifier =
+                    Modifier
+                        .size(ThemeConfig.theme.spacing.sizeSpacing45)
+                        .padding(horizontal = ThemeConfig.theme.spacing.sizeSpacing4)
+                        .shimmerEffect(),
             )
 
             Text(

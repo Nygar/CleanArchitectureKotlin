@@ -6,7 +6,6 @@ import cleancode.entity.UserEntity
 import cleancode.entity.UserLoggedEntity
 
 interface DataRepository {
-
     /**
      * Get an [Result] which will emit a List of [CategoryEntity].
      */
@@ -48,5 +47,4 @@ interface DataRepository {
      *
      */
     suspend fun userLogged(): Result<UserLoggedEntity>
-
 }

@@ -1,6 +1,3 @@
 package cleancode.ui.util
 
-
-class UtilMethodsTest {
-
-}
+class UtilMethodsTest

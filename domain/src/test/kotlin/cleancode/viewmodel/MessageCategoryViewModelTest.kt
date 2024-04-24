@@ -1,5 +1,3 @@
 package cleancode.viewmodel
 
-class MessageCategoryViewModelTest {
-
-}
+class MessageCategoryViewModelTest

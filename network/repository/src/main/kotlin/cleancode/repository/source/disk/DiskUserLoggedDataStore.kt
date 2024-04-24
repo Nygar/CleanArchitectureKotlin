@@ -1,7 +1,7 @@
 package cleancode.repository.source.disk
 
-import cleancode.entity.UserLoggedEntity
 import cleancode.database.api.UserLoggedCache
+import cleancode.entity.UserLoggedEntity
 import cleancode.repository.source.UserLoggedDataStore
 
 /**
@@ -11,7 +11,6 @@ import cleancode.repository.source.UserLoggedDataStore
  */
 class DiskUserLoggedDataStore(private val userLoggedCache: UserLoggedCache) :
     UserLoggedDataStore {
-
     override suspend fun userLoggedEntity(): Result<UserLoggedEntity> {
         return userLoggedCache.get()
     }

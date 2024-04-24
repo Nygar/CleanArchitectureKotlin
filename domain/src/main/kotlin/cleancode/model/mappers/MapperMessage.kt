@@ -5,8 +5,7 @@ import cleancode.model.MessageModel
 import com.nygar.common.BuildConfig
 import java.util.ArrayList
 
-object MapperMessage{
-
+object MapperMessage {
     /**
      * Transform a [MessageEntity] into an [MessageModel].
      *

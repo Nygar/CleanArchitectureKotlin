@@ -43,7 +43,6 @@ interface RestApi {
      */
     suspend fun messageEntityById(messageId: Int): Result<MessageEntity>
 
-
     /**
      * Retrieves an [Result] which will emit a List of [MessageEntity].
      * Api url for getting all messages

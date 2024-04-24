@@ -1,7 +1,7 @@
 plugins {
     id("cleanarchitecturekotlin.android.application")
-    alias(libs.plugins.ksp)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.firebasePlugin)
 }
@@ -32,7 +32,7 @@ android {
         }
         debug {
             isMinifyEnabled = false
-            //applicationIdSuffix '.dev'
+            // applicationIdSuffix '.dev'
         }
     }
     namespace = "com.nygar.app"
@@ -46,5 +46,5 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     androidTestImplementation(libs.hilt.android.testing)
-    //kaptAndroidTest(libs.hilt.compiler)
+    // kaptAndroidTest(libs.hilt.compiler)
 }

@@ -29,6 +29,7 @@
     <string name="hint_text_email">Email</string>
     <string name="hint_text_password">Password</string>
     <string name="btn_text_login">Login</string>
+    <string name="btn_text_login_google">Sign out with Google</string>
     <string name="btn_text_retry">Retry</string>
 
     <string name="view_text_email">Email:</string>

@@ -22,41 +22,40 @@ import com.nygar.designsystem.R
 import com.nygar.designsystem.theme.ThemeConfig
 
 @Composable
-fun ErrorView(
-    onReload: ()->Unit
-) {
+fun ErrorView(onReload: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
             imageVector = Icons.Default.Warning,
             contentDescription = null,
             modifier = Modifier.size(ThemeConfig.theme.spacing.sizeSpacing100),
-            tint = ThemeConfig.theme.color.colorFaluRed
+            tint = ThemeConfig.theme.color.colorFaluRed,
         )
         Spacer(modifier = Modifier.size(ThemeConfig.theme.spacing.sizeSpacing8))
         Text(
             text = stringResource(id = R.string.dialog_generic_error),
             textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.headlineMedium
+            style = MaterialTheme.typography.headlineMedium,
         )
         Spacer(modifier = Modifier.size(ThemeConfig.theme.spacing.sizeSpacing40))
         Button(
             modifier = Modifier,
-            colors = ButtonColors(
-                containerColor = ThemeConfig.theme.color.colorFaluRed,
-                contentColor = ThemeConfig.theme.color.colorWhite,
-                disabledContainerColor = ThemeConfig.theme.color.colorFaluRed,
-                disabledContentColor = ThemeConfig.theme.color.colorWhite
-            ),
-            onClick = { onReload() }
+            colors =
+                ButtonColors(
+                    containerColor = ThemeConfig.theme.color.colorFaluRed,
+                    contentColor = ThemeConfig.theme.color.colorWhite,
+                    disabledContainerColor = ThemeConfig.theme.color.colorFaluRed,
+                    disabledContentColor = ThemeConfig.theme.color.colorWhite,
+                ),
+            onClick = { onReload() },
         ) {
             Text(
                 text = stringResource(id = R.string.dialog_retry),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.headlineMedium
+                style = MaterialTheme.typography.headlineMedium,
             )
         }
     }
@@ -64,8 +63,7 @@ fun ErrorView(
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewErrorView(){
+fun PreviewErrorView() {
     ErrorView {
-
     }
 }

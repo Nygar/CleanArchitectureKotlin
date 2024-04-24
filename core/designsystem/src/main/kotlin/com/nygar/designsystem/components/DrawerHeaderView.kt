@@ -16,35 +16,36 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.nygar.designsystem.R
+import com.nygar.designsystem.theme.ThemeConfig
 
 @Composable
 fun DrawerHeader(
     fullName: String = "",
     avatarUrl: String = "",
-    modifier: Modifier
+    modifier: Modifier,
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start,
-        modifier = modifier
-            .background(MaterialTheme.colorScheme.secondary)
-            .padding(16.dp)
-            .fillMaxWidth()
+        modifier =
+            modifier
+                .background(MaterialTheme.colorScheme.secondary)
+                .padding(ThemeConfig.theme.spacing.sizeSpacing15)
+                .fillMaxWidth(),
     ) {
-
         AsyncImage(
             model = avatarUrl,
             placeholder = painterResource(id = R.drawable.ic_person_black_24dp),
             contentDescription = null,
-            modifier = modifier
-                .size(70.dp)
-                .clip(CircleShape)
+            modifier =
+                modifier
+                    .size(ThemeConfig.theme.spacing.sizeSpacing65)
+                    .clip(CircleShape),
         )
 
-        Spacer(modifier = Modifier.padding(5.dp))
+        Spacer(modifier = Modifier.padding(ThemeConfig.theme.spacing.sizeSpacing5))
 
         Text(
             text = fullName,

@@ -1,6 +1,3 @@
 package cleancode.ui.activity
 
-
-class LoginActivityTest{
-
-}
+class LoginActivityTest

@@ -1,5 +1,3 @@
 package cleancode.repository
 
-class DataRepositoryTest {
-
-}
+class DataRepositoryTest

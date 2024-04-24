@@ -15,17 +15,20 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule
-{
+class AppModule {
     @Provides
     @Singleton
-    fun provideDatabase(@ApplicationContext app: Context): AppDatabase {
+    fun provideDatabase(
+        @ApplicationContext app: Context,
+    ): AppDatabase {
         return Room.databaseBuilder(app.applicationContext, AppDatabase::class.java, "database")
             .allowMainThreadQueries()
             .fallbackToDestructiveMigration()
-            .addCallback(object : RoomDatabase.Callback() {
-                //prepopulate(db)
-            })
+            .addCallback(
+                object : RoomDatabase.Callback() {
+                    // prepopulate(db)
+                },
+            )
             .build()
     }
 
@@ -37,6 +40,7 @@ class AppModule
 
     @Provides
     @Singleton
-    fun provideApiRest(@ApplicationContext app: Context): RestApi = RestApiImpl(app)
-
+    fun provideApiRest(
+        @ApplicationContext app: Context,
+    ): RestApi = RestApiImpl(app)
 }

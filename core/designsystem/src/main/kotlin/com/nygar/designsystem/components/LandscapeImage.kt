@@ -14,14 +14,15 @@ import com.nygar.designsystem.R
 @Composable
 fun LandscapeImage(
     modifier: Modifier = Modifier,
-    image: String = ""
-){
+    image: String = "",
+) {
     AsyncImage(
         modifier = modifier.fillMaxWidth(),
-        model = ImageRequest.Builder(LocalContext.current)
-            .data(image)
-            .crossfade(true)
-            .build(),
+        model =
+            ImageRequest.Builder(LocalContext.current)
+                .data(image)
+                .crossfade(true)
+                .build(),
         placeholder = painterResource(id = R.drawable.ic_placeholder_background),
         contentDescription = null,
         contentScale = ContentScale.FillWidth,
@@ -30,6 +31,6 @@ fun LandscapeImage(
 
 @Preview()
 @Composable
-fun PreviewLandscapeImage(){
+fun PreviewLandscapeImage() {
     LandscapeImage()
 }

@@ -1,5 +1,7 @@
 package cleancode.ui.view
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,60 +14,111 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
+import cleancode.viewmodel.LoginViewModel
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.nygar.designsystem.components.LottieLoadingView
 import com.nygar.designsystem.theme.ThemeConfig
 
-interface LoginActivityDelegate {
-    fun normalLoginAction()
-
-    fun googleLoginAction()
-}
-
 @Composable
-fun LoginScreen(delegate: LoginActivityDelegate) {
+fun LoginScreen(
+    viewModel: LoginViewModel = hiltViewModel(),
+    onNavigateToMain: () -> Unit,
+) {
+    val mGoogleSignInClient: GoogleSignInClient = GoogleSignIn.getClient(LocalContext.current, viewModel.gso)
+
+    val resultLogIn =
+        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            result.data?.let {
+                viewModel.authWithGoogle(it) {
+                    viewModel.isLogingFinished = true
+                }
+            }
+        }
+
+    LaunchedEffect(viewModel.isAllowLoginNavigate) {
+        if (viewModel.isAllowLoginNavigate) {
+            onNavigateToMain.invoke()
+            viewModel.isShowingAnimation = false
+            viewModel.isLogingFinished = false
+            viewModel.isAnimationComplete = false
+        }
+    }
+
     ConstraintLayout(
         modifier =
             Modifier
                 .fillMaxSize()
                 .padding(ThemeConfig.theme.spacing.sizeSpacing5),
     ) {
-        val (username, password, contentLogin) = createRefs()
+        val (loadingView, userFields, contentLogin) = createRefs()
+        val chain = createVerticalChain(userFields, contentLogin, chainStyle = ChainStyle.Spread)
 
-        LoginUserField(
-            Modifier.constrainAs(username) {
+        constrain(chain) {
+            top.linkTo(parent.top)
+            bottom.linkTo(parent.bottom)
+        }
+
+        Column(
+            Modifier.constrainAs(userFields) {
                 top.linkTo(parent.top, margin = ThemeConfig.theme.spacing.sizeSpacing15)
             },
-        )
-        LoginPassField(
-            Modifier.constrainAs(password) {
-                top.linkTo(username.bottom, margin = ThemeConfig.theme.spacing.sizeSpacing15)
-            },
-        )
+        ) {
+            LoginUserField(
+                Modifier.padding(top = ThemeConfig.theme.spacing.sizeSpacing15),
+            )
+            LoginPassField(
+                Modifier.padding(top = ThemeConfig.theme.spacing.sizeSpacing15),
+            )
+        }
         Column(
             Modifier.constrainAs(contentLogin) {
-                top.linkTo(password.bottom, margin = ThemeConfig.theme.spacing.sizeSpacing15)
+                top.linkTo(userFields.bottom, margin = ThemeConfig.theme.spacing.sizeSpacing15)
                 bottom.linkTo(parent.bottom, margin = ThemeConfig.theme.spacing.sizeSpacing15)
             },
         ) {
-            GoogleBtn(Modifier, delegate)
+            GoogleBtn(Modifier) {
+                viewModel.isLogingFinished = false
+                viewModel.isShowingAnimation = true
+                resultLogIn.launch(mGoogleSignInClient.signInIntent)
+            }
 
             NormalLoginBtn(
                 modifier =
                     Modifier.padding(
                         top = ThemeConfig.theme.spacing.sizeSpacing15,
                     ),
-                delegate,
-            )
+            ) {
+                viewModel.isLogingFinished = true
+                viewModel.isShowingAnimation = true
+            }
+        }
+
+        if (viewModel.isShowingAnimation) {
+            LottieLoadingView(
+                modifier =
+                    Modifier.constrainAs(loadingView) {
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                    },
+            ) {
+                viewModel.isAnimationComplete = true
+            }
         }
     }
 }
@@ -73,11 +126,11 @@ fun LoginScreen(delegate: LoginActivityDelegate) {
 @Composable
 fun GoogleBtn(
     modifier: Modifier,
-    delegate: LoginActivityDelegate,
+    onGoogleLogin: () -> Unit,
 ) {
     Button(
         onClick = {
-            delegate.googleLoginAction()
+            onGoogleLogin.invoke()
         },
         modifier =
             modifier
@@ -104,11 +157,11 @@ fun GoogleBtn(
 @Composable
 fun NormalLoginBtn(
     modifier: Modifier,
-    delegate: LoginActivityDelegate,
+    onNormalLogin: () -> Unit,
 ) {
     Button(
         onClick = {
-            delegate.normalLoginAction()
+            onNormalLogin.invoke()
         },
         modifier =
             modifier

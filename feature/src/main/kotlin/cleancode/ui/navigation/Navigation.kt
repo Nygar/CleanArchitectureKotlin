@@ -1,62 +1,26 @@
 package cleancode.ui.navigation
 
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import cleancode.ui.view.CategoryListScreen
-import cleancode.ui.view.LoginActivityDelegate
 import cleancode.ui.view.LoginScreen
 import cleancode.ui.view.MessageDetailsScreen
 import cleancode.ui.view.MessageListScreen
 import cleancode.ui.view.UserDetailsScreen
 import cleancode.ui.view.UserListScreen
 import cleancode.viewmodel.UserLoggedViewModel
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.nygar.common.ConstantsTesting.TEST_TAG_NAVIGATION_HOST
-import com.nygar.designsystem.components.LottieLoadingView
 import com.nygar.designsystem.components.NavigationDrawerView
 
 @Composable
 fun Navigation(viewModel: UserLoggedViewModel = hiltViewModel()) {
     val userLogged = viewModel.userLoggedSingle
     val navController = rememberNavController()
-
-    val mGoogleSignInClient: GoogleSignInClient = GoogleSignIn.getClient(LocalContext.current, viewModel.gso)
-
-    val resultLogIn =
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            result.data?.let {
-                viewModel.authWithGoogle(it) {
-                    viewModel.isLogingFinished = true
-                }
-            }
-        }
-
-    LaunchedEffect(viewModel.isAllowLoginNavigate) {
-        if (viewModel.isAllowLoginNavigate) {
-            navController.navigate(ROUTER_MAIN)
-            /*
-            navController.navigate(ROUTER_MAIN){
-                popUpTo(ROUTER_LOGIN) {
-                    inclusive = true
-                }
-            }
-
-             */
-            viewModel.isShowingAnimation = false
-            viewModel.isLogingFinished = false
-            viewModel.isAnimationComplete = false
-        }
-    }
 
     NavHost(
         modifier = Modifier.testTag(TEST_TAG_NAVIGATION_HOST),
@@ -66,25 +30,16 @@ fun Navigation(viewModel: UserLoggedViewModel = hiltViewModel()) {
         composable(
             route = NavItem.LoginScreen.route,
         ) {
-            LoginScreen(
-                object : LoginActivityDelegate {
-                    override fun normalLoginAction() {
-                        viewModel.isLogingFinished = true
-                        viewModel.isShowingAnimation = true
+            LoginScreen {
+                navController.navigate(ROUTER_MAIN)
+                /*
+                navController.navigate(ROUTER_MAIN){
+                    popUpTo(ROUTER_LOGIN) {
+                        inclusive = true
                     }
-
-                    override fun googleLoginAction() {
-                        viewModel.isLogingFinished = false
-                        viewModel.isShowingAnimation = true
-                        resultLogIn.launch(mGoogleSignInClient.signInIntent)
-                    }
-                },
-            )
-
-            if (viewModel.isShowingAnimation) {
-                LottieLoadingView {
-                    viewModel.isAnimationComplete = true
                 }
+
+                 */
             }
         }
         composable(
@@ -122,10 +77,10 @@ fun Navigation(viewModel: UserLoggedViewModel = hiltViewModel()) {
             route = NavItem.MessageList.route,
             arguments = NavItem.MessageList.navArgs,
         ) { backStackEntry ->
-            val userId = backStackEntry.arguments?.getInt(ARGUMENT_MESSAGE_LIST_ID)
-            requireNotNull(userId)
+            val categoryId = backStackEntry.arguments?.getInt(ARGUMENT_MESSAGE_LIST_ID)
+            requireNotNull(categoryId)
             MessageListScreen(
-                categoryId = userId,
+                categoryId = categoryId,
                 onNavigateToMessageDetails = {
                     navController.navigate(NavItem.MessageDetail.createNavRoute(it))
                 },
@@ -139,10 +94,10 @@ fun Navigation(viewModel: UserLoggedViewModel = hiltViewModel()) {
             route = NavItem.MessageDetail.route,
             arguments = NavItem.MessageDetail.navArgs,
         ) { backStackEntry ->
-            val userId = backStackEntry.arguments?.getInt(ARGUMENT_MESSAGE_DETAILS_ID)
-            requireNotNull(userId)
+            val messageId = backStackEntry.arguments?.getInt(ARGUMENT_MESSAGE_DETAILS_ID)
+            requireNotNull(messageId)
             MessageDetailsScreen(
-                messageId = userId,
+                messageId = messageId,
             ) {
                 navController.navigateUp()
             }

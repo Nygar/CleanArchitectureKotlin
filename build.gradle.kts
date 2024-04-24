@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.kotlinSerialization) apply false
     alias(libs.plugins.firebasePlugin) apply false
+    alias(libs.plugins.firebaseCrashlyticsPlugin) apply false
     alias(libs.plugins.spotlessPlugin)
 }
 

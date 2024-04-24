@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.firebasePlugin)
+    alias(libs.plugins.firebaseCrashlyticsPlugin)
 }
 
 android {
@@ -47,4 +48,8 @@ dependencies {
 
     androidTestImplementation(libs.hilt.android.testing)
     // kaptAndroidTest(libs.hilt.compiler)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
 }

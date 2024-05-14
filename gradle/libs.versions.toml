@@ -29,7 +29,7 @@ kotlinSerialization = "1.6.0"
 kotlinPluginSerialization = "1.9.23"
 uiTooling = "1.6.7"
 splashScreen = "1.1.0-rc01"
-navigationCompose = "2.7.7"
+navigationCompose = "2.8.0-alpha08"
 coilVersion = "2.4.0"
 spotlessVersion = "6.25.0"
 lifecycleRuntimeCompose = "2.7.0"
@@ -68,7 +68,6 @@ hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", v
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
 retrofit-json = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
-kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
@@ -104,6 +103,9 @@ google-login = { group = "com.google.android.gms", name = "play-services-auth", 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "app" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+# Dependencies for Serialization
+kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 
 
 [plugins]

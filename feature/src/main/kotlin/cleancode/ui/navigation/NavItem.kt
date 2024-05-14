@@ -4,6 +4,9 @@ import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 
+@Deprecated(
+    message = "Old way for navigation, this is deprecated for NavDestination",
+)
 sealed class NavItem(
     val baseRoute: String,
     val navArgs: List<NamedNavArgument> = emptyList(),

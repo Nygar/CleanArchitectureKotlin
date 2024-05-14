@@ -2,6 +2,7 @@ plugins {
     id("cleanarchitecturekotlin.android.library")
     alias(libs.plugins.ksp)
     alias(libs.plugins.hiltPlugin)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 android {
@@ -37,4 +38,6 @@ dependencies {
     implementation(libs.hilt.navigation)
 
     implementation(libs.google.login)
+
+    implementation(libs.kotlin.serialization)
 }

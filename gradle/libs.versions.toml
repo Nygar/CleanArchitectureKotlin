@@ -1,32 +1,33 @@
 [versions]
-agp = "8.3.2"
+agp = "8.4.0"
 app = "8.2.2"
 kotlin = "1.9.23"
+kotlinDsl = "4.4.0"
 kotlinCompile = "1.5.12"
 targetSdk = "34"
 compileSdk = "34"
 minSdk = "28"
-coreKtx = "1.13.0"
+coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-ui-test = "1.6.6"
+ui-test = "1.6.7"
 lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.9.0"
-composeBom = "2024.04.01"
+composeBom = "2024.05.00"
 firebasePluginVersion = "4.4.1"
-firebaseBom = "32.8.1"
-firebaseCrashlytics = "2.9.9"
-googleLogin = "21.1.0"
+firebaseBom = "33.0.0"
+firebaseCrashlytics = "3.0.1"
+googleLogin = "21.1.1"
 appcompat = "1.6.1"
-material = "1.11.0"
+material = "1.12.0"
 hilt = "2.49"
 hiltNav = "1.2.0"
 retrofit = "2.11.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 kotlinSerialization = "1.6.0"
 kotlinPluginSerialization = "1.9.23"
-uiTooling = "1.6.6"
+uiTooling = "1.6.7"
 splashScreen = "1.1.0-rc01"
 navigationCompose = "2.7.7"
 coilVersion = "2.4.0"
@@ -106,6 +107,7 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 
 
 [plugins]
+kotlin-dsl = { id = "org.gradle.kotlin.kotlin-dsl", version.ref = "kotlinDsl" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }

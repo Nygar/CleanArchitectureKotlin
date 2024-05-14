@@ -52,7 +52,7 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     androidTestImplementation(libs.hilt.android.testing)
-    // kaptAndroidTest(libs.hilt.compiler)
+    kspAndroidTest(libs.hilt.compiler)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)

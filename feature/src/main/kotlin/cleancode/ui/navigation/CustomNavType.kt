@@ -14,7 +14,10 @@ class CustomNavType<T : Parcelable>(
     private val clazz: Class<T>,
     private val serializer: KSerializer<T>,
 ) : NavType<T>(isNullableAllowed = false) {
-    override fun get(bundle: Bundle, key: String): T? =
+    override fun get(
+        bundle: Bundle,
+        key: String,
+    ): T? =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             bundle.getParcelable(key, clazz) as T
         } else {
@@ -22,8 +25,11 @@ class CustomNavType<T : Parcelable>(
             bundle.getParcelable(key)
         }
 
-    override fun put(bundle: Bundle, key: String, value: T) =
-        bundle.putParcelable(key, value)
+    override fun put(
+        bundle: Bundle,
+        key: String,
+        value: T,
+    ) = bundle.putParcelable(key, value)
 
     override fun parseValue(value: String): T = Json.decodeFromString(serializer, value)
 

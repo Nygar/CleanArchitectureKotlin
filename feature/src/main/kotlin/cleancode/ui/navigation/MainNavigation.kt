@@ -10,8 +10,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import cleancode.ui.view.CategoryListScreen
 import cleancode.ui.view.LoginScreen
-import cleancode.ui.view.MessageDetailsScreen
-import cleancode.ui.view.MessageListScreen
 import cleancode.ui.view.UserDetailsScreen
 import cleancode.ui.view.UserListScreen
 import cleancode.viewmodel.UserLoggedViewModel
@@ -19,7 +17,10 @@ import com.nygar.common.ConstantsTesting.TEST_TAG_NAVIGATION_HOST
 import com.nygar.designsystem.components.NavigationDrawerView
 
 @Composable
-fun Navigation(viewModel: UserLoggedViewModel = hiltViewModel()) {
+fun MainNavigation(
+    viewModel: UserLoggedViewModel = hiltViewModel(),
+    onNavigateToMessage: (Int) -> Unit
+) {
     val userLogged = viewModel.userLoggedSingle
     val navController = rememberNavController()
 
@@ -47,7 +48,7 @@ fun Navigation(viewModel: UserLoggedViewModel = hiltViewModel()) {
                 avatarUrl = userLogged?.avatarUrl ?: "",
                 navigateToCategoryList = {
                     CategoryListScreen {
-                        navController.navigate(NavDestination.MessageList(it))
+                        onNavigateToMessage(it)
                     }
                 },
                 navigateToUserList = {
@@ -65,36 +66,6 @@ fun Navigation(viewModel: UserLoggedViewModel = hiltViewModel()) {
             val router = backStackEntry.toRoute<NavDestination.UserDetail>()
             UserDetailsScreen(
                 userId = router.userId,
-            ) {
-                navController.navigateUp()
-            }
-        }
-
-        composable<NavDestination.MessageList> { backStackEntry ->
-            /*
-            val categoryId = backStackEntry.arguments?.getInt(ARGUMENT_MESSAGE_LIST_ID)
-            requireNotNull(categoryId)
-             */
-            val router = backStackEntry.toRoute<NavDestination.MessageList>()
-            MessageListScreen(
-                categoryId = router.categoryId,
-                onNavigateToMessageDetails = {
-                    navController.navigate(NavDestination.MessageDetail(it))
-                },
-                onNavigateBack = {
-                    navController.navigateUp()
-                },
-            )
-        }
-
-        composable<NavDestination.MessageDetail> { backStackEntry ->
-            /*
-            val messageId = backStackEntry.arguments?.getInt(ARGUMENT_MESSAGE_DETAILS_ID)
-            requireNotNull(messageId)
-             */
-            val router = backStackEntry.toRoute<NavDestination.MessageDetail>()
-            MessageDetailsScreen(
-                messageId = router.messageId,
             ) {
                 navController.navigateUp()
             }

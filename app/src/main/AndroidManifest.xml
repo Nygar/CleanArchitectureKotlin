@@ -25,5 +25,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="cleancode.ui.MessageActivity"
+            android:theme="@style/Theme.CleanCodeKotlin"
+            android:exported="true"
+            />
+
     </application>
 </manifest>

@@ -1,10 +1,12 @@
 package cleancode.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import cleancode.ui.navigation.Navigation
+import cleancode.ui.navigation.ARGUMENT_MESSAGE_LIST_ID
+import cleancode.ui.navigation.MainNavigation
 import cleancode.ui.util.Analytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.nygar.designsystem.theme.CleanArchitectureKotlinTheme
@@ -28,7 +30,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CleanArchitectureKotlinTheme {
-                Navigation()
+                MainNavigation(
+                    onNavigateToMessage = {
+                        val intent = Intent(this, MessageActivity::class.java)
+                        intent.putExtra(ARGUMENT_MESSAGE_LIST_ID, it)
+                        startActivity(intent)
+                    }
+                )
             }
         }
     }

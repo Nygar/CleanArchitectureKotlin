@@ -18,43 +18,45 @@ fun SkeletonLandscapeImage(
     isLoading: Boolean,
     contentAfterLoading: @Composable () -> Unit,
 ) {
-
-    if(isLoading) {
+    if (isLoading) {
         Column(
             modifier = modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Box(
-                modifier = Modifier
-                    .height(ThemeConfig.theme.spacing.sizeSpacing450)
-                    .aspectRatio(1f)
-                    .shimmerEffect()
+                modifier =
+                    Modifier
+                        .height(ThemeConfig.theme.spacing.sizeSpacing450)
+                        .aspectRatio(1f)
+                        .shimmerEffect(),
             )
 
             Text(
                 text = "",
-                modifier = Modifier
-                    .height(ThemeConfig.theme.spacing.sizeSpacing40)
-                    .fillMaxWidth()
-                    .padding(
-                        top = ThemeConfig.theme.spacing.sizeSpacing20,
-                        start = ThemeConfig.theme.spacing.sizeSpacing100,
-                        end = ThemeConfig.theme.spacing.sizeSpacing100,
-                    )
-                    .shimmerEffect()
+                modifier =
+                    Modifier
+                        .height(ThemeConfig.theme.spacing.sizeSpacing40)
+                        .fillMaxWidth()
+                        .padding(
+                            top = ThemeConfig.theme.spacing.sizeSpacing20,
+                            start = ThemeConfig.theme.spacing.sizeSpacing100,
+                            end = ThemeConfig.theme.spacing.sizeSpacing100,
+                        )
+                        .shimmerEffect(),
             )
 
             Text(
                 text = "",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(ThemeConfig.theme.spacing.sizeSpacing100)
-                    .padding(
-                        top = ThemeConfig.theme.spacing.sizeSpacing20,
-                        bottom = ThemeConfig.theme.spacing.sizeSpacing20,
-                        start = ThemeConfig.theme.spacing.sizeSpacing20,
-                        end = ThemeConfig.theme.spacing.sizeSpacing20,
-                    ).shimmerEffect()
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(ThemeConfig.theme.spacing.sizeSpacing100)
+                        .padding(
+                            top = ThemeConfig.theme.spacing.sizeSpacing20,
+                            bottom = ThemeConfig.theme.spacing.sizeSpacing20,
+                            start = ThemeConfig.theme.spacing.sizeSpacing20,
+                            end = ThemeConfig.theme.spacing.sizeSpacing20,
+                        ).shimmerEffect(),
             )
         }
     } else {

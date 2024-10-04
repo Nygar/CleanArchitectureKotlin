@@ -2,7 +2,6 @@ package cleancode.database.api
 
 import cleancode.entity.UserEntity
 
-
 /**
  * An interface representing a user Cache.
  */

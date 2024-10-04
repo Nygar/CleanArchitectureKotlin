@@ -33,11 +33,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.nygar.designsystem.R
+import com.nygar.designsystem.theme.ThemeConfig
 import kotlinx.coroutines.launch
 
 const val ROUTER_CATEGORY_LIST = "categoryListScreen"
@@ -49,21 +49,18 @@ const val ROUTER_USER_LIST = "userListScreen"
 fun NavigationDrawerView(
     fullName: String = "",
     avatarUrl: String = "",
-    navigateToCategoryList : @Composable () -> Unit,
-    navigateToUserList : @Composable () -> Unit
+    navigateToCategoryList: @Composable () -> Unit,
+    navigateToUserList: @Composable () -> Unit,
 ) {
-
     val navController = rememberNavController()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val topAppBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
 
-
     Surface(
         modifier = Modifier.fillMaxSize().nestedScroll(topAppBarScrollBehavior.nestedScrollConnection),
-        color = MaterialTheme.colorScheme.background
+        color = MaterialTheme.colorScheme.background,
     ) {
-
         ModalNavigationDrawer(
             modifier = Modifier,
             drawerContent = {
@@ -93,20 +90,18 @@ fun NavigationDrawerView(
                                 Icon(imageVector = Icons.Default.Menu, contentDescription = null)
                             }
                         },
-                        scrollBehavior = topAppBarScrollBehavior
+                        scrollBehavior = topAppBarScrollBehavior,
                     )
                 },
-
-                ) { paddingValues ->
+            ) { paddingValues ->
 
                 NavHost(
                     navController = navController,
                     startDestination = ROUTER_CATEGORY_LIST,
-                    modifier = Modifier.padding(paddingValues)
+                    modifier = Modifier.padding(paddingValues),
                 ) {
-
                     composable(ROUTER_CATEGORY_LIST) {
-                       navigateToCategoryList()
+                        navigateToCategoryList()
                     }
 
                     composable(ROUTER_USER_LIST) {
@@ -125,8 +120,8 @@ fun NavigationDrawerLateralContent(
     avatarUrl: String = "",
     navigateToCategory: () -> Unit,
     navigateToUser: () -> Unit,
-    closeDrawer: () -> Unit
-){
+    closeDrawer: () -> Unit,
+) {
     ModalDrawerSheet {
         var selectedRow by rememberSaveable {
             mutableStateOf(ROUTER_CATEGORY_LIST)
@@ -136,15 +131,15 @@ fun NavigationDrawerLateralContent(
             DrawerHeader(
                 modifier = Modifier,
                 fullName = fullName,
-                avatarUrl = avatarUrl
+                avatarUrl = avatarUrl,
             )
-            Spacer(modifier = Modifier.padding(5.dp))
+            Spacer(modifier = Modifier.padding(ThemeConfig.theme.spacing.sizeSpacing4))
             NavigationDrawerItem(
                 modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
                 label = {
                     Text(
                         text = "Messages",
-                        style = MaterialTheme.typography.labelSmall
+                        style = MaterialTheme.typography.labelSmall,
                     )
                 },
                 selected = selectedRow == ROUTER_CATEGORY_LIST,

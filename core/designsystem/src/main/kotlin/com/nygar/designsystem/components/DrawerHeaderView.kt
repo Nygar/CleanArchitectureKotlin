@@ -24,24 +24,25 @@ import com.nygar.designsystem.R
 fun DrawerHeader(
     fullName: String = "",
     avatarUrl: String = "",
-    modifier: Modifier
+    modifier: Modifier,
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.Start,
-        modifier = modifier
-            .background(MaterialTheme.colorScheme.secondary)
-            .padding(16.dp)
-            .fillMaxWidth()
+        modifier =
+            modifier
+                .background(MaterialTheme.colorScheme.secondary)
+                .padding(16.dp)
+                .fillMaxWidth(),
     ) {
-
         AsyncImage(
             model = avatarUrl,
             placeholder = painterResource(id = R.drawable.ic_person_black_24dp),
             contentDescription = null,
-            modifier = modifier
-                .size(70.dp)
-                .clip(CircleShape)
+            modifier =
+                modifier
+                    .size(70.dp)
+                    .clip(CircleShape),
         )
 
         Spacer(modifier = Modifier.padding(5.dp))

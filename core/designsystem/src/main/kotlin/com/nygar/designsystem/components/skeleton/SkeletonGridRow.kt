@@ -16,25 +16,26 @@ import com.nygar.designsystem.theme.ThemeConfig
 @Composable
 fun SkeletonGridRow(
     modifier: Modifier = Modifier,
-    onViewCLickListener: (() -> Unit)? = null
-){
-
+    onViewCLickListener: (() -> Unit)? = null,
+) {
     Card(
-        modifier = modifier
-            .testTag(ConstantsTesting.TEST_TAG_CHARACTER_ROW)
-            .fillMaxWidth()
-            .clickable { onViewCLickListener?.invoke() },
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2
-        ),
+        modifier =
+            modifier
+                .testTag(ConstantsTesting.TEST_TAG_CHARACTER_ROW)
+                .fillMaxWidth()
+                .clickable { onViewCLickListener?.invoke() },
+        elevation =
+            CardDefaults.cardElevation(
+                defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2,
+            ),
         shape = RoundedCornerShape(ThemeConfig.theme.spacing.sizeSpacing8),
     ) {
-
-            Box(
-                modifier = Modifier
+        Box(
+            modifier =
+                Modifier
                     .fillMaxWidth()
                     .aspectRatio(2f)
-                    .shimmerEffect()
-            )
+                    .shimmerEffect(),
+        )
     }
 }

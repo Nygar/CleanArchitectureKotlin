@@ -12,9 +12,10 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 @Module
 @InstallIn(ActivityComponent::class)
 class ActivityModule {
-
     @Provides
-    fun provideSharedPreferences(@ApplicationContext context: Context):SharedPreferences{
+    fun provideSharedPreferences(
+        @ApplicationContext context: Context,
+    ): SharedPreferences {
         return context.getSharedPreferences("APP_SHARED_PREFERENCES", MODE_PRIVATE)
     }
 }

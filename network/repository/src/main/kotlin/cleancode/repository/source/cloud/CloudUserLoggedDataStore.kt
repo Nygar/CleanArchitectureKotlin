@@ -1,7 +1,7 @@
 package cleancode.repository.source.cloud
 
-import cleancode.entity.UserLoggedEntity
 import cleancode.database.api.UserLoggedCache
+import cleancode.entity.UserLoggedEntity
 import cleancode.net.RestApi
 import cleancode.repository.source.UserLoggedDataStore
 
@@ -13,7 +13,6 @@ import cleancode.repository.source.UserLoggedDataStore
  */
 class CloudUserLoggedDataStore(private val restApi: RestApi, private val userLoggedCache: UserLoggedCache) :
     UserLoggedDataStore {
-
     override suspend fun userLoggedEntity(): Result<UserLoggedEntity> {
         return this.restApi.userLoggedEntity().onSuccess(userLoggedCache::put)
     }

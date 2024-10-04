@@ -15,40 +15,44 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MessageCategoryViewModel @Inject constructor(
-    private val usecase: CategoryUsecase
-):ViewModel() {
+class MessageCategoryViewModel
+    @Inject
+    constructor(
+        private val usecase: CategoryUsecase,
+    ) : ViewModel() {
+        var categoryList by mutableStateOf<List<CategoryModel>>(arrayListOf())
 
-    var categoryList by mutableStateOf<List<CategoryModel>>(arrayListOf())
+        private val _categoryListResult =
+            MutableSharedFlow<CategoryResult>(
+                replay = 1,
+                onBufferOverflow = BufferOverflow.DROP_OLDEST,
+            )
+        val categoryListResult: SharedFlow<CategoryResult> = _categoryListResult
 
-    private val _categoryListResult = MutableSharedFlow<CategoryResult>(
-        replay = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-    val categoryListResult: SharedFlow<CategoryResult> = _categoryListResult
+        init {
+            getMessageCategory()
+        }
 
-    init {
-        getMessageCategory()
-    }
-
-    private fun getMessageCategory() {
-        viewModelScope.launch {
-            _categoryListResult.emit(CategoryResult.Loading)
-            usecase.getCategoriesListUsecase().collect{ result ->
-                result.onSuccess {
-                    categoryList = it
-                    _categoryListResult.emit(CategoryResult.Success)
-                }
-                result.onFailure {
-                    _categoryListResult.emit(CategoryResult.Error)
+        private fun getMessageCategory() {
+            viewModelScope.launch {
+                _categoryListResult.emit(CategoryResult.Loading)
+                usecase.getCategoriesListUsecase().collect { result ->
+                    result.onSuccess {
+                        categoryList = it
+                        _categoryListResult.emit(CategoryResult.Success)
+                    }
+                    result.onFailure {
+                        _categoryListResult.emit(CategoryResult.Error)
+                    }
                 }
             }
         }
     }
-}
 
 sealed interface CategoryResult {
     data object Loading : CategoryResult
+
     data object Success : CategoryResult
+
     data object Error : CategoryResult
 }

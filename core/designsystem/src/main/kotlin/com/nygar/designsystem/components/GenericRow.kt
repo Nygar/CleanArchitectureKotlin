@@ -19,8 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.nygar.common.BuildConfig
-import com.nygar.designsystem.R
 import com.nygar.common.ConstantsTesting
+import com.nygar.designsystem.R
 import com.nygar.designsystem.theme.ThemeConfig
 
 @Composable
@@ -30,64 +30,75 @@ fun GenericRow(
     image: String = "",
     id: Int = 0,
     type: TypeRow,
-    onViewCLickListener: ((Int) -> Unit)? = null
-){
-
+    onViewCLickListener: ((Int) -> Unit)? = null,
+) {
     Card(
-        modifier = modifier
-            .testTag(ConstantsTesting.TEST_TAG_COMIC_ROW)
-            .fillMaxWidth()
-            .clickable { onViewCLickListener?.invoke(id) },
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2
-        ),
+        modifier =
+            modifier
+                .testTag(ConstantsTesting.TEST_TAG_COMIC_ROW)
+                .fillMaxWidth()
+                .clickable { onViewCLickListener?.invoke(id) },
+        elevation =
+            CardDefaults.cardElevation(
+                defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2,
+            ),
         shape = RoundedCornerShape(ThemeConfig.theme.spacing.sizeSpacing8),
     ) {
         Row(
             modifier = Modifier,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
+            val placeholder =
+                when (type) {
+                    is TypeRow.UserRow -> {
+                        R.drawable.ic_person_black_24dp
+                    }
+                    is TypeRow.CategoryRow -> {
+                        R.drawable.ic_message_black_24dp
+                    }
+                    is TypeRow.MassageRow -> {
+                        R.drawable.ic_message_black_24dp
+                    }
+                }
 
-            val placeholder = when(type){
-                is TypeRow.UserRow -> { R.drawable.ic_person_black_24dp }
-                is TypeRow.CategoryRow -> { R.drawable.ic_message_black_24dp }
-                is TypeRow.MassageRow -> { R.drawable.ic_message_black_24dp }
-            }
-
-            val imageToShow = if(image == BuildConfig.URL_BASE){
-                placeholder
-            }else{
-                image
-            }
+            val imageToShow =
+                if (image == BuildConfig.URL_BASE) {
+                    placeholder
+                } else {
+                    image
+                }
 
             AsyncImage(
                 model = imageToShow,
                 placeholder = painterResource(id = placeholder),
                 contentDescription = null,
-                modifier = Modifier
-                    .size(ThemeConfig.theme.spacing.sizeSpacing45)
-                    .padding(horizontal = ThemeConfig.theme.spacing.sizeSpacing4),
+                modifier =
+                    Modifier
+                        .size(ThemeConfig.theme.spacing.sizeSpacing45)
+                        .padding(horizontal = ThemeConfig.theme.spacing.sizeSpacing4),
             )
 
             Text(
                 modifier = Modifier,
                 text = title,
                 fontFamily = ThemeConfig.theme.font.comicHelvetic,
-                fontWeight = FontWeight.Medium
+                fontWeight = FontWeight.Medium,
             )
         }
     }
 }
 
-sealed interface TypeRow{
-    data object UserRow: TypeRow
-    data object CategoryRow: TypeRow
-    data object MassageRow: TypeRow
+sealed interface TypeRow {
+    data object UserRow : TypeRow
+
+    data object CategoryRow : TypeRow
+
+    data object MassageRow : TypeRow
 }
 
-@Preview()
+@Preview
 @Composable
-fun PreviewGenericRow(){
+fun PreviewGenericRow() {
     Column {
         GenericRow(
             title = "name",

@@ -1,6 +1,5 @@
 package cleancode.database
 
-
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import cleancode.database.dao.CategoryCacheDao
@@ -15,13 +14,14 @@ import cleancode.entity.UserLoggedEntity
 @Database(
     entities = [UserEntity::class, CategoryEntity::class, UserLoggedEntity::class, MessageEntity::class],
     version = 1,
-    exportSchema = false
+    exportSchema = false,
 )
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun categoryCacheDao(): CategoryCacheDao
-    abstract fun messageCacheDao(): MessageCacheDao
-    abstract fun userCacheDao(): UserCacheDao
-    abstract fun userLoggedCacheDao(): UserLoggedCacheDao
 
+    abstract fun messageCacheDao(): MessageCacheDao
+
+    abstract fun userCacheDao(): UserCacheDao
+
+    abstract fun userLoggedCacheDao(): UserLoggedCacheDao
 }

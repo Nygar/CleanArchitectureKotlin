@@ -21,25 +21,27 @@ import com.nygar.designsystem.theme.ThemeConfig
 @Composable
 fun SkeletonRow(
     modifier: Modifier = Modifier,
-    imageSize: Dp = ThemeConfig.theme.spacing.sizeSpacing65
+    imageSize: Dp = ThemeConfig.theme.spacing.sizeSpacing65,
 ) {
     Card(
-        modifier = modifier
-            .fillMaxWidth(),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2
-        ),
+        modifier =
+            modifier
+                .fillMaxWidth(),
+        elevation =
+            CardDefaults.cardElevation(
+                defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2,
+            ),
         shape = RoundedCornerShape(ThemeConfig.theme.spacing.sizeSpacing8),
     ) {
         Row(
             modifier = Modifier,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-
             Box(
-                modifier = Modifier
-                    .size(imageSize)
-                    .shimmerEffect()
+                modifier =
+                    Modifier
+                        .size(imageSize)
+                        .shimmerEffect(),
             )
 
             Column(
@@ -47,23 +49,25 @@ fun SkeletonRow(
                     .padding(horizontal = ThemeConfig.theme.spacing.sizeSpacing8)
                     .fillMaxWidth(),
                 verticalArrangement = Arrangement.SpaceEvenly,
-                horizontalAlignment = Alignment.Start
+                horizontalAlignment = Alignment.Start,
             ) {
                 Text(
                     text = "",
-                    modifier = Modifier
-                        .padding(bottom = ThemeConfig.theme.spacing.sizeSpacing8)
-                        .height(ThemeConfig.theme.spacing.sizeSpacing20)
-                        .fillMaxWidth(0.8f)
-                        .shimmerEffect()
+                    modifier =
+                        Modifier
+                            .padding(bottom = ThemeConfig.theme.spacing.sizeSpacing8)
+                            .height(ThemeConfig.theme.spacing.sizeSpacing20)
+                            .fillMaxWidth(0.8f)
+                            .shimmerEffect(),
                 )
 
                 Text(
                     text = "",
-                    modifier = Modifier
-                        .height(ThemeConfig.theme.spacing.sizeSpacing20)
-                        .fillMaxWidth(0.6f)
-                        .shimmerEffect()
+                    modifier =
+                        Modifier
+                            .height(ThemeConfig.theme.spacing.sizeSpacing20)
+                            .fillMaxWidth(0.6f)
+                            .shimmerEffect(),
                 )
             }
         }

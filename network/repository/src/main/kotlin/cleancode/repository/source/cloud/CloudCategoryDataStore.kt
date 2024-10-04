@@ -1,6 +1,5 @@
 package cleancode.repository.source.cloud
 
-
 import cleancode.database.api.CategoryCache
 import cleancode.entity.CategoryEntity
 import cleancode.net.RestApi
@@ -14,7 +13,6 @@ import cleancode.repository.source.CategoryDataStore
  */
 class CloudCategoryDataStore(private val restApi: RestApi, private val categoryCache: CategoryCache) :
     CategoryDataStore {
-
     override suspend fun categoryEntityList(): Result<List<CategoryEntity>> {
         return restApi.categoryEntityList()
     }

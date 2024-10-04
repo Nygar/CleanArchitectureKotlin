@@ -17,32 +17,36 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.IntSize
 
-fun Modifier.shimmerEffect(): Modifier = composed {
-    var size by remember {
-        mutableStateOf(IntSize.Zero)
-    }
-    val transition = rememberInfiniteTransition(label = "infiniteTransition")
-    val startOffsetX by transition.animateFloat(
-        initialValue = -2 * size.width.toFloat(),
-        targetValue = 2 * size.width.toFloat(),
-        animationSpec = infiniteRepeatable(
-            animation = tween(500)
-        ),
-        label = "animation"
-    )
-
-    background(
-        brush = Brush.linearGradient(
-            colors = listOf(
-                Color(0xFFB8B5B5),
-                Color(0xFF8F8B8B),
-                Color(0xFFB8B5B5),
-            ),
-            start = Offset(startOffsetX, 0f),
-            end = Offset(startOffsetX + size.width.toFloat(), size.height.toFloat())
-        )
-    )
-        .onGloballyPositioned {
-            size = it.size
+fun Modifier.shimmerEffect(): Modifier =
+    composed {
+        var size by remember {
+            mutableStateOf(IntSize.Zero)
         }
-}
+        val transition = rememberInfiniteTransition(label = "infiniteTransition")
+        val startOffsetX by transition.animateFloat(
+            initialValue = -2 * size.width.toFloat(),
+            targetValue = 2 * size.width.toFloat(),
+            animationSpec =
+                infiniteRepeatable(
+                    animation = tween(500),
+                ),
+            label = "animation",
+        )
+
+        background(
+            brush =
+                Brush.linearGradient(
+                    colors =
+                        listOf(
+                            Color(0xFFB8B5B5),
+                            Color(0xFF8F8B8B),
+                            Color(0xFFB8B5B5),
+                        ),
+                    start = Offset(startOffsetX, 0f),
+                    end = Offset(startOffsetX + size.width.toFloat(), size.height.toFloat()),
+                ),
+        )
+            .onGloballyPositioned {
+                size = it.size
+            }
+    }

@@ -6,15 +6,18 @@ import androidx.compose.ui.text.font.FontWeight
 import com.nygar.designsystem.R
 
 class Font {
-    val actionsComic: FontFamily = FontFamily(
-        Font(R.font.action_comics),
-    )
+    val actionsComic: FontFamily =
+        FontFamily(
+            Font(R.font.action_comics),
+        )
 
-    val comicHelvetic: FontFamily = FontFamily(
-        Font(R.font.comichelvetic_medium, FontWeight.Medium),
-    )
+    val comicHelvetic: FontFamily =
+        FontFamily(
+            Font(R.font.comichelvetic_medium, FontWeight.Medium),
+        )
 
-    val heroesLegend: FontFamily = FontFamily(
-        Font(R.font.heroes_legend),
-    )
+    val heroesLegend: FontFamily =
+        FontFamily(
+            Font(R.font.heroes_legend),
+        )
 }

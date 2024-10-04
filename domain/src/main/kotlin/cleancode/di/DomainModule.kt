@@ -17,26 +17,16 @@ import dagger.hilt.android.components.ViewModelComponent
 @Module
 @InstallIn(ViewModelComponent::class)
 class DomainModule {
-
-
-    //Database
+    // Database
     @Provides
-    fun provideCategoryUsecase(
-        repository: DataRepository
-    ): CategoryUsecase = CategoryUsecaseImpl(repository)
+    fun provideCategoryUsecase(repository: DataRepository): CategoryUsecase = CategoryUsecaseImpl(repository)
 
     @Provides
-    fun provideMessageUsecase(
-        repository: DataRepository
-    ): MessageUsecase = MessageUsecaseImpl(repository)
+    fun provideMessageUsecase(repository: DataRepository): MessageUsecase = MessageUsecaseImpl(repository)
 
     @Provides
-    fun provideUserUsecase(
-        repository: DataRepository
-    ): UserUsecase = UserUsecaseImpl(repository)
+    fun provideUserUsecase(repository: DataRepository): UserUsecase = UserUsecaseImpl(repository)
 
     @Provides
-    fun provideUserLoggedUsecase(
-        repository: DataRepository
-    ): UserLoggedUsecase = UserLoggedUsecaseImpl(repository)
+    fun provideUserLoggedUsecase(repository: DataRepository): UserLoggedUsecase = UserLoggedUsecaseImpl(repository)
 }

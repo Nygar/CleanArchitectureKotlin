@@ -27,9 +27,9 @@ import com.nygar.designsystem.theme.ThemeConfig
 @Composable
 fun MessageListScreen(
     viewModel: MessageListViewModel = hiltViewModel(),
-    categoryId : Int,
+    categoryId: Int,
     onNavigateToMessageDetails: (Int) -> Unit,
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
 ) {
     val messageList = viewModel.messageList
 
@@ -49,38 +49,36 @@ fun MessageListScreen(
                     }) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
                     }
-                }
+                },
             )
         },
-
-        ){ paddingValues ->
+    ) { paddingValues ->
 
         LazyColumn(
-            modifier = Modifier.padding(paddingValues)
+            modifier = Modifier.padding(paddingValues),
         ) {
-            if(messageList.isEmpty()) {
+            if (messageList.isEmpty()) {
                 items(Constants.PAGE_SIZE) {
                     SkeletonGridRow(
                         modifier = Modifier.padding(all = ThemeConfig.theme.spacing.sizeSpacing8),
                     )
                 }
-            }else {
-                items(messageList.size){index ->
+            } else {
+                items(messageList.size) { index ->
                     messageList[index].let { message ->
                         GenericRow(
-                            modifier = Modifier.padding( all = ThemeConfig.theme.spacing.sizeSpacing8),
+                            modifier = Modifier.padding(all = ThemeConfig.theme.spacing.sizeSpacing8),
                             id = message.messageId,
                             title = message.name,
                             image = message.imageUrl,
                             type = TypeRow.UserRow,
                             onViewCLickListener = {
                                 onNavigateToMessageDetails(it)
-                            }
+                            },
                         )
                     }
                 }
             }
         }
     }
-
 }

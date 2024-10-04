@@ -7,7 +7,7 @@ import androidx.room.Query
 import cleancode.entity.UserEntity
 
 @Dao
-interface UserCacheDao{
+interface UserCacheDao {
     @Insert
     fun insertSingle(entity: UserEntity)
 
@@ -25,7 +25,6 @@ interface UserCacheDao{
 
     @Query("Delete from UserEntity")
     fun deleteAll()
-
 
     @Delete
     fun delete(entity: UserEntity)

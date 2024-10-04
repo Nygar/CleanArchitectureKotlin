@@ -2,6 +2,7 @@ package com.nygar.common
 
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+
 object UtilCryptMD5 {
     private fun md5(stringToHash: String): String {
         val md5 = "MD5"
@@ -20,7 +21,6 @@ object UtilCryptMD5 {
                 hexString.append(h)
             }
             return hexString.toString()
-
         } catch (e: NoSuchAlgorithmException) {
             e.printStackTrace()
         }
@@ -28,6 +28,9 @@ object UtilCryptMD5 {
         return ""
     }
 
-    fun generateHash(time: Long, privateKey: String, publicKey: String): String =
-        md5(time.toString() + privateKey + publicKey)
+    fun generateHash(
+        time: Long,
+        privateKey: String,
+        publicKey: String,
+    ): String = md5(time.toString() + privateKey + publicKey)
 }

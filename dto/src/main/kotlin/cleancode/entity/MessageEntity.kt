@@ -12,14 +12,10 @@ data class MessageEntity(
     @PrimaryKey
     @ColumnInfo(name = "id")
     var id: Int = 0,
-
     @ColumnInfo(name = "image_url")
     var image_url: String = "",
-
     @ColumnInfo(name = "name")
     var name: String = "",
-
     @ColumnInfo(name = "description")
-    var description: String = ""
-
+    var description: String = "",
 )

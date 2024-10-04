@@ -9,7 +9,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface RestEndPoint {
-
     /**
      * Retrieves an [Result] which will emit a [UserEntity].
      * Api url for getting a user profile: Remember to concatenate id + 'json'
@@ -17,7 +16,9 @@ interface RestEndPoint {
      * @param userId The user id used to get user data.
      */
     @GET("user_{userId}.json")
-    fun userEntityById(@Path("userId") userId: Int): Call<UserEntity>
+    fun userEntityById(
+        @Path("userId") userId: Int,
+    ): Call<UserEntity>
 
     /**
      * Retrieves an [Result] which will emit a List of [UserEntity].
@@ -47,8 +48,9 @@ interface RestEndPoint {
      * @param messageId The user id used to get user data.
      */
     @GET("message_{messageId}.json")
-    fun messageEntityById(@Path("messageId") messageId: Int): Call<MessageEntity>
-
+    fun messageEntityById(
+        @Path("messageId") messageId: Int,
+    ): Call<MessageEntity>
 
     /**
      * Retrieves an [Result] which will emit a List of [MessageEntity].
@@ -64,6 +66,7 @@ interface RestEndPoint {
      * @param categoryId The user id used to get user data.
      */
     @GET("category_{categoryId}.json")
-    fun categoryEntityById(@Path("categoryId") categoryId: Int): Call<CategoryEntity>
-
+    fun categoryEntityById(
+        @Path("categoryId") categoryId: Int,
+    ): Call<CategoryEntity>
 }

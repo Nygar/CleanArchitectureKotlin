@@ -3,7 +3,6 @@ package cleancode.repository.source
 import cleancode.entity.CategoryEntity
 import cleancode.entity.MessageEntity
 
-
 interface CategoryDataStore {
     /**
      * Get an [Result] which will emit a List of [MessageEntity].

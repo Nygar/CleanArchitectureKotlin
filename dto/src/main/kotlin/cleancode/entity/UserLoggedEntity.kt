@@ -9,11 +9,8 @@ data class UserLoggedEntity(
     @PrimaryKey
     @ColumnInfo(name = "id")
     var id: Int = 0,
-
     @ColumnInfo(name = "avatar_url")
     var avatar_url: String = "",
-
     @ColumnInfo(name = "full_name")
-    var full_name: String = ""
-
+    var full_name: String = "",
 )

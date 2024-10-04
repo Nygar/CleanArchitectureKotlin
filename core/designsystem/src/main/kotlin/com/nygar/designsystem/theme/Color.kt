@@ -14,12 +14,12 @@ val AppleRed = Color(0xFFff0800)
 val Night = Color(0xFF111111)
 val FaluRed = Color(0xFF801818)
 
-data class CustomColor (
-    val colorRedLight : Color = Color(0xFFff8480),
-    val colorAppleRed : Color = Color(0xFFff0800),
-    val colorNight : Color = Color(0xFF111111),
-    val colorFaluRed : Color = Color(0xFF801818),
-    val colorWhite : Color = Color(0xFFFFFFFF),
-    val colorGrey : Color = Color(0xFFE0E0E0),
-    val colorGrey60 : Color = Color(0x80E0E0E0)
+data class CustomColor(
+    val colorRedLight: Color = Color(0xFFff8480),
+    val colorAppleRed: Color = Color(0xFFff0800),
+    val colorNight: Color = Color(0xFF111111),
+    val colorFaluRed: Color = Color(0xFF801818),
+    val colorWhite: Color = Color(0xFFFFFFFF),
+    val colorGrey: Color = Color(0xFFE0E0E0),
+    val colorGrey60: Color = Color(0x80E0E0E0),
 )

@@ -1,6 +1,5 @@
 package com.nygar.designsystem
 
-
 import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -21,9 +20,8 @@ class CharacterRowTest {
             CharacterRow(
                 characterName = "MarvelTest",
                 characterAvatar = "",
-                numComics = 0
+                numComics = 0,
             ) {
-
             }
         }
     }

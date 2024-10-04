@@ -9,11 +9,11 @@ import cleancode.entity.UserEntity
 import cleancode.entity.UserLoggedEntity
 import cleancode.errors.Error
 import com.nygar.common.BuildConfig
+import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
-import okhttp3.OkHttpClient
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -22,154 +22,210 @@ import kotlin.coroutines.suspendCoroutine
 /**
  *  [RestApi] implementation for retrieving data from the network.
  */
-class RestApiImpl (context: Context) : RestApi {
+class RestApiImpl(context: Context) : RestApi {
+    private var client =
+        OkHttpClient.Builder()
+            .build()
 
-    private var client = OkHttpClient.Builder()
-        .build()
+    private val retrofit =
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.URL_BASE)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(BuildConfig.URL_BASE)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(client)
-        .build()
+    private var retrofitAPI: RestEndPoint = retrofit.create(RestEndPoint::class.java)
 
-    private var retrofitAPI: RestEndPoint =  retrofit.create(RestEndPoint::class.java)
-
-
-    /*USERS*/
+    // USERS
     override suspend fun userEntityList(): Result<List<UserEntity>> {
         return suspendCoroutine { result ->
-            retrofitAPI.userEntityList().enqueue(object :
-                Callback<List<UserEntity>> {
-                override fun onResponse(call: Call<List<UserEntity>>, response: Response<List<UserEntity>>) {
-                    response.body()?.let { body ->
-                        result.resume(Result.success(body))
-                    } ?: run {
-                        result.resumeWithException(Error.NetworkError())
+            retrofitAPI.userEntityList().enqueue(
+                object :
+                    Callback<List<UserEntity>> {
+                    override fun onResponse(
+                        call: Call<List<UserEntity>>,
+                        response: Response<List<UserEntity>>,
+                    ) {
+                        response.body()?.let { body ->
+                            result.resume(Result.success(body))
+                        } ?: run {
+                            result.resumeWithException(Error.NetworkError())
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<List<UserEntity>>, t: Throwable) {
-                    result.resumeWithException(t)
-                }
-            })
+                    override fun onFailure(
+                        call: Call<List<UserEntity>>,
+                        t: Throwable,
+                    ) {
+                        result.resumeWithException(t)
+                    }
+                },
+            )
         }
     }
 
     override suspend fun userEntityById(userId: Int): Result<UserEntity> {
         return suspendCoroutine { result ->
-            retrofitAPI.userEntityById(userId).enqueue(object :
-                Callback<UserEntity> {
-                override fun onResponse(call: Call<UserEntity>, response: Response<UserEntity>) {
-                    response.body()?.let { body ->
-                        result.resume(Result.success(body))
-                    } ?: run {
-                        result.resumeWithException(Error.NetworkError())
+            retrofitAPI.userEntityById(userId).enqueue(
+                object :
+                    Callback<UserEntity> {
+                    override fun onResponse(
+                        call: Call<UserEntity>,
+                        response: Response<UserEntity>,
+                    ) {
+                        response.body()?.let { body ->
+                            result.resume(Result.success(body))
+                        } ?: run {
+                            result.resumeWithException(Error.NetworkError())
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<UserEntity>, t: Throwable) {
-                    result.resumeWithException(t)
-                }
-            })
+                    override fun onFailure(
+                        call: Call<UserEntity>,
+                        t: Throwable,
+                    ) {
+                        result.resumeWithException(t)
+                    }
+                },
+            )
         }
     }
 
-    /*USER LOGGED*/
+    // USER LOGGED
     override suspend fun userLoggedEntity(): Result<UserLoggedEntity> {
         return suspendCoroutine { result ->
-            retrofitAPI.userLoggedEntity().enqueue(object :
-                Callback<UserLoggedEntity> {
-                override fun onResponse(call: Call<UserLoggedEntity>, response: Response<UserLoggedEntity>) {
-                    response.body()?.let { body ->
-                        result.resume(Result.success(body))
-                    } ?: run {
-                        result.resumeWithException(Error.NetworkError())
+            retrofitAPI.userLoggedEntity().enqueue(
+                object :
+                    Callback<UserLoggedEntity> {
+                    override fun onResponse(
+                        call: Call<UserLoggedEntity>,
+                        response: Response<UserLoggedEntity>,
+                    ) {
+                        response.body()?.let { body ->
+                            result.resume(Result.success(body))
+                        } ?: run {
+                            result.resumeWithException(Error.NetworkError())
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<UserLoggedEntity>, t: Throwable) {
-                    result.resumeWithException(t)
-                }
-            })
+                    override fun onFailure(
+                        call: Call<UserLoggedEntity>,
+                        t: Throwable,
+                    ) {
+                        result.resumeWithException(t)
+                    }
+                },
+            )
         }
     }
 
-    /*MESSAGES*/
+    // MESSAGES
     override suspend fun messageEntityList(): Result<List<MessageEntity>> {
         return suspendCoroutine { result ->
-            retrofitAPI.messageEntityList().enqueue(object :
-                Callback<List<MessageEntity>> {
-                override fun onResponse(call: Call<List<MessageEntity>>, response: Response<List<MessageEntity>>) {
-                    response.body()?.let { body ->
-                        result.resume(Result.success(body))
-                    } ?: run {
-                        result.resumeWithException(Error.NetworkError())
+            retrofitAPI.messageEntityList().enqueue(
+                object :
+                    Callback<List<MessageEntity>> {
+                    override fun onResponse(
+                        call: Call<List<MessageEntity>>,
+                        response: Response<List<MessageEntity>>,
+                    ) {
+                        response.body()?.let { body ->
+                            result.resume(Result.success(body))
+                        } ?: run {
+                            result.resumeWithException(Error.NetworkError())
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<List<MessageEntity>>, t: Throwable) {
-                    result.resumeWithException(t)
-                }
-            })
+                    override fun onFailure(
+                        call: Call<List<MessageEntity>>,
+                        t: Throwable,
+                    ) {
+                        result.resumeWithException(t)
+                    }
+                },
+            )
         }
     }
 
     override suspend fun messageEntityById(messageId: Int): Result<MessageEntity> {
         return suspendCoroutine { result ->
-            retrofitAPI.messageEntityById(messageId).enqueue(object :
-                Callback<MessageEntity> {
-                override fun onResponse(call: Call<MessageEntity>, response: Response<MessageEntity>) {
-                    response.body()?.let { body ->
-                        result.resume(Result.success(body))
-                    } ?: run {
-                        result.resumeWithException(Error.NetworkError())
+            retrofitAPI.messageEntityById(messageId).enqueue(
+                object :
+                    Callback<MessageEntity> {
+                    override fun onResponse(
+                        call: Call<MessageEntity>,
+                        response: Response<MessageEntity>,
+                    ) {
+                        response.body()?.let { body ->
+                            result.resume(Result.success(body))
+                        } ?: run {
+                            result.resumeWithException(Error.NetworkError())
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<MessageEntity>, t: Throwable) {
-                    result.resumeWithException(t)
-                }
-            })
+                    override fun onFailure(
+                        call: Call<MessageEntity>,
+                        t: Throwable,
+                    ) {
+                        result.resumeWithException(t)
+                    }
+                },
+            )
         }
     }
 
-    /*CATEGORIES*/
+    // CATEGORIES
     override suspend fun categoryEntityList(): Result<List<CategoryEntity>> {
         return suspendCoroutine { result ->
-            retrofitAPI.categoryEntityList().enqueue(object :
-                Callback<List<CategoryEntity>> {
-                override fun onResponse(call: Call<List<CategoryEntity>>, response: Response<List<CategoryEntity>>) {
-                    response.body()?.let { body ->
-                        result.resume(Result.success(body))
-                    } ?: run {
-                        result.resumeWithException(Error.NetworkError())
+            retrofitAPI.categoryEntityList().enqueue(
+                object :
+                    Callback<List<CategoryEntity>> {
+                    override fun onResponse(
+                        call: Call<List<CategoryEntity>>,
+                        response: Response<List<CategoryEntity>>,
+                    ) {
+                        response.body()?.let { body ->
+                            result.resume(Result.success(body))
+                        } ?: run {
+                            result.resumeWithException(Error.NetworkError())
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<List<CategoryEntity>>, t: Throwable) {
-                    result.resumeWithException(t)
-                }
-            })
+                    override fun onFailure(
+                        call: Call<List<CategoryEntity>>,
+                        t: Throwable,
+                    ) {
+                        result.resumeWithException(t)
+                    }
+                },
+            )
         }
     }
 
     override suspend fun categoryEntityById(categoryId: Int): Result<CategoryEntity> {
         return suspendCoroutine { result ->
-            retrofitAPI.categoryEntityById(categoryId).enqueue(object :
-                Callback<CategoryEntity> {
-                override fun onResponse(call: Call<CategoryEntity>, response: Response<CategoryEntity>) {
-                    response.body()?.let { body ->
-                        result.resume(Result.success(body))
-                    } ?: run {
-                        result.resumeWithException(Error.NetworkError())
+            retrofitAPI.categoryEntityById(categoryId).enqueue(
+                object :
+                    Callback<CategoryEntity> {
+                    override fun onResponse(
+                        call: Call<CategoryEntity>,
+                        response: Response<CategoryEntity>,
+                    ) {
+                        response.body()?.let { body ->
+                            result.resume(Result.success(body))
+                        } ?: run {
+                            result.resumeWithException(Error.NetworkError())
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<CategoryEntity>, t: Throwable) {
-                    result.resumeWithException(t)
-                }
-            })
+                    override fun onFailure(
+                        call: Call<CategoryEntity>,
+                        t: Throwable,
+                    ) {
+                        result.resumeWithException(t)
+                    }
+                },
+            )
         }
     }
 

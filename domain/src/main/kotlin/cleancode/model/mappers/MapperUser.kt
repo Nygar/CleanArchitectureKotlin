@@ -6,7 +6,6 @@ import com.nygar.common.BuildConfig
 import java.util.ArrayList
 
 object MapperUser {
-
     /**
      * Transform a [UserEntity] into an [UserModel].
      *

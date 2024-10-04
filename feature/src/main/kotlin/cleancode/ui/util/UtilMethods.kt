@@ -1,8 +1,7 @@
 package cleancode.ui.util
 
 class UtilMethods {
-
-    fun getResponse(): Boolean{
+    fun getResponse(): Boolean {
         return true
     }
 }

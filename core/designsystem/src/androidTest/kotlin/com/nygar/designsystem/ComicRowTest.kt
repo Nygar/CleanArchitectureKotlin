@@ -20,9 +20,8 @@ class ComicRowTest {
             ComicRow(
                 name = "MarvelTest",
                 avatar = "",
-                description = "Description"
-            ){
-
+                description = "Description",
+            ) {
             }
         }
     }

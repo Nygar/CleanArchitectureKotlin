@@ -1,13 +1,11 @@
 package com.nygar.common
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class UtilCryptMD5UnitTest {
     @Test
     fun testGenerateHash() {
-
         val time: Long = 300
         val publicKey = "123456"
         val privateKey = "123456"

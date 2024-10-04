@@ -7,7 +7,7 @@ import androidx.room.Query
 import cleancode.entity.CategoryEntity
 
 @Dao
-interface CategoryCacheDao{
+interface CategoryCacheDao {
     @Insert
     fun insertSingle(entity: CategoryEntity)
 

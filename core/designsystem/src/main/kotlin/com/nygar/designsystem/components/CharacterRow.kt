@@ -23,8 +23,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.nygar.designsystem.R
 import com.nygar.common.ConstantsTesting
+import com.nygar.designsystem.R
 import com.nygar.designsystem.theme.ThemeConfig
 
 @Composable
@@ -33,46 +33,48 @@ fun CharacterRow(
     characterName: String = "",
     characterAvatar: String = "",
     numComics: Int = 0,
-    onViewCLickListener: (() -> Unit)? = null
-){
-
+    onViewCLickListener: (() -> Unit)? = null,
+) {
     Card(
-        modifier = modifier
-            .testTag(ConstantsTesting.TEST_TAG_CHARACTER_ROW)
-            .fillMaxWidth()
-            .clickable { onViewCLickListener?.invoke() },
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2
-        ),
+        modifier =
+            modifier
+                .testTag(ConstantsTesting.TEST_TAG_CHARACTER_ROW)
+                .fillMaxWidth()
+                .clickable { onViewCLickListener?.invoke() },
+        elevation =
+            CardDefaults.cardElevation(
+                defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2,
+            ),
         shape = RoundedCornerShape(ThemeConfig.theme.spacing.sizeSpacing8),
     ) {
-
-        Box{
+        Box {
             AsyncImage(
                 model = characterAvatar,
                 placeholder = painterResource(id = R.drawable.ic_splash),
                 contentDescription = null,
                 contentScale = ContentScale.FillWidth,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(2f)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(2f),
             )
 
             Text(
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(
-                        top = ThemeConfig.theme.spacing.sizeSpacing8,
-                        end = ThemeConfig.theme.spacing.sizeSpacing20,
-                    )
-                    .drawBehind {
-                        drawCircle(
-                            color = ThemeConfig.theme.color.colorFaluRed,
-                            radius = (this.size.maxDimension / 1.5).toFloat()
+                modifier =
+                    Modifier
+                        .align(Alignment.TopEnd)
+                        .padding(
+                            top = ThemeConfig.theme.spacing.sizeSpacing8,
+                            end = ThemeConfig.theme.spacing.sizeSpacing20,
                         )
-                    },
+                        .drawBehind {
+                            drawCircle(
+                                color = ThemeConfig.theme.color.colorFaluRed,
+                                radius = (this.size.maxDimension / 1.5).toFloat(),
+                            )
+                        },
                 text = numComics.toString(),
-                color = ThemeConfig.theme.color.colorWhite
+                color = ThemeConfig.theme.color.colorWhite,
             )
 
             Column(
@@ -89,7 +91,7 @@ fun CharacterRow(
                     fontSize = 26.sp,
                     color = ThemeConfig.theme.color.colorFaluRed,
                     fontFamily = ThemeConfig.theme.font.comicHelvetic,
-                    fontWeight = FontWeight.Medium
+                    fontWeight = FontWeight.Medium,
                 )
             }
         }
@@ -98,7 +100,7 @@ fun CharacterRow(
 
 @Preview()
 @Composable
-fun PreviewCharacterRow(){
+fun PreviewCharacterRow() {
     Column {
         CharacterRow()
     }

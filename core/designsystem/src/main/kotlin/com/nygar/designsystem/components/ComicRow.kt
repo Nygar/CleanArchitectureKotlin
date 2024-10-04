@@ -19,8 +19,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
-import com.nygar.designsystem.R
 import com.nygar.common.ConstantsTesting
+import com.nygar.designsystem.R
 import com.nygar.designsystem.theme.ThemeConfig
 
 @Composable
@@ -29,31 +29,32 @@ fun ComicRow(
     name: String = "",
     avatar: String = "",
     description: String = "",
-    onViewCLickListener: (() -> Unit)? = null
-){
-
+    onViewCLickListener: (() -> Unit)? = null,
+) {
     Card(
-        modifier = modifier
-            .testTag(ConstantsTesting.TEST_TAG_COMIC_ROW)
-            .fillMaxWidth()
-            .clickable { onViewCLickListener?.invoke() },
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2
-        ),
+        modifier =
+            modifier
+                .testTag(ConstantsTesting.TEST_TAG_COMIC_ROW)
+                .fillMaxWidth()
+                .clickable { onViewCLickListener?.invoke() },
+        elevation =
+            CardDefaults.cardElevation(
+                defaultElevation = ThemeConfig.theme.spacing.sizeSpacing2,
+            ),
         shape = RoundedCornerShape(ThemeConfig.theme.spacing.sizeSpacing8),
     ) {
         Row(
             modifier = Modifier,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-
             AsyncImage(
                 model = avatar,
                 placeholder = painterResource(id = R.drawable.ic_splash),
                 contentDescription = null,
-                modifier = Modifier
-                    .size(ThemeConfig.theme.spacing.sizeSpacing200)
-                    .padding(horizontal = ThemeConfig.theme.spacing.sizeSpacing4),
+                modifier =
+                    Modifier
+                        .size(ThemeConfig.theme.spacing.sizeSpacing200)
+                        .padding(horizontal = ThemeConfig.theme.spacing.sizeSpacing4),
             )
 
             Column(
@@ -61,20 +62,20 @@ fun ComicRow(
                     .padding(end = ThemeConfig.theme.spacing.sizeSpacing8)
                     .fillMaxWidth(),
                 verticalArrangement = Arrangement.SpaceEvenly,
-                horizontalAlignment = Alignment.Start
+                horizontalAlignment = Alignment.Start,
             ) {
                 Text(
                     modifier = Modifier,
                     text = name,
                     fontFamily = ThemeConfig.theme.font.comicHelvetic,
-                    fontWeight = FontWeight.Medium
+                    fontWeight = FontWeight.Medium,
                 )
 
                 Text(
                     modifier = Modifier.padding(top = ThemeConfig.theme.spacing.sizeSpacing20),
                     text = description,
                     fontFamily = ThemeConfig.theme.font.comicHelvetic,
-                    fontWeight = FontWeight.Medium
+                    fontWeight = FontWeight.Medium,
                 )
             }
         }
@@ -83,7 +84,7 @@ fun ComicRow(
 
 @Preview()
 @Composable
-fun PreviewComicRow(){
+fun PreviewComicRow() {
     Column {
         ComicRow()
     }

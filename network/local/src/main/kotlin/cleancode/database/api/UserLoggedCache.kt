@@ -2,12 +2,10 @@ package cleancode.database.api
 
 import cleancode.entity.UserLoggedEntity
 
-
 /**
  * An interface representing a user logged Cache.
  */
 interface UserLoggedCache {
-
     /**
      * Checks if an element (UserLogged) exists in the cache.
      *

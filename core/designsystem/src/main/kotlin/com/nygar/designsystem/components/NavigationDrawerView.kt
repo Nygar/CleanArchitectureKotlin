@@ -68,8 +68,22 @@ fun NavigationDrawerView(
                     modifier = Modifier.fillMaxWidth(0.7f),
                     fullName = fullName,
                     avatarUrl = avatarUrl,
-                    navigateToCategory = { navController.navigate(ROUTER_CATEGORY_LIST) },
-                    navigateToUser = { navController.navigate(ROUTER_USER_LIST) },
+                    navigateToCategory = {
+                        navController.navigate(ROUTER_CATEGORY_LIST) {
+                            popUpTo(ROUTER_CATEGORY_LIST) {
+                                inclusive = true
+                            }
+                            launchSingleTop = true
+                        }
+                    },
+                    navigateToUser = {
+                        navController.navigate(ROUTER_USER_LIST) {
+                            popUpTo(ROUTER_CATEGORY_LIST) {
+                                inclusive = true
+                            }
+                            launchSingleTop = true
+                        }
+                    },
                     closeDrawer = { scope.launch { drawerState.close() } },
                 )
             },

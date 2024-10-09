@@ -9,8 +9,7 @@ import com.nygar.designsystem.theme.CleanArchitectureKotlinTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MessageActivity : ComponentActivity(){
-
+class MessageActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -18,7 +17,7 @@ class MessageActivity : ComponentActivity(){
 
         setContent {
             CleanArchitectureKotlinTheme {
-                MessageNavigation(categoryId){
+                MessageNavigation(categoryId) {
                     onBackPressedDispatcher.onBackPressed()
                 }
             }

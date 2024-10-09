@@ -19,7 +19,7 @@ import com.nygar.designsystem.components.NavigationDrawerView
 @Composable
 fun MainNavigation(
     viewModel: UserLoggedViewModel = hiltViewModel(),
-    onNavigateToMessage: (Int) -> Unit
+    onNavigateToMessage: (Int) -> Unit,
 ) {
     val userLogged = viewModel.userLoggedSingle
     val navController = rememberNavController()

@@ -1,6 +1,6 @@
 plugins {
-    // `kotlin-dsl` //bug detected in 8.6.0 with this version
-    alias(libs.plugins.kotlin.dsl)
+    `kotlin-dsl` // bug detected in 8.6.0 with this version
+    // alias(libs.plugins.kotlin.dsl)
 }
 
 group = "com.nygar.cleanarchitecturekotlin.buildlogic"

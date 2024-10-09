@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                         val intent = Intent(this, MessageActivity::class.java)
                         intent.putExtra(ARGUMENT_MESSAGE_LIST_ID, it)
                         startActivity(intent)
-                    }
+                    },
                 )
             }
         }

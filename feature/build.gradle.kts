@@ -37,7 +37,9 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation)
 
-    implementation(libs.google.login)
+    implementation(libs.google.credentials)
+    implementation(libs.google.credentials.service)
+    implementation(libs.google.credentials.identity)
 
     implementation(libs.kotlin.serialization)
 }

@@ -21,7 +21,6 @@ fun MessageNavigation(
         navController = navController,
         startDestination = NavDestination.MessageList(categoryId),
     ) {
-
         composable<NavDestination.MessageList> { backStackEntry ->
             val router = backStackEntry.toRoute<NavDestination.MessageList>()
             MessageListScreen(

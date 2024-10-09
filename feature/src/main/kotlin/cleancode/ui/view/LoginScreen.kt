@@ -21,7 +21,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -30,8 +29,6 @@ import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import cleancode.viewmodel.LoginViewModel
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.nygar.designsystem.components.LottieLoadingView
 import com.nygar.designsystem.theme.ThemeConfig
 
@@ -40,14 +37,10 @@ fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
     onNavigateToMain: () -> Unit,
 ) {
-    val mGoogleSignInClient: GoogleSignInClient = GoogleSignIn.getClient(LocalContext.current, viewModel.gso)
-
-    val resultLogIn =
+    val addAccountLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             result.data?.let {
-                viewModel.authWithGoogle(it) {
-                    viewModel.isLogingFinished = true
-                }
+                viewModel.authWithGoogle()
             }
         }
 
@@ -95,7 +88,9 @@ fun LoginScreen(
             GoogleBtn(Modifier) {
                 viewModel.isLogingFinished = false
                 viewModel.isShowingAnimation = true
-                resultLogIn.launch(mGoogleSignInClient.signInIntent)
+                viewModel.authWithGoogle {
+                    addAccountLauncher.launch(viewModel.getAddGoogleAccountIntent())
+                }
             }
 
             NormalLoginBtn(

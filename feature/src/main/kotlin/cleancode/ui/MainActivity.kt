@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import cleancode.ui.navigation.ARGUMENT_MESSAGE_LIST_ID
 import cleancode.ui.navigation.MainNavigation
 import cleancode.ui.util.Analytics
 import com.google.firebase.analytics.FirebaseAnalytics

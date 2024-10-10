@@ -9,6 +9,10 @@ plugins {
 android {
     namespace = "com.nygar.common"
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         val localProperties: Properties =
             Properties().apply {
@@ -33,7 +37,4 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
-
-    implementation(libs.hilt)
-    ksp(libs.hilt.compiler)
 }

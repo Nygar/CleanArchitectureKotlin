@@ -56,6 +56,9 @@ fun NavigationDrawerView(
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
     val topAppBarScrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(rememberTopAppBarState())
+    var selectedRow by rememberSaveable {
+        mutableStateOf(ROUTER_CATEGORY_LIST)
+    }
 
     Surface(
         modifier =
@@ -71,6 +74,7 @@ fun NavigationDrawerView(
                     modifier = Modifier.fillMaxWidth(0.7f),
                     fullName = fullName,
                     avatarUrl = avatarUrl,
+                    selectedRow = selectedRow,
                     navigateToCategory = {
                         navController.navigate(ROUTER_CATEGORY_LIST) {
                             popUpTo(ROUTER_CATEGORY_LIST) {
@@ -82,7 +86,7 @@ fun NavigationDrawerView(
                     navigateToUser = {
                         navController.navigate(ROUTER_USER_LIST) {
                             popUpTo(ROUTER_CATEGORY_LIST) {
-                                inclusive = true
+                                inclusive = false
                             }
                             launchSingleTop = true
                         }
@@ -118,10 +122,12 @@ fun NavigationDrawerView(
                     modifier = Modifier.padding(paddingValues),
                 ) {
                     composable(ROUTER_CATEGORY_LIST) {
+                        selectedRow = ROUTER_CATEGORY_LIST
                         navigateToCategoryList()
                     }
 
                     composable(ROUTER_USER_LIST) {
+                        selectedRow = ROUTER_USER_LIST
                         navigateToUserList()
                     }
                 }
@@ -138,12 +144,9 @@ fun NavigationDrawerLateralContent(
     navigateToCategory: () -> Unit,
     navigateToUser: () -> Unit,
     closeDrawer: () -> Unit,
+    selectedRow: String,
 ) {
     ModalDrawerSheet {
-        var selectedRow by rememberSaveable {
-            mutableStateOf(ROUTER_CATEGORY_LIST)
-        }
-
         ModalDrawerSheet(modifier = modifier) {
             DrawerHeader(
                 modifier = Modifier,
@@ -161,7 +164,7 @@ fun NavigationDrawerLateralContent(
                 },
                 selected = selectedRow == ROUTER_CATEGORY_LIST,
                 onClick = {
-                    selectedRow = ROUTER_CATEGORY_LIST
+                    // selectedRow = ROUTER_CATEGORY_LIST
                     navigateToCategory()
                     closeDrawer()
                 },
@@ -178,7 +181,7 @@ fun NavigationDrawerLateralContent(
                 },
                 selected = selectedRow == ROUTER_USER_LIST,
                 onClick = {
-                    selectedRow = ROUTER_USER_LIST
+                    // selectedRow = ROUTER_USER_LIST
                     navigateToUser()
                     closeDrawer()
                 },

@@ -1,5 +1,5 @@
 plugins {
-    id("cleanarchitecturekotlin.android.library")
+    id("cleanarchitecturekotlin.android.feature")
 }
 
 android {

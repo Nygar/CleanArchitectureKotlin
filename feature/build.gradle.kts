@@ -1,5 +1,5 @@
 plugins {
-    id("cleanarchitecturekotlin.android.library")
+    id("cleanarchitecturekotlin.android.feature")
     alias(libs.plugins.ksp)
     alias(libs.plugins.hiltPlugin)
     alias(libs.plugins.kotlinSerialization)

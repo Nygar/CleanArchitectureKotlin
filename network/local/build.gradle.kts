@@ -9,13 +9,13 @@ android {
 
 dependencies {
 
-    implementation(project(":dto"))
+    implementation(project(":dtolib"))
 
     implementation(libs.androidx.core.ktx)
 
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 
-    api(libs.room.runtime)
+    implementation(libs.room.runtime)
     ksp(libs.room.compiler)
 }

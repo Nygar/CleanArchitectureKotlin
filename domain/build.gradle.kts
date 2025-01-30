@@ -16,7 +16,7 @@ publishing {
     /**Create github.properties in root project folder file with gpr.usr=GITHUB_USER_ID  & gpr.key=PERSONAL_ACCESS_TOKEN**/
     val githubProperties: Properties =
         Properties().apply {
-            load(FileInputStream(File(rootProject.rootDir, "github.properties")))
+            load(FileInputStream(File(rootProject.rootDir, "local.properties")))
         }
 
     fun getVersionName(): String {
@@ -52,7 +52,6 @@ publishing {
                  */
                 username = githubProperties["gpr.usr"] as String? ?: System.getenv("GPR_USER")
                 password = githubProperties["gpr.key"] as String? ?: System.getenv("GPR_API_KEY")
-
             }
         }
     }
@@ -60,8 +59,8 @@ publishing {
 
 dependencies {
 
-    implementation(project(":dto"))
-    implementation(project(":network:repository"))
+    implementation(project(":dtolib"))
+    implementation(project(":networklib"))
     implementation(project(":core:common"))
 
     implementation(libs.androidx.core.ktx)

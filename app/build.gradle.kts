@@ -53,7 +53,11 @@ dependencies {
     androidTestImplementation(libs.hilt.android.testing)
     kspAndroidTest(libs.hilt.compiler)
 
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.crashlytics)
+    // implementation(platform(libs.firebase.bom))
+    // implementation(libs.firebase.analytics)
+    // implementation(libs.firebase.crashlytics)
+
+    // Force dependencies Aar
+    runtimeOnly(libs.room.runtime)
+    runtimeOnly(libs.retrofit.json)
 }

@@ -11,6 +11,13 @@ plugins {
     alias(libs.plugins.firebasePlugin) apply false
     alias(libs.plugins.firebaseCrashlyticsPlugin) apply false
     alias(libs.plugins.spotlessPlugin)
+    alias(libs.plugins.jetbrainsKotlinJvm) apply false
+}
+
+buildscript {
+    dependencies {
+        classpath("com.github.aasitnikov:fat-aar-android:1.4.1")
+    }
 }
 
 // region Spotless

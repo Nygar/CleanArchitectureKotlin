@@ -1,11 +1,17 @@
-package cleancode.repository.di
+package cleancode.database.di
 
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import cleancode.database.AppDatabase
-import cleancode.net.RestApi
-import cleancode.net.RestApiImpl
+import cleancode.database.api.CategoryCache
+import cleancode.database.api.MessageCache
+import cleancode.database.api.UserCache
+import cleancode.database.api.UserLoggedCache
+import cleancode.database.impl.CategoryCacheImpl
+import cleancode.database.impl.MessageCacheImpl
+import cleancode.database.impl.UserCacheImpl
+import cleancode.database.impl.UserLoggedCacheImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +21,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class AppModule {
+class AppModuleLocal {
     @Provides
     @Singleton
     fun provideDatabase(
@@ -38,9 +44,28 @@ class AppModule {
        db.insert("localizadores", OnConflictStrategy.IGNORE, localizadorModel.getContentValues());
    }*/
 
+    // Database
     @Provides
-    @Singleton
-    fun provideApiRest(
+    fun provideCategoryCache(
         @ApplicationContext app: Context,
-    ): RestApi = RestApiImpl(app)
+        database: AppDatabase,
+    ): CategoryCache = CategoryCacheImpl(app, database)
+
+    @Provides
+    fun provideMessageCache(
+        @ApplicationContext app: Context,
+        database: AppDatabase,
+    ): MessageCache = MessageCacheImpl(app, database)
+
+    @Provides
+    fun provideUserCache(
+        @ApplicationContext app: Context,
+        database: AppDatabase,
+    ): UserCache = UserCacheImpl(app, database)
+
+    @Provides
+    fun provideUserLoggedCache(
+        @ApplicationContext app: Context,
+        database: AppDatabase,
+    ): UserLoggedCache = UserLoggedCacheImpl(app, database)
 }

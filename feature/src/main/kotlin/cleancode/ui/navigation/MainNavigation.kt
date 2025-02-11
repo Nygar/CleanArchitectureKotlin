@@ -20,6 +20,7 @@ import com.nygar.designsystem.components.NavigationDrawerView
 fun MainNavigation(
     viewModel: UserLoggedViewModel = hiltViewModel(),
     onNavigateToMessage: (Int) -> Unit,
+    onNavigateToCamera: () -> Unit,
 ) {
     val userLogged = viewModel.userLoggedSingle
     val navController = rememberNavController()
@@ -30,17 +31,22 @@ fun MainNavigation(
         startDestination = NavDestination.Login,
     ) {
         composable<NavDestination.Login> {
-            LoginScreen {
-                navController.navigate(NavDestination.Main)
-                /*
-                navController.navigate(NavItem.MainScreen){
-                    popUpTo(ROUTER_LOGIN) {
-                        inclusive = true
+            LoginScreen(
+                onNavigateToMain = {
+                    navController.navigate(NavDestination.Main)
+                    /*
+                    navController.navigate(NavItem.MainScreen){
+                        popUpTo(ROUTER_LOGIN) {
+                            inclusive = true
+                        }
                     }
-                }
 
-                 */
-            }
+                     */
+                },
+                onNavigateCamera = {
+                    onNavigateToCamera.invoke()
+                },
+            )
         }
         composable<NavDestination.Main> {
             NavigationDrawerView(

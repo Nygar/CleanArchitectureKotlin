@@ -41,6 +41,7 @@ roomVersion = "2.6.1"
 kspVersion = "1.9.23-1.0.20"
 constraintlayout = "1.0.1"
 lottieVersion = "6.4.0"
+cameraVersion = "1.4.1"
 
 [libraries]
 # Dependencies Kotlin/Android
@@ -102,6 +103,13 @@ firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashly
 google-credentials = { group = "androidx.credentials", name = "credentials", version.ref = "googleCredentials" }
 google-credentials-service = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "googleCredentials" }
 google-credentials-identity = { group = "com.google.android.libraries.identity.googleid", name = "googleid", version.ref = "googleCredentialsIdentity" }
+
+#Camera
+camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "cameraVersion"}
+camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "cameraVersion"}
+camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraVersion"}
+camera-video = { group = "androidx.camera", name = "camera-video", version.ref = "cameraVersion"}
+camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraVersion"}
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "app" }

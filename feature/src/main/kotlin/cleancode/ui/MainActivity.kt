@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import cleancode.ui.navigation.MainNavigation
 import cleancode.ui.util.Analytics
+import cleancode.ui.view.camera.CameraActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.nygar.designsystem.theme.CleanArchitectureKotlinTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +34,10 @@ class MainActivity : ComponentActivity() {
                     onNavigateToMessage = {
                         val intent = Intent(this, MessageActivity::class.java)
                         intent.putExtra(ARGUMENT_MESSAGE_LIST_ID, it)
+                        startActivity(intent)
+                    },
+                    onNavigateToCamera = {
+                        val intent = Intent(this, CameraActivity::class.java)
                         startActivity(intent)
                     },
                 )

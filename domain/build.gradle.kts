@@ -1,4 +1,3 @@
-import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
@@ -16,7 +15,8 @@ publishing {
     /**Create github.properties in root project folder file with gpr.usr=GITHUB_USER_ID  & gpr.key=PERSONAL_ACCESS_TOKEN**/
     val githubProperties: Properties =
         Properties().apply {
-            load(FileInputStream(File(rootProject.rootDir, "github.properties")))
+            // This is when you load your credentials for Github
+            // load(FileInputStream(File(rootProject.rootDir, "github.properties")))
         }
 
     fun getVersionName(): String {
@@ -52,7 +52,6 @@ publishing {
                  */
                 username = githubProperties["gpr.usr"] as String? ?: System.getenv("GPR_USER")
                 password = githubProperties["gpr.key"] as String? ?: System.getenv("GPR_API_KEY")
-
             }
         }
     }

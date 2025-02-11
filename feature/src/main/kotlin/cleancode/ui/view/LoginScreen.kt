@@ -36,6 +36,7 @@ import com.nygar.designsystem.theme.ThemeConfig
 fun LoginScreen(
     viewModel: LoginViewModel = hiltViewModel(),
     onNavigateToMain: () -> Unit,
+    onNavigateCamera: () -> Unit,
 ) {
     val addAccountLauncher =
         rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -93,7 +94,8 @@ fun LoginScreen(
                 }
             }
 
-            NormalLoginBtn(
+            NormalBtn(
+                text = stringResource(id = com.nygar.designsystem.R.string.btn_text_login),
                 modifier =
                     Modifier.padding(
                         top = ThemeConfig.theme.spacing.sizeSpacing15,
@@ -101,6 +103,16 @@ fun LoginScreen(
             ) {
                 viewModel.isLogingFinished = true
                 viewModel.isShowingAnimation = true
+            }
+
+            NormalBtn(
+                text = stringResource(id = com.nygar.designsystem.R.string.btn_text_camera),
+                modifier =
+                    Modifier.padding(
+                        top = ThemeConfig.theme.spacing.sizeSpacing15,
+                    ),
+            ) {
+                onNavigateCamera.invoke()
             }
         }
 
@@ -150,13 +162,14 @@ fun GoogleBtn(
 }
 
 @Composable
-fun NormalLoginBtn(
+fun NormalBtn(
     modifier: Modifier,
-    onNormalLogin: () -> Unit,
+    text: String,
+    onClick: () -> Unit,
 ) {
     Button(
         onClick = {
-            onNormalLogin.invoke()
+            onClick.invoke()
         },
         modifier =
             modifier
@@ -170,7 +183,7 @@ fun NormalLoginBtn(
             ),
     ) {
         Text(
-            text = stringResource(id = com.nygar.designsystem.R.string.btn_text_login),
+            text = text,
             modifier = Modifier.padding(ThemeConfig.theme.spacing.sizeSpacing5),
         )
     }
